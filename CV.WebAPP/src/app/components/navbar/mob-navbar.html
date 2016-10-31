@@ -1,0 +1,18 @@
+<!-- Menu for mobile phones and tablets -->
+
+<div class="navbar-mob">
+		<div class="mobBrand" ng-click="goHome();"><b>Abstract</b> Thinking</div>
+		<div class="mobIcon" ng-click="showMenu = ! showMenu"><i class="fa fa-list"></i></div>
+</div>
+<!-- Mob nav drop -->
+<!-- uib-collapse je dodan zboga animacije umjesto ng-show -->
+<div uib-collapse="!showMenu" class="mob-drop">
+	<ul>
+		<a href ui-sref="home({scrollTo: 'about'})"><li>about</li></a>
+		<a href ui-sref="courses"><li>courses</li></a>
+		<a href ui-sref="home({scrollTo: 'team'})"><li>team</li></a>
+		<a href ui-sref="home({scrollTo: 'newsletter'})"><li>newsletter</li></a>
+		<a href ui-sref="home({scrollTo: 'contact'})"><li>contact</li></a>
+		<a ng-click="showAccountModal()" href ui-sref="home({scrollTo: 'navbar'})"><li>login</li></a>
+	</ul>
+</div>

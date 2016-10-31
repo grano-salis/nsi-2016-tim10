@@ -1,0 +1,78 @@
+/** Mobile phone navigation **/
+.navbar-mob{
+	width: 100%;
+	height: 50px;
+	background: $darkgray;
+	border-bottom: 1px solid #6b6b6b;
+	padding: 10px 20px;
+	z-index: 10;
+	display: none;
+}
+
+.mobBrand{
+	float: left;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+.mobBrand b{
+	color: $yellow;
+	cursor: pointer;
+}
+
+.mobIcon{
+	float: right;
+	font-size: 23px;
+}
+
+.mobIcon:hover,
+.mobIcon:active,
+.mobIcon:focus{
+	color: $yellow;
+	cursor: pointer;
+}
+
+.mob-drop{
+	display:none;
+}
+
+.mob-drop ul{
+	background: $darkgray;
+	border-bottom: 1px solid #6b6b6b;
+	width: 100%;
+    padding: 0;
+    list-style: none;
+    margin: 0;
+}
+
+.mob-drop a,
+.mob-drop a:hover,
+.mob-drop a:active,
+.mob-drop a:focus{
+	text-decoration: none;
+	color: $text-color;
+}
+
+.mob-drop ul li{
+	padding: 20px 50px;
+	border-bottom: 1px solid #6b6b6b;
+	text-align: center;
+}
+
+.mob-drop ul li:hover{
+	color: $yellow;
+	background: $lightgray;
+}
+
+
+@media(max-width: 1170px){
+	.navbar-mob{
+		display:block;
+	}
+}
+
+@media(min-width: 1171px){
+	.mob-drop{
+		display:none;
+	}
+}

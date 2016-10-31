@@ -1,0 +1,70 @@
+<h2 class="text-center title">Register</h2>
+
+<!-- TODO Povezi formu s angularom -->
+
+
+<form name="rForm" class="account-modal-form" ng-submit="register()" novalidate>
+  <div class="account-modal-form-group">
+    <div class="account-modal-form-help-block" ng-repeat="err in errors">
+      {{err}}
+    </div>
+  </div>
+
+  <div class="account-modal-form-group">
+     <input type="text" class="account-modal-form-control" id="rUsername"
+       name="username" ng-model="newUser.username" placeholder="Username"
+       required>
+     <p class="account-modal-form-help-block" ng-if="rForm.username.$invalid && rForm.username.$touched">
+       <span ng-if="rForm.username.$error.required">Required.</span>
+     </p>
+  </div>
+
+  <div class="account-modal-form-group">
+     <input type="email" class="account-modal-form-control" id="rEmail"
+       name="email" ng-model="newUser.email" placeholder="Email" required>
+     <p class="account-modal-form-help-block" ng-if="rForm.email.$invalid && rForm.email.$touched">
+       <span ng-if="rForm.email.$error.required">Required.</span>
+       <span ng-if="rForm.email.$error.email">Email doesn't have valid format.</span>
+     </p>
+  </div>
+
+  <div class="account-modal-form-group">
+    <input type="password" class="account-modal-form-control" id="rPassword"
+      name="password" ng-model="newUser.password" placeholder="Password"
+      required ng-minlength="8">
+    <p class="account-modal-form-help-block" ng-if="rForm.password.$invalid && rForm.password.$touched">
+      <span ng-if="rForm.password.$error.required">Required.</span>
+      <span ng-if="rForm.password.$error.minlength">
+        Password need to have at least 8 chars.
+      </span>
+    </p>
+  </div>
+
+  <div class="account-modal-form-group">
+    <input type="password" class="account-modal-form-control" id="rConfirmPassword"
+      name="confirmPassword" placeholder="Repeat password"
+      required ng-model="newUser.confirmPassword" confirm-password="newUser.password">
+    <p class="account-modal-form-help-block" ng-if="rForm.confirmPassword.$invalid && rForm.confirmPassword.$touched">
+      <span ng-if="rForm.confirmPassword.$error.required">Required.</span>
+      <span ng-if="rForm.confirmPassword.$error.confirm">Passwords are not same.</span>
+    </p>
+  </div>
+
+  <div class="account-modal-form-group">
+    <button type="submit" class="account-modal-form-btn" name="button">
+      <img class="spinner" src="/assets/spinners/ring.svg" alt="waiting..." ng-show="showSpin">
+      <span ng-show="!showSpin">Register</span>
+    </button>
+  </div>
+
+  <hr class="hr">
+  <div class="or-hr centered-panel">OR</div>
+  <div class="or-register">
+
+    <div class="account-modal-form-group">
+      <button type="button" class="account-modal-form-btn" name="button"
+        ng-click="showLogin()">Login</button>
+    </div>
+
+  </div>
+</form>

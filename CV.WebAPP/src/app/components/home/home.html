@@ -1,0 +1,171 @@
+
+<!-- Fixed Top Menu -->
+<fixed-navbar-homepage ng-hide="!showNavbarFixed"></fixed-navbar-homepage>
+
+<section id="a-navbar">
+  	<div class="textUp wow animated fadeInDown"></div>
+  	<div class="navbar wow animated fadeIn">
+  		<div class="nav-item hidden-sm">
+  			<a href="#about">
+  				<div class="bulb"></div>
+  				<p>about</p>
+  			</a>
+  		</div>
+  		<div class="nav-item hidden-sm">
+        <a ui-sref="courses">
+  				<div class="bulb"></div>
+  				<p>courses</p>
+  			</a>
+  		</div>
+  		<div class="nav-item hidden-sm">
+  			<a ui-sref="home({scrollTo:'team'})">
+  				<div class="bulb"></div>
+  				<p>team</p>
+  			</a>
+  		</div>
+  		<div class="logo">
+  			<img src="assets/images/logo.png">
+  		</div>
+  		<div class="nav-item hidden-sm">
+  			<a href="#newsletter">
+  				<div class="bulb"></div>
+  				<p>newsletter</p>
+  			</a>
+  		</div>
+  		<div class="nav-item hidden-sm">
+  			<a href="#contact">
+  				<div class="bulb"></div>
+  				<p>contact</p>
+  			</a>
+  		</div>
+  		<div class="nav-item hidden-sm">
+  			<a ng-click="showAccountModal()" href="#login">
+  				<div class="bulb"></div>
+  				<p>login</p>
+  			</a>
+  		</div>
+  	</div>
+  	<div class="textDown wow animated fadeInUp">Think bigger, think better, <b>think abstract</b>.</div>
+
+</section>
+
+<section id="a-about">
+	<h1><b>about</b>us</h1>
+	<div class="row">
+		<div class="col-lg-7">
+			<p>
+	From web development to online education, Abstract Thinking does it all. We have all the latest and most relevant trends in the developer world within our grasp. A team of young professionals in different areas of expertise is here to cater to all your outsourcing needs. We recognize that traditional means of getting educated have become a thing of the past. Seeing that e-learning has become all the craze, Abstract Thinking has jumped on the bandwagon of online education and provides services of such sort. We are no strangers to web and mobile development and online security either. We have the skills and experience to provide you with all the latest technology your ultimate goals require. With us working closely with you to decide on the ideal solution for your business needs and implementation, the possibilities are endless. The bottom line is, there is nothing abstract about the end result of our work.</p>
+		</div>
+		<div class="images">
+			<div class="image"></div>
+		</div>
+	</div>
+
+</section>
+
+<section id="a-newsletter">
+	<h1><b>news</b>letter</h1>
+	<p>Here you can subscribe for our newsletter!</p>
+	<form name="nForm" ng-submit="subscribe()">
+		<div class="input-group">
+				<input type="email" id="nEmail" name="email" class="form-control"
+					placeholder="Enter your email adress..." ng-model="newsletter.email" required>
+				<span class="input-group-btn">
+        		<button class="btn btn-secondary" type="submit"><i class="fa fa-paper-plane-o"></i></button>
+      	</span>
+		</div>
+		<p class="home-contactus-help-block" ng-if="nForm.email.$invalid && nForm.email.$touched">
+      <span ng-if="nForm.email.$error.required">Required.</span>
+      <span ng-if="nForm.email.$error.email">Email doesn't have valid format.</span>
+    </p>
+		<p class="home-contactus-help-block" ng-if="nErrors">
+			<span ng-repeat="err in nErrors">{{err}}</span>
+    </p>
+	</form>
+	<div class="paper-plane">
+		<img src="assets/images/paper-plane.png">
+	</div>
+</section>
+
+<section id="a-contact">
+	<div class="smartphone">
+		<img src="assets/images/smartphone.png">
+		<div class="clb"></div>
+	</div>
+	<form name="cForm" ng-submit="sendContactUs()" novalidate>
+		<h1><b>contact</b>us</h1>
+		<div class="row">
+			<div class="col-lg-6">
+				<input type="text" id="cName" name="name" class="form-control"
+					placeholder="Enter your fullname..." ng-model="contactUs.name" required
+					ng-minlength="4" ng-maxlength="50">
+				<p class="home-contactus-help-block" ng-if="cForm.name.$invalid && cForm.name.$touched">
+	        <span ng-if="cForm.name.$error.required">Required.</span>
+					<span ng-if="cForm.name.$error.minlength">Your name is too short.</span>
+					<span ng-if="cForm.name.$error.maxlength">Your name is too long.</span>
+	      </p>
+			</div>
+			<div class="col-lg-6">
+				<input type="email" id="cEmail" name="email" class="form-control"
+					placeholder="Enter your email adress..." ng-model="contactUs.email" required>
+				<p class="home-contactus-help-block" ng-if="cForm.email.$invalid && cForm.email.$touched">
+	        <span ng-if="cForm.email.$error.required">Required.</span>
+	        <span ng-if="cForm.email.$error.email">Email doesn't have valid format.</span>
+	      </p>
+			</div>
+			<div class="col-lg-12">
+				<textarea class="form-control" id="cBody" name="body" placeholder="Enter you message here..."
+					ng-model="contactUs.body" required></textarea>
+				<button class="btn btn-secondary" type="submit"><i class="fa fa-paper-plane-o"></i></button>
+			</div>
+			<div class="col-lg-12">
+				<p class="home-contactus-help-block" ng-if="cForm.body.$invalid && cForm.body.$touched">
+	        <span ng-if="cForm.body.$error.required">Required.</span>
+	      </p>
+			</div>
+		</div>
+
+	</form>
+</section>
+
+<section id="footer">
+
+	<div class="logo">
+		<img src="assets/images/logo-footer.png">
+	</div>
+
+	<ul>
+		<li>
+			<i class="fa fa-facebook"></i>
+			<div class="text">
+				<p>Follow us on</p>
+				<p><b>Facebook</b></p>
+			</div>
+		</li>
+		<li>
+			<i class="fa fa-twitter"></i>
+			<div class="text">
+				<p>Follow us on</p>
+				<p><b>Twitter</b></p>
+			</div>
+		</li>
+		<li>
+			<i class="fa fa-google"></i>
+			<div class="text">
+				<p>Follow us on</p>
+				<p><b>Google+</b></p>
+			</div>
+		</li>
+	</ul>
+
+	<div class="arrow">
+		<a href="#totop"><i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i></a>
+	</div>
+
+	<div class="mobFooter">
+		<a href="http://www.facebook.com"><i class="fa fa-facebook"></i></a>
+		<a href="http://www.twitter.com"><i class="fa fa-twitter"></i></a>
+		<a href="http://www.google.com"><i class="fa fa-google"></i></a>
+	</div>
+
+</section>

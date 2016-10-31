@@ -1,0 +1,55 @@
+<h2 class="text-center title">Login</h2>
+
+<!-- TODO Povezi formu s angularom -->
+<form class="account-modal-form" name="lForm" ng-submit="login()" novalidate>
+  <div class="account-modal-form-group">
+    <div class="account-modal-form-help-block" ng-repeat="err in errors">
+      {{err}}
+    </div>
+  </div>
+  
+  <div class="account-modal-form-group">
+      <div class="account-modal-form-addon">
+        <span class="glyphicon glyphicon-user"></span>
+      </div>
+     <input type="text" name="username" class="account-modal-form-control" id="exampleInputEmail1" placeholder="Username"
+       ng-model="loginModel.username" required>
+     <p class="account-modal-form-help-block with-glyph" ng-if="lForm.username.$invalid && lForm.username.$touched">
+       <span ng-if="lForm.username.$error.required">Required.</span>
+     </p>
+  </div>
+
+  <div class="account-modal-form-group">
+    <div class="account-modal-form-addon">
+      <span class="glyphicon glyphicon-lock"></span>
+    </div>
+    <input type="password" name="password" class="account-modal-form-control" id="exampleInputEmail1" placeholder="Password"
+      ng-model="loginModel.password" required>
+    <p class="account-modal-form-help-block with-glyph" ng-if="lForm.password.$invalid && lForm.password.$touched">
+      <span ng-if="lForm.password.$error.required">Required.</span>
+    </p>
+  </div>
+
+  <div class="account-modal-form-group">
+
+    <button type="submit" class="account-modal-form-btn" name="button">
+       <img class="spinner" src="/assets/spinners/ring.svg" alt="spinner" ng-show="showLoginSpin">
+       <span ng-show="!showLoginSpin">Login</span>
+     </button>
+  </div>
+
+</form>
+
+
+<a class="text-center forget-pass" href="">Did you forget password?</a>
+
+<hr class="hr">
+<div class="or-hr centered-panel">OR</div>
+<div class="or-register">
+
+  <div class="account-modal-form-group">
+    <button type="submit" class="account-modal-form-btn" name="button"
+      ng-click="showRegister()">Register</button>
+  </div>
+
+</div>

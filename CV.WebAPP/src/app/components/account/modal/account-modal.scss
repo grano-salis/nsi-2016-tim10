@@ -1,0 +1,208 @@
+/***********/
+/** FONTS **/
+/***********/
+
+
+.account-modal-backdrop{
+  background-color: white;
+  opacity: 0.5 !important;
+}
+.account-modal {
+
+  .account-modal-panel{
+
+    max-height: 0;
+    -moz-transition: max-height 1s ease;
+    -webkit-transition: max-height 1s ease;
+    -ms-transition: max-height 1s ease;
+    transition: max-height 1s ease;
+
+    overflow: hidden;
+    &.active{
+      max-height: 1000px;
+    }
+
+    &.ng-hide-remove{
+      -moz-transition-delay: 1s;
+      -webkit-transition-delay: 1s;
+      -ms-transition-delay: 1s;
+      transition-delay: 1s;
+    }
+  }
+  .modal-content{
+    font-family: "Montserrat", sans-serif;
+    background-color: $lightgray;
+    color: $text-color;
+    font-weight: lighter;
+    border-radius: 0;
+    .centered-panel{
+      margin-left:auto;
+      margin-right:auto;
+      width:40%;
+
+      &>*{
+        margin-left:auto;
+        margin-right:auto;
+      }
+    }
+
+    .modal-x{
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      font-size: 1.2em;
+      font-weight: lighter;
+      color: transparentize($text-color, 0.4);
+      padding: 6px 10px 5px;
+      border-radius: 25px;
+      cursor: pointer;
+
+      &:hover{
+        background-color: transparentize(white, 0.95);
+      }
+    }
+
+    .hr{
+      padding: 0;
+      border: none;
+      border-top: 1px solid $text-color;
+      border-bottom: 1px solid $text-color;
+      color: $text-color;
+      text-align: center;
+      margin: 65px -55px 0;
+      height: 3px;
+    }
+
+    .or-hr{
+      margin-top: -0.85em;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      padding: 0 0.25em;
+      width:40px;
+      background: $lightgray;
+      text-align: center;
+    }
+
+    .title{
+      text-transform: uppercase;
+      font-size: 2em;
+      margin-bottom: 60px;
+      margin-top: 60px;
+    }
+
+    .account-modal-form {
+
+    }
+
+
+
+    .account-modal-form-group{
+      position: relative;
+      display: block;
+      width: 100%;
+      background: transparent;
+      border: 0;
+      margin-bottom: 24px;
+      font-size: 1.1em;
+
+      .account-modal-form-control{
+        display: inline-block;
+        width: 100%;
+        background: transparent;
+        border: 0;
+        padding: 6px 0px;
+        border-bottom: solid 1px $text-color;
+
+        &:after{
+          content:'';
+          display: block;
+          height: 3px;
+        	width: 0px;
+        	background: transparent;
+        	transition: width .5s ease, background-color .5s ease;
+        }
+        &:focus:after{
+          width: 100%;
+          background-color: $yellow;
+        }
+        &:focus{
+          outline: none;
+        }
+        &:-webkit-autofill {
+          background-color: $darkgray !important;
+          -webkit-box-shadow: 0 0 0 1000px $lightgray inset !important;
+          color: white !important;
+        }
+      }
+
+      .account-modal-form-addon{
+        position: absolute;
+        top: 7px;
+        left: 6px;
+        display: inline-block;
+        vertical-align: middle;
+        color:transparentize($text-color, 0.2);
+      }
+
+      .account-modal-form-addon + .account-modal-form-control{
+        padding-left: 35px;
+      }
+
+      &:focus + .account-modal-form-addon{
+        color: $text-color;
+      }
+
+      .account-modal-form-btn{
+        display: block;
+        width:100%;
+        background-color: $yellow;
+        color: $darkgray;
+        border: 0;
+        font-size: 1.1em;
+        padding: 12px;
+        margin: 35px 0 25px;
+        border-radius: 0px;
+      }
+
+      .account-modal-form-btn:hover,
+      .account-modal-form-btn:focus {
+        background-color: darken($yellow, 10%);
+      }
+
+    }
+
+    .account-modal-form-help-block{
+      font-size: 0.9em;
+      color:$yellow;
+      margin: 0.3em 0.1em;
+
+      &.with-glyph {
+        padding-left: 35px;
+      }
+
+    }
+
+    .forget-pass{
+      display: block;
+      color: $text-color;
+      font-size: 1.1em;
+      text-decoration: underline;
+      margin: 25px;
+
+      &:visited{
+        color: $text-color;
+        text-decoration: underline;
+      }
+    }
+
+    .or-register{
+      margin-bottom: 45px;
+    }
+
+    .spinner{
+      height: 1.1em;
+      width: 1.1em;
+    }
+  }
+}

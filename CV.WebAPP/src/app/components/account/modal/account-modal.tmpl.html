@@ -1,0 +1,15 @@
+<div class="container-fluid">
+  <div class="modal-x" ng-click="closeModal()"><span class="glyphicon glyphicon-remove"></span></div>
+  <div class="row account-modal-panel" ng-class="{'active':panel === 0}">
+    <div class="centered-panel">
+      <modal-login-panel></modal-login-panel>
+    </div>
+
+  </div>
+
+  <div class="row account-modal-panel" ng-class="{'active':panel === 1}">
+    <div class="centered-panel">
+      <modal-register-panel></modal-register-panel>
+    </div>
+  </div>
+</div>

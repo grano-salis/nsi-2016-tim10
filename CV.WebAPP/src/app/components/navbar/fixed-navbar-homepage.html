@@ -1,0 +1,14 @@
+<div class="navbar-fixed">
+	<div class="fixBrand" ng-click="goHome();"><b>Abstract</b> Thinking</div>
+	<ul class="left">
+		<a href="#about"><li>about</li></a>
+    <a ui-sref="courses"><li>courses</li></a>
+		<a href="#team"><li>team</li></a>
+		<a href="#newsletter"><li>newsletter</li></a>
+		<a href="#contact"><li>contact</li></a>
+	</ul>
+	<ul class="right">
+		<a ng-click="showAccountModal()" ng-if="!isLoggedIn()"><li>Log In / Register</li></a>
+		<a href="#" ng-if="isLoggedIn()"><li><small>{{getCurrentUser().username}}</small> <i class="fa fa-user"></i></li></a>
+	</ul>
+</div>
