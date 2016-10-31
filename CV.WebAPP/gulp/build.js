@@ -17,10 +17,10 @@ gulp.task('partials', function () {
       removeEmptyAttributes: true,
       removeAttributeQuotes: true,
       collapseBooleanAttributes: true,
-      collapseWhitespace: true
+      collapseWhitespace: false
     }))
     .pipe($.angularTemplatecache('templateCacheHtml.js', {
-      module: 'at',
+      module: 'ea',
       root: 'app'
     }))
     .pipe(gulp.dest(conf.paths.tmp + '/partials/'));
@@ -37,6 +37,12 @@ gulp.task('html', ['inject', 'partials'], function () {
   var htmlFilter = $.filter('*.html', { restore: true });
   var jsFilter = $.filter('**/*.js', { restore: true });
   var cssFilter = $.filter('**/*.css', { restore: true });
+  var cssnanoOpt = {
+    reduceIdents: false,
+    zindex: false,
+    mergeIdents:false,
+    discardUnused:false
+  }
 
   return gulp.src(path.join(conf.paths.tmp, '/serve/*.html'))
     .pipe($.inject(partialsInjectFile, partialsInjectOptions))
@@ -51,7 +57,8 @@ gulp.task('html', ['inject', 'partials'], function () {
     .pipe(cssFilter)
     // .pipe($.sourcemaps.init())
     .pipe($.replace('../../bower_components/bootstrap-sass/assets/fonts/bootstrap/', '../fonts/'))
-    .pipe($.cssnano())
+    .pipe($.replace('../../bower_components/font-awesome/fonts', '../fonts'))
+    .pipe($.cssnano(cssnanoOpt)).on('error', conf.errorHandler('CSS Nano'))
     .pipe($.rev())
     // .pipe($.sourcemaps.write('maps'))
     .pipe(cssFilter.restore)
@@ -61,7 +68,7 @@ gulp.task('html', ['inject', 'partials'], function () {
       removeEmptyAttributes: true,
       removeAttributeQuotes: true,
       collapseBooleanAttributes: true,
-      collapseWhitespace: true
+      collapseWhitespace: false
     }))
     .pipe(htmlFilter.restore)
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')))
