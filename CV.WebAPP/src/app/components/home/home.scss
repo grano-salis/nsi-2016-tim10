@@ -300,128 +300,6 @@ a:focus{
 
 
 
-/** Newsletter **/
-#a-newsletter{
-	background: $lightgray;
-	padding: 40px 100px;
-	padding-bottom: 140px;
-	position: relative;
-}
-
-#a-newsletter h1{
-	font-size: 28px;
-	margin-bottom: 15px;
-}
-
-#a-newsletter p{
-	font-size: 18px;
-}
-
-#a-newsletter .input-group{
-	width: 50%;
-	margin-top: 50px;
-}
-
-
-#a-newsletter input{
-	height: 70px;
-	padding: 25px;
-}
-
-#a-newsletter button{
-	height: 70px;
-	background: #fff;
-	border-radius: 0;
-	-webkit-transition-duration: 0.3s; /* Safari */
-    transition-duration: 0.3s;
-}
-
-#a-newsletter button:hover{
-	background: $darkgray;
-}
-
-#a-newsletter button i{
-	font-size: 25px;
-	color: $darkgray;
-}
-
-#a-newsletter button:hover i{
-	color: #fff!important;
-}
-
-#a-newsletter .paper-plane{
-	position: absolute;
-    top: 0;
-    right: 0;
-}
-
-
-/** Contact us **/
-#a-contact{
-	background: $lightgray;
-	padding: 0 100px;
-	z-index: -1;
-}
-
-#a-contact h1{
-	font-size: 28px;
-	margin-bottom: 15px;
-}
-
-#a-contact form{
-	padding-left: 400px;
-	z-index: 1;
-	position: relative;
-}
-
-#a-contact .smartphone{
-    float: left;
-}
-
-#a-contact input{
-	height: 70px;
-	z-index: 10;
-	padding: 25px;
-}
-
-#a-contact textarea{
-	margin-top: 30px;
-	height: 300px;
-	z-index: 10;
-	padding: 25px;
-}
-
-#a-contact button {
-	position: absolute;
-    right: 15px;
-    bottom: 0px;
-    background: #fff;
-    width: 60px;
-    height: 60px;
-    border-radius: 0;
-    -webkit-transition-duration: 0.3s; /* Safari */
-    transition-duration: 0.3s;
-}
-
-#a-contact button:hover{
-	background: $darkgray;
-}
-
-#a-contact button i{
-    color: $darkgray;
-    font-size: 25px;
-}
-
-#a-contact button:hover i{
-	color: #fff!important;
-}
-
-
-.home-contactus-help-block{
-  font-size: 1.1em;
-  color:$yellow;
-  margin: 0.3em 0.1em;
-}
 
 /** Footer **/
 #footer{
@@ -629,48 +507,14 @@ a:focus{
 }
 
 @media(max-width: 845px){
-	#a-newsletter{
-	    padding: 40px 50px;
-	    padding-bottom: 100px;
-	}
-
-	#a-contact{
-	    padding: 0px 50px;
-	}
 
 	#a-about{
 	    padding: 40px 50px;
 	}
 
-	#a-team{
-	    padding: 40px 50px;
-	}
-
-	.paper-plane img{
-		width: 300px;
-	}
-
-	.smartphone img{
-	    width: 260px;
-	}
-
 	input,
 	textarea{
 		font-size: 16px!important;
-	}
-
-	#a-newsletter input,
-	#a-newsletter button,
-	#a-contact input{
-		height: 55px;
-	}
-
-	#a-contact form {
-  	padding-left: 310px;
-  }
-
-  #a-contact textarea {
-  	height: 180px !important;
 	}
 
 	#footer ul{
@@ -720,15 +564,6 @@ a:focus{
 
 
 @media(max-width: 667px){
-	#a-newsletter{
-	    padding: 40px 30px;
-	    padding-bottom: 80px;
-	}
-
-	#a-contact{
-	    padding: 0px 30px;
-	    padding-bottom: 30px;
-	}
 
 	#a-about{
 	    padding: 40px 30px;
@@ -738,26 +573,9 @@ a:focus{
 	    padding: 40px 30px;
 	}
 
-	.paper-plane img{
-		display: none;
-	}
-
-	.smartphone img{
-	    display: none;
-	}
-
 	input,
 	textarea{
 		font-size: 14px!important;
-	}
-
-	#a-newsletter .input-group {
-    	width: 100%;
-    	margin-top: 50px;
-	}
-
-	#a-contact form {
-    	padding-left: 0;
 	}
 
 	#footer ul{
@@ -861,23 +679,6 @@ a:focus{
 	.textDown{
 		font-size: 14px;
     	margin-top: 30px;
-	}
-
-	#a-newsletter input,
-	#a-newsletter button,
-	#a-contact input{
-		height: 45px!important;
-		padding: 10px;
-	}
-
-	#a-newsletter{
-	    padding: 40px 25px;
-	    padding-bottom: 30px;
-	}
-
-	#a-contact{
-	    padding: 0px 25px;
-	    padding-bottom: 30px;
 	}
 
 	#a-about p{
