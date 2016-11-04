@@ -7,17 +7,18 @@
 
   /** @ngInject */
   function routerConfig($stateProvider, $urlRouterProvider) {
-    $stateProvider
-      .state('home', {
-        url: '/?email-confirm',
-        params: {
-          scrollTo: null
-        },
-        templateUrl: 'app/components/home/home.html',
-        controller: 'HomeCtrl',
-        onEnter: scrollTo
-      });
 
+    // $stateProvider
+    //   .state('home', {
+    //     url: '/?email-confirm',
+    //     params: {
+    //       scrollTo: null
+    //     },
+    //     templateUrl: 'app/components/home/home.html',
+    //     controller: 'HomeCtrl',
+    //     onEnter: scrollTo
+    //   });
+    //
     $urlRouterProvider.otherwise('/');
   }
 
