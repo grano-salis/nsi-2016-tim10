@@ -1,0 +1,12 @@
+"basicExperienceType":{
+"type": "object",
+"allOf": [
+{ "$ref" : "#/definitions/periodType" },
+{
+"properties": {
+"Description": { "type": "string" }
+}
+},
+{ "$ref" : "#/definitions/sectionReferenceToListType" }
+]
+},
