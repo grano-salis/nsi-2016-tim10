@@ -71,6 +71,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="BusinessLogic\" />
+    <Folder Include="Entities\" />
+    <Folder Include="ServiceInterface\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Web.Debug.config">
