@@ -1,0 +1,31 @@
+"addressType":{
+  "type": "object",
+  "properties": {
+    "AddressLine": {
+      "type": "string"
+    },
+    "AddressLine2": {
+      "type": "string"
+    },
+    "PostalCode": {
+      "type": "string"
+    },
+    "Municipality": {
+      "type": "string"
+    },
+    "Country": {
+      "$ref":"#/definitions/countryType"
+  }
+},
+
+"Address" : {
+  "Contact" : {
+    "AddressLine" : "32 Reading rd",
+    "PostalCode" : "B26 3QJ",
+    "Municipality" : "Birmingham",
+    "Country" : {
+      "Code" : "UK",
+      "Label" : "United Kingdom"
+    }
+  }
+},
