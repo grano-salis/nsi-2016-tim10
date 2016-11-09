@@ -1,50 +1,5 @@
 {
   "SkillsPassport" : {
-    "Locale" : "en",
-    "DocumentInfo" : {
-      "DocumentType" : "ECV",
-      "CreationDate" : "2013-02-21T07:47:20.086Z",
-      "LastUpdateDate" : "2015-06-03T12:14:56.820Z",
-      "XSDVersion" : "V3.3",
-      "Generator" : "REST_WS",
-      "Comment" : "Europass CV",
-      "EuropassLogo" : true
-    },
-    "PrintingPreferences" : {
-      "ECV" : [ {
-        "name" : "LearnerInfo.Identification.PersonName",
-        "show" : true,
-        "order" : "FirstName Surname"
-      }, {
-        "name" : "LearnerInfo.Identification.Demographics.Birthdate",
-        "show" : true,
-        "format" : "numeric/long"
-      }, {
-        "name" : "LearnerInfo.WorkExperience[0].Period",
-        "show" : true,
-        "format" : "numeric/long"
-      }, {
-        "name" : "LearnerInfo.WorkExperience[1].Period",
-        "show" : true,
-        "format" : "numeric/long"
-      }, {
-        "name" : "LearnerInfo.WorkExperience[2].Period",
-        "show" : true,
-        "format" : "numeric/long"
-      }, {
-        "name" : "LearnerInfo.Education[0].Period",
-        "show" : true,
-        "format" : "numeric/long"
-      }, {
-        "name" : "LearnerInfo.Education[1].Period",
-        "show" : true,
-        "format" : "numeric/long"
-      }, {
-        "name" : "LearnerInfo",
-        "show" : true,
-        "order" : "Identification Headline WorkExperience Education Skills Achievement ReferenceTo"
-      } ]
-    },
     "LearnerInfo" : {
       "Identification" : {
         "PersonName" : {
