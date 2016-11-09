@@ -27,6 +27,8 @@
 
           $scope.arr=[1,2];
 
+          $scope.testDatum = {};
+
 
 
           $scope.send = function(){

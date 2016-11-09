@@ -1,15 +1,34 @@
-racunati da nam treba format
+<!--racunati da nam treba format-->
 
-"structuredDateType":{
-  "type": "object",
-  "properties": {
-    "Year": {
-      "type": "number"
-    },
-    "Month": {
-      "type": "number"
-    },
-    "Day": {
-      "type": "number"
-  }
-}, da se vraca, tako da komponentu koju uzmemo za ovo, raskomadati odgovor u ovo i transformisati
+<!--"structuredDateType":{-->
+<!--"type": "object",-->
+<!--"properties": {-->
+<!--"Year": {-->
+<!--"type": "number"-->
+<!--},-->
+<!--"Month": {-->
+<!--"type": "number"-->
+<!--},-->
+<!--"Day": {-->
+<!--"type": "number"-->
+<!--}-->
+<!--}, da se vraca, tako da komponentu koju uzmemo za ovo, raskomadati odgovor u ovo i transformisati-->
+
+
+<h3>godina</h3>
+<input ng-model="odabrani.Year">
+<input ng-model="odabrani.Month">
+<input ng-model="odabrani.Day">
+
+test:<input ng-model="alija"></input>
+<label>{{alija}}</label>
+<!--<pre>{{odabrani}}</pre>-->
+<!--{{model}}-->
+<hr>
+<pre>Selected date is: <em>{{dt | date:'fullDate' }}</em></pre>
+
+<h4>Inline</h4>
+<div >
+  <div uib-datepicker ng-model="dt" class="well well-sm"
+       datepicker-options="options"></div>
+</div>
