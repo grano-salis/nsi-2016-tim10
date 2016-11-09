@@ -1,31 +1,11 @@
-"addressType":{
-  "type": "object",
-  "properties": {
-    "AddressLine": {
-      "type": "string"
-    },
-    "AddressLine2": {
-      "type": "string"
-    },
-    "PostalCode": {
-      "type": "string"
-    },
-    "Municipality": {
-      "type": "string"
-    },
-    "Country": {
-      "$ref":"#/definitions/countryType"
-  }
-},
-
-"Address" : {
-  "Contact" : {
-    "AddressLine" : "32 Reading rd",
-    "PostalCode" : "B26 3QJ",
-    "Municipality" : "Birmingham",
-    "Country" : {
-      "Code" : "UK",
-      "Label" : "United Kingdom"
-    }
-  }
-},
+<label>adresline</label>
+<input ng-model="odabrani.AddressLine">
+<label>addressline2</label>
+<input ng-model="odabrani.AddressLine2">
+<label>PostalCode</label>
+<input ng-model="odabrani.PostalCode">
+<label>Municipality</label>
+<input ng-model="odabrani.Municipality">
+<label>Country</label>
+<div country-type model="odabrani.Country"></div>
+<pre>{{odabrani}}</pre>
