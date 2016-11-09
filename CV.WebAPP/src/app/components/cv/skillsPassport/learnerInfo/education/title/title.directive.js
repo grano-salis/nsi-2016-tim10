@@ -3,13 +3,13 @@
 
   angular
     .module('ea.cv')
-    .directive('organisationalWebsiteType', directive);
+    .directive('title', directive);
 
   /** @ngInject */
   function directive() {
     var directive = {
       // restrict: 'E',
-      templateUrl: 'app/components/cv/definitions/organisationalWebsiteType/organisationalWebsiteType.tmpl.html',
+      templateUrl: 'app/components/cv/skillsPassport/learnerInfo/education/title/title.tmpl.html',
       controller: ctrl,
       scope: {
         'model':'=model'
