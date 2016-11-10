@@ -1,4 +1,4 @@
-CV.WebAPP/bower_components/
+﻿CV.WebAPP/bower_components/
 CV.WebAPP/node_modules/
 CV.WebAPP/.tmp/
 CV.WebAPP/dist/
@@ -28,6 +28,9 @@ CV.WebAPI/bld/
 CV.WebAPI/[Bb]in/
 CV.WebAPI/[Oo]bj/
 CV.WebAPI/[Ll]og/
+
+SSO/SSO.WCFService/SSO.WCFService/[Bb]in/
+SSO/SSO.WCFService/SSO.WCFService/[Oo]bj/
 
 # Visual Studio 2015 cache/options directory
 CV.WebAPI/.vs/
