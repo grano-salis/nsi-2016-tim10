@@ -1,0 +1,25 @@
+<h3>Telephone</h3>
+<div ng-repeat="obj in odabrani" ng-init="edit = true">
+  <label>Contact: </label>
+  <input ng-model="obj.Contact"
+         ng-disabled="edit">
+  <label>Use: </label>
+  <select ng-model="obj.Use"
+          ng-options="value.Label for value in enum"
+          ng-disabled="edit">
+  </select>
+
+  <button ng-click="edit=!edit;" >Edit</button>
+  <button ng-click="delete($index)" >Delete</button>
+</div>
+<hr>
+<div>
+  <label>Contact: </label>
+  <input ng-model="add.Contact">
+  <label>Use: </label>
+  <select ng-model="add.Use"
+          ng-options="value.Label for value in enum"></select>
+  <button ng-click="addNew()">add</button>
+</div>
+
+<!--<pre>{{odabrani}}</pre>-->
