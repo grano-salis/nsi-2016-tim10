@@ -1,0 +1,16 @@
+<h4>nacionalnost</h4>
+<div ng-repeat="obj in odabrani" ng-init="edit = true">
+  <select ng-model="obj"
+          ng-disabled="edit"
+          ng-options="ob.Label for ob in enum">
+  </select>
+  <button ng-click="edit=!edit;" >Edit</button>
+  <button ng-click="delete($index)" >Delete</button>
+</div>
+<hr>
+<div>
+  <select ng-model="add"
+          ng-options="ob.Label for ob in enum">
+  </select>
+  <button ng-click="addNew()">add</button>
+</div>
