@@ -1,11 +1,24 @@
-<label>adresline</label>
-<input ng-model="odabrani.AddressLine">
-<label>addressline2</label>
-<input ng-model="odabrani.AddressLine2">
-<label>PostalCode</label>
-<input ng-model="odabrani.PostalCode">
-<label>Municipality</label>
-<input ng-model="odabrani.Municipality">
-<label>Country</label>
-<div country-type model="odabrani.Country"></div>
-<pre>{{odabrani}}</pre>
+<div class="col-md-4">
+<div class="panel panel-default">
+  <div class="panel-heading">Address info</div>
+  <div class="panel-body">
+    <div class="row">
+
+      <div class="col-sm-1">
+        <label>AddressLine</label><br>
+        <input ng-model="odabrani.AddressLine">
+        <label>AddressLine2</label>
+        <input ng-model="odabrani.AddressLine2">
+        <label>PostalCode</label>
+        <input ng-model="odabrani.PostalCode">
+        <label>Municipality</label>
+        <input ng-model="odabrani.Municipality">
+        <label>Country</label>
+        <div country-type model="odabrani.Country"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+

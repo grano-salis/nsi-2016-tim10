@@ -1,9 +1,18 @@
-"type": "array",
-"items": {
-"type": "object",
-"properties": {
-"idref": {
-"type": "string"
-}
-}
-},
+<h3>referenceToListType</h3>
+<div ng-repeat="obj in odabrani" ng-init="edit = true">
+  <label>idref: </label>
+  <input ng-model="obj.idref"
+         ng-disabled="edit">
+
+  <button ng-click="edit=!edit;" >Edit</button>
+  <button ng-click="delete($index)" >Delete</button>
+</div>
+<hr>
+<div>
+  <label>idref: </label>
+  <input ng-model="add.idref">
+
+  <button ng-click="addNew()">add</button>
+</div>
+
+<!--<pre>{{odabrani}}</pre>-->

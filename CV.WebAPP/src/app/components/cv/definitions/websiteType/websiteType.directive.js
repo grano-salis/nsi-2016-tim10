@@ -3,13 +3,14 @@
 
   angular
     .module('ea.cv')
-    .directive('referenceToListType', directive);
+    .directive('websiteType', directive);
 
   /** @ngInject */
   function directive() {
     var directive = {
       // restrict: 'E',
-      templateUrl: 'app/components/cv/definitions/referenceToListType/referenceToListType.tmpl.html',
+      templateUrl: 'app/components/cv/definitions/websiteType/websiteType.tmpl.html',
+
       controller: ctrl,
       scope: {
         'model':'=model',
@@ -20,19 +21,15 @@
     return directive;
 
     /** @ngInject */
-    function ctrl($scope, $http) {
+    function ctrl($scope, accountService, toastr) {
+      $scope.odabrani = {};
 
-      $scope.addNew = function () {
-        if($scope.odabrani==null || typeof ($scope.odabrani)=='undefined')
-          $scope.odabrani = [];
-        $scope.odabrani.push($scope.add);
-        $scope.add=null;
-      }
-
-      $scope.delete = function(i){
-        $scope.odabrani.splice(i,1);
-      }
-
+      $scope.niz = [
+        {Label:"personal-",Code:"personal"},
+        {Label:"business-",Code:"business"},
+        {Label:"blog-",Code:"blog"},
+        {Label:"portfolio-",Code:"portfolio"}
+      ];
 
       if($scope.odabrani)
         $scope.model = $scope.odabrani;

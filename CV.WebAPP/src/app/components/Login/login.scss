@@ -12,18 +12,20 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
 // bower:scss
 // endbower
 
-.dummy{
-  background-color: red;
+//urls
+$url_0: url(https://s14.postimg.org/d3t7i0d0h/Login_form_background.jpg);
+
+body {
+  background: $url_0 no-repeat center center fixed;
+  background-size: cover;
 }
-
-.thumbnail {
-  height: 200px;
-
-  img.pull-right {
-    width: 50px;
-  }
+.panel-default {
+  opacity: 0.9;
+  margin-top: 30px;
 }
-
+.form-group.last {
+  margin-bottom: 0;
+}
 
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject
