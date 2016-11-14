@@ -3,13 +3,13 @@
 
   angular
     .module('ea.cv')
-    .directive('periodType', directive);
+    .directive('period', directive);
 
   /** @ngInject */
   function directive() {
     var directive = {
       // restrict: 'E',
-      templateUrl: 'app/components/cv/definitions/periodType/periodType.tmpl.html',
+      templateUrl: 'app/components/cv/skillsPassport/learnerInfo/education/period/period.tmpl.html',
       controller: ctrl,
       scope: {
         'model':'=model'
@@ -20,7 +20,6 @@
 
     /** @ngInject */
     function ctrl($scope, accountService, toastr) {
-
       if($scope.odabrani)
         $scope.model = $scope.odabrani;
 
