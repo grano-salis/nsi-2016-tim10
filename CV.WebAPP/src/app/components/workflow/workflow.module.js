@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('ea', [
+    .module('ea.workflow', [
       'ngAnimate',
       'ngCookies',
       'ngTouch',
@@ -12,7 +12,7 @@
       'toastr',
       'Slidebox',
       'smoothScroll',
-      'ea.workflow',
+
       'ea.account',
       'ea.cv'//,
 
