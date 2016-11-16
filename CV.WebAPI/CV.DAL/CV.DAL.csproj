@@ -49,6 +49,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,11 +60,82 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="CodeFirst\ATTACHMENT.cs" />
+    <Compile Include="CodeFirst\CHAT_PORUKA.cs" />
+    <Compile Include="CodeFirst\COLLECTION.cs" />
+    <Compile Include="CodeFirst\COMPONENTDRAFT.cs" />
+    <Compile Include="CodeFirst\context.cs" />
+    <Compile Include="CodeFirst\Criterion.cs" />
+    <Compile Include="CodeFirst\CV_CLAIM.cs" />
+    <Compile Include="CodeFirst\CV_FRAGMENT_TYPE.cs" />
+    <Compile Include="CodeFirst\CV_ITEM.cs" />
+    <Compile Include="CodeFirst\CV_ITEM_STATUS.cs" />
+    <Compile Include="CodeFirst\CV_LOG.cs" />
+    <Compile Include="CodeFirst\CV_MANAGE_ROLES.cs" />
+    <Compile Include="CodeFirst\CV_ROLES.cs" />
+    <Compile Include="CodeFirst\CV_TABLE.cs" />
+    <Compile Include="CodeFirst\CV_USER.cs" />
+    <Compile Include="CodeFirst\CV_USER_INFO.cs" />
+    <Compile Include="CodeFirst\CV_XML_FRAGMENT.cs" />
+    <Compile Include="CodeFirst\DNEVNI_RED.cs" />
+    <Compile Include="CodeFirst\DOCUMENTTYPE.cs" />
+    <Compile Include="CodeFirst\DUMMY_TABLE.cs" />
+    <Compile Include="CodeFirst\GLA.cs" />
+    <Compile Include="CodeFirst\ITEM.cs" />
+    <Compile Include="CodeFirst\METADATA.cs" />
+    <Compile Include="CodeFirst\PRILOG.cs" />
+    <Compile Include="CodeFirst\SJEDNICA.cs" />
+    <Compile Include="CodeFirst\STATUS_SJEDNICE.cs" />
+    <Compile Include="CodeFirst\STATUS_STAVKE_DNEVNOG_REDA.cs" />
+    <Compile Include="CodeFirst\STATUS_UCESNIKA.cs" />
+    <Compile Include="CodeFirst\STAVKA_DNEVNOG_REDA.cs" />
+    <Compile Include="CodeFirst\TIP_GLASA.cs" />
+    <Compile Include="CodeFirst\TIP_UCESNIKA.cs" />
+    <Compile Include="CodeFirst\UCESNIK.cs" />
+    <Compile Include="CodeFirst\ZAPISNIK.cs" />
+    <Compile Include="EF\model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>model.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="EF\model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="App.db.config" />
+    <None Include="EF\model.edmx.diagram">
+      <DependentUpon>model.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EF\model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>model.edmx</DependentUpon>
+      <LastGenOutput>model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EF\model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>model.edmx</DependentUpon>
+      <LastGenOutput>model.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
