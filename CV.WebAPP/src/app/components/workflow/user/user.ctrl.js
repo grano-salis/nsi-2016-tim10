@@ -8,25 +8,37 @@
   /** @ngInject */
   function ctrl($scope,$http) {
     $scope.test = 'test';
-    var url = 'localhost';
+    var url = 'http://localhost:9512/api/components';
     $scope.getTest1 = function () {
+      $http.get(url)
+        .then(function(x,y,z,k){
+          debugger;
+        })
+        .catch(function(x,y,z){
+          debugger;
+        })
       $http({
         method:'GET',
         url:url
       }).then(function(data){
-
+        $scope.test1 = data;
       }).catch(function (data) {
-        alert('error');
+        debugger
+        $scope.test1 = data;
+        //alert('error');
       })
     };
     $scope.getTest2 = function () {
       $http({
         method:'GET',
-        url:url
+        url:url+'/5'
       }).then(function(data){
-
+        // debugger;
+        $scope.test2 = data;
       }).catch(function (data) {
-        alert('error');
+        $scope.test2 = data;
+        // debugger;
+        // alert('error');
       })
     };
     $scope.postTest = function () {

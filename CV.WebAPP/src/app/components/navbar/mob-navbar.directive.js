@@ -27,6 +27,9 @@
         $scope.goHome = function(){
             $state.go('home', {scrollTo: 'navbar'});
         };
+        $scope.go = function(state){
+          $state.go(state,{scrollTo:'navbar'});
+        }
     }
   }
 
