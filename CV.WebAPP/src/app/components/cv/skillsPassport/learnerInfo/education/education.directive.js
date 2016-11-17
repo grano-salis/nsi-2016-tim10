@@ -20,6 +20,12 @@
 
     /** @ngInject */
     function ctrl($scope) {
+      $scope.addNew = function () {
+        if($scope.odabrani==null || typeof ($scope.odabrani)=='undefined')
+          $scope.odabrani = [];
+        $scope.odabrani.push($scope.add);
+        $scope.add=null;
+      }
 
       if($scope.odabrani)
         $scope.model = $scope.odabrani;

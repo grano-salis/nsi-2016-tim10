@@ -51,8 +51,26 @@
 <!--}-->
 <!--} ],-->
 
-<h1>Education and training</h1>
-<div period model="odabrani.Period"></div>
-<div title model="odabrani.Title"></div>
-<div organisation model="odabrani.Organisation"></div>
-<div level model="odabrani.Level"></div>
+<!--<h1>Education and training</h1>-->
+<!--<div ng-repeat="obj in odabrani">-->
+  <!--<div period model="obj.Period"></div>-->
+  <!--<div title model="obj.Title"></div>-->
+  <!--<div organisation model="obj.Organisation"></div>-->
+  <!--<div level model="obj.Level"></div>-->
+<!--</div>-->
+
+<hr>
+<div>
+  <div period model="add.Period"></div>
+  <div title model="add.Title"></div>
+  <div organisation model="add.Organisation"></div>
+    <!--<label>Organisation providing education and training</label>-->
+    <!--<div name model="add.Organisation.Name"></div>-->
+    <!--<div address-type model="add.Organisation.ContactInfo.Address.Contact"></div>-->
+    <!--<div website model="add.Organisation.ContactInfo.Website"></div>-->
+  <div level model="add.Level"></div>
+  <button ng-click="addNew()">Add</button>
+</div>
+
+<!--<pre>{{odabrani}}</pre>-->
+
