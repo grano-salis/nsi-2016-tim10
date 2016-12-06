@@ -6,6 +6,9 @@
     <title>Euroaquaing</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <!--<script type="text/ng-template" id="/loading-overlay-template.html">-->
+      <!--<h1>test</h1>-->
+    <!--</script>-->
     <!--<link rel="stylesheet" href="assets/fonts/font-awesome.min.css">-->
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
@@ -22,12 +25,13 @@
     <!-- endbuild -->
   </head>
   <body>
+  <!--<span us-spinner spinner-key="spinner-1" spinner-start-active="true"></span>-->
   <mob-navbar showMenu="false"></mob-navbar>
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div ui-view></div>
+    <div ui-view bs-loading-container></div>
 
 
     <!-- build:js(src) scripts/vendor.js -->

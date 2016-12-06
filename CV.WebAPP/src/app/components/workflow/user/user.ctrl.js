@@ -9,7 +9,10 @@
 
   /** @ngInject */
   function ctrl($scope,$http,$location,$anchorScroll,
-                smoothScroll,$document,$timeout) {
+                smoothScroll,$document,$timeout,
+                bsLoadingOverlayService) {
+
+    // bsLoadingOverlayService.start();
     $scope.noIdentification = true;
     $scope.noEducation = true;
 

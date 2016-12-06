@@ -6,7 +6,12 @@
     .config(config);
 
   /** @ngInject */
-  function config($logProvider, toastrConfig, $anchorScrollProvider, $locationProvider) {
+  function config($logProvider,
+                  toastrConfig,
+                  $anchorScrollProvider,
+                  $locationProvider,
+                  usSpinnerConfigProvider,
+                  $httpProvider) {
     // Enable log
     $logProvider.debugEnabled(true);
 
@@ -19,6 +24,26 @@
 
     $locationProvider.html5Mode(true);
     $anchorScrollProvider.disableAutoScrolling();
+
+    // $httpProvider.interceptors.push('allHttpInterceptor');
+
+    usSpinnerConfigProvider.setDefaults({
+      color: ['blue','red','yellow'],
+      shadow:true,
+      corners:0.2,
+      lines:17,
+      length:10,
+      width:52,
+      radius:25,
+      scale:1,
+      opacity:0.1,
+      trail:66,
+
+      position: 'absolute',
+      zIndex: 2e9,
+      top:'50%',
+      left:'50%'
+    });
   }
 
 })();

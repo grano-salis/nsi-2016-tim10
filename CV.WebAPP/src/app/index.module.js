@@ -13,6 +13,13 @@
       'Slidebox',
       'smoothScroll',
       'duScroll',
+      'angularSpinner',
+      'bsLoadingOverlay',
+      // 'bsLoadingOverlaySpinJs',
+      // 'bsLoadingOverlayHttpInterceptor',
+
+
+
       'ea.workflow',
       'ea.account',
       'ea.cv'//,
