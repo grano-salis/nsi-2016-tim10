@@ -12,6 +12,7 @@
       'toastr',
       'Slidebox',
       'smoothScroll',
+      'duScroll',
       'ea.workflow',
       'ea.account',
       'ea.cv'//,

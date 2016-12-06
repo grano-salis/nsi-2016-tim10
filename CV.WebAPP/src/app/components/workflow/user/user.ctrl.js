@@ -3,10 +3,44 @@
 
   angular
     .module('ea.workflow')
+    .value('duScrollDuration', 1000)
+    // .value('duScrollOffset', 30)
     .controller('UserCtrl', ctrl);
 
   /** @ngInject */
-  function ctrl($scope,$http) {
+  function ctrl($scope,$http,$location,$anchorScroll,
+                smoothScroll,$document,$timeout) {
+    $scope.noIdentification = true;
+    $scope.noEducation = true;
+
+    $scope.tabs = [
+      {visible: false,heading:'Identification',content:'test identification'},
+      {visible: false,heading:'Education',content:'test education'}
+    ];
+
+    $scope.addIdentification = function () {
+      //alert('d');
+      $scope.noIdentification = false;
+      $scope.tabs[0].visible = true;
+      // $location.hash('idIdentification');
+      // $anchorScroll();
+      var someElement = angular.element(document.getElementById('idIdentificaiton'));
+      $timeout(function(){
+        $document.scrollToElementAnimated(someElement);
+      },50);
+    };
+
+    $scope.addEducation = function () {
+      $scope.noEducation = false;
+      // $location.hash('idEducation');
+      // $anchorScroll();
+      var someElement = angular.element(document.getElementById('idEducation'));
+      $timeout(function(){
+        $document.scrollToElementAnimated(someElement);
+      },50);
+
+    }
+
     $scope.test = 'test';
     var url = 'http://localhost:9512/api/components';
     $scope.getTest1 = function () {

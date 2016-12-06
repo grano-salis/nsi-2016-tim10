@@ -1,32 +1,67 @@
-<div class="row">
-  <div class="col-lg-6">
-    komponenta1:<br>
-    <input ng-model="komp1"></input>
-  </div>
-  <div class="col-lg-6">
-    komponenta2:<br>
-    <input ng-model="komp2"></input>
-  </div>
-</div>
-<div class="row">
-  <div class="col-lg-4">
-    GET /drafts <button ng-click="getTest1()">test</button>
-    <br>
-    <pre>{{test1}}</pre>
-  </div>
-  <div class="col-lg-4">
-    GET /drafts/:userId <button ng-click="getTest2()">test</button>
-    <br>
-    <pre>{{test2}}</pre>
-  </div>
-  <div class="col-lg-4">
-    POST [komponenta1,komponenta2] /drafts <button ng-click="postTest()">test</button>
-    <br>
-    <pre></pre>
+<button type="button" class="btn btn-default" ng-click="addIdentification()">Identification</button>
+<button type="button" class="btn btn-default" ng-click="addEducation()">Education</button>
+<hr>
+<div uib-collapse="noIdentification" id="idIdentificaiton">
+  <div class="well well-lg">Identification
+    <p>
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas blandit posuere ligula a consectetur. Suspendisse aliquam efficitur odio at pretium. Pellentesque tempor aliquet ex ac lobortis. Ut sed lobortis lectus, a gravida elit. Aliquam erat volutpat. Quisque quis neque luctus, convallis mi et, tincidunt tortor. In ut nisi quis velit pretium congue. Ut placerat auctor velit, id venenatis justo gravida ut. Integer purus risus, fermentum id dui at, efficitur tincidunt mauris. Donec ornare orci id mi dictum, at commodo mauris sagittis. Aliquam consequat gravida turpis, eu tempus elit hendrerit quis. Nulla at erat orci. Ut vel nibh ut odio venenatis eleifend. Sed lobortis dui eleifend orci pharetra ornare. Donec tristique vestibulum interdum. Quisque convallis quam eget nulla pellentesque, et venenatis arcu ultricies.
+
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent laoreet arcu eu felis vulputate varius. Sed molestie consectetur tortor sed sollicitudin. Vivamus diam nunc, bibendum at augue id, malesuada dictum diam. Nulla pellentesque felis nunc, dignissim vestibulum ante euismod quis. Phasellus eget metus dignissim, volutpat magna quis, feugiat quam. Etiam ut velit metus. Sed in ligula congue, eleifend diam at, dictum ex. Maecenas facilisis at orci ut malesuada. In interdum euismod velit eu dictum. Ut at elit vehicula, posuere leo vel, elementum tortor. Nunc blandit tortor non arcu consectetur, sit amet sollicitudin ex tempor. Maecenas dignissim justo et orci tristique varius. Pellentesque ornare risus ipsum. Vivamus euismod, nisl nec scelerisque tristique, ante nunc mattis odio, ut congue tellus massa non ex. Integer dignissim at urna vel dictum.
+
+Vivamus tempor velit quis aliquet finibus. Ut et arcu accumsan, lobortis ipsum at, porta mi. Cras non turpis vulputate, viverra tellus eu, sodales urna. Sed tempus ornare leo et dapibus. Morbi consectetur turpis eget hendrerit vestibulum. Duis accumsan diam fringilla leo ullamcorper, nec pellentesque magna pharetra. Quisque tempor sed magna id commodo. Suspendisse id orci tempus, facilisis diam sed, auctor orci. Maecenas dignissim justo quis ipsum finibus, id condimentum mi ultrices. Nulla faucibus sem sed luctus suscipit. Mauris efficitur arcu urna, quis dignissim sem condimentum vitae. Maecenas felis risus, mattis sed lectus et, tincidunt varius magna.
+
+Donec tincidunt magna ac enim interdum, viverra aliquam turpis suscipit. Nullam vitae nisi mi. Nulla semper nibh eros, a mattis justo iaculis a. Nulla quis lorem dignissim, lacinia diam non, congue ex. Duis at eleifend urna. Donec ullamcorper urna quis dolor auctor bibendum. Etiam ac dui commodo, dictum quam in, pellentesque tortor. Sed bibendum sed enim sed varius. Proin eu consectetur dolor, at viverra metus. Ut dignissim mollis sollicitudin. Nulla facilisi. Integer odio velit, imperdiet eget ultricies sed, tristique quis tortor. Maecenas euismod a lectus eu hendrerit. Sed magna libero, iaculis et lacus fringilla, laoreet dignissim magna. Cras pretium ac dolor maximus egestas.
+
+Ut quis nulla ut massa tempor sodales. Suspendisse arcu augue, faucibus vitae purus id, aliquam pulvinar quam. Integer odio lorem, bibendum vel nunc ut, cursus pharetra est. Vivamus efficitur vestibulum enim at commodo. Etiam a semper tortor. Ut lacinia arcu id facilisis luctus. Pellentesque tincidunt felis nec imperdiet vestibulum. Suspendisse tristique blandit lorem, id pretium nibh fermentum ac. Mauris vestibulum iaculis porttitor. Fusce tempor aliquam sem, non malesuada velit lacinia ac. Cras et eros quam. Vivamus vulputate, velit nec tincidunt blandit, elit justo vehicula risus, id semper nisl est non odio. Integer at feugiat sapien. Sed quis ultrices orci, a imperdiet dui. Cras accumsan tempus aliquam. Duis mauris quam, varius nec est vitae, placerat pulvinar est. </p>
   </div>
 </div>
-<div class="row">
-  <div class="col-lg-12">
-    niz:<pre>{{niz}}</pre>
+<div uib-collapse="noEducation"
+     id="idEducation">
+  <div class="well well-lg">Education
+  <p>
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas blandit posuere ligula a consectetur. Suspendisse aliquam efficitur odio at pretium. Pellentesque tempor aliquet ex ac lobortis. Ut sed lobortis lectus, a gravida elit. Aliquam erat volutpat. Quisque quis neque luctus, convallis mi et, tincidunt tortor. In ut nisi quis velit pretium congue. Ut placerat auctor velit, id venenatis justo gravida ut. Integer purus risus, fermentum id dui at, efficitur tincidunt mauris. Donec ornare orci id mi dictum, at commodo mauris sagittis. Aliquam consequat gravida turpis, eu tempus elit hendrerit quis. Nulla at erat orci. Ut vel nibh ut odio venenatis eleifend. Sed lobortis dui eleifend orci pharetra ornare. Donec tristique vestibulum interdum. Quisque convallis quam eget nulla pellentesque, et venenatis arcu ultricies.
+
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent laoreet arcu eu felis vulputate varius. Sed molestie consectetur tortor sed sollicitudin. Vivamus diam nunc, bibendum at augue id, malesuada dictum diam. Nulla pellentesque felis nunc, dignissim vestibulum ante euismod quis. Phasellus eget metus dignissim, volutpat magna quis, feugiat quam. Etiam ut velit metus. Sed in ligula congue, eleifend diam at, dictum ex. Maecenas facilisis at orci ut malesuada. In interdum euismod velit eu dictum. Ut at elit vehicula, posuere leo vel, elementum tortor. Nunc blandit tortor non arcu consectetur, sit amet sollicitudin ex tempor. Maecenas dignissim justo et orci tristique varius. Pellentesque ornare risus ipsum. Vivamus euismod, nisl nec scelerisque tristique, ante nunc mattis odio, ut congue tellus massa non ex. Integer dignissim at urna vel dictum.
+
+Vivamus tempor velit quis aliquet finibus. Ut et arcu accumsan, lobortis ipsum at, porta mi. Cras non turpis vulputate, viverra tellus eu, sodales urna. Sed tempus ornare leo et dapibus. Morbi consectetur turpis eget hendrerit vestibulum. Duis accumsan diam fringilla leo ullamcorper, nec pellentesque magna pharetra. Quisque tempor sed magna id commodo. Suspendisse id orci tempus, facilisis diam sed, auctor orci. Maecenas dignissim justo quis ipsum finibus, id condimentum mi ultrices. Nulla faucibus sem sed luctus suscipit. Mauris efficitur arcu urna, quis dignissim sem condimentum vitae. Maecenas felis risus, mattis sed lectus et, tincidunt varius magna.
+
+Donec tincidunt magna ac enim interdum, viverra aliquam turpis suscipit. Nullam vitae nisi mi. Nulla semper nibh eros, a mattis justo iaculis a. Nulla quis lorem dignissim, lacinia diam non, congue ex. Duis at eleifend urna. Donec ullamcorper urna quis dolor auctor bibendum. Etiam ac dui commodo, dictum quam in, pellentesque tortor. Sed bibendum sed enim sed varius. Proin eu consectetur dolor, at viverra metus. Ut dignissim mollis sollicitudin. Nulla facilisi. Integer odio velit, imperdiet eget ultricies sed, tristique quis tortor. Maecenas euismod a lectus eu hendrerit. Sed magna libero, iaculis et lacus fringilla, laoreet dignissim magna. Cras pretium ac dolor maximus egestas.
+
+Ut quis nulla ut massa tempor sodales. Suspendisse arcu augue, faucibus vitae purus id, aliquam pulvinar quam. Integer odio lorem, bibendum vel nunc ut, cursus pharetra est. Vivamus efficitur vestibulum enim at commodo. Etiam a semper tortor. Ut lacinia arcu id facilisis luctus. Pellentesque tincidunt felis nec imperdiet vestibulum. Suspendisse tristique blandit lorem, id pretium nibh fermentum ac. Mauris vestibulum iaculis porttitor. Fusce tempor aliquam sem, non malesuada velit lacinia ac. Cras et eros quam. Vivamus vulputate, velit nec tincidunt blandit, elit justo vehicula risus, id semper nisl est non odio. Integer at feugiat sapien. Sed quis ultrices orci, a imperdiet dui. Cras accumsan tempus aliquam. Duis mauris quam, varius nec est vitae, placerat pulvinar est. </p>
   </div>
 </div>
+<!--<div class="row">-->
+  <!--<div class="col-lg-6">-->
+    <!--komponenta1:<br>-->
+    <!--<input ng-model="komp1"></input>-->
+  <!--</div>-->
+  <!--<div class="col-lg-6">-->
+    <!--komponenta2:<br>-->
+    <!--<input ng-model="komp2"></input>-->
+  <!--</div>-->
+<!--</div>-->
+<!--<div class="row">-->
+  <!--<div class="col-lg-4">-->
+    <!--GET /drafts <button ng-click="getTest1()">test</button>-->
+    <!--<br>-->
+    <!--<pre>{{test1}}</pre>-->
+  <!--</div>-->
+  <!--<div class="col-lg-4">-->
+    <!--GET /drafts/:userId <button ng-click="getTest2()">test</button>-->
+    <!--<br>-->
+    <!--<pre>{{test2}}</pre>-->
+  <!--</div>-->
+  <!--<div class="col-lg-4">-->
+    <!--POST [komponenta1,komponenta2] /drafts <button ng-click="postTest()">test</button>-->
+    <!--<br>-->
+    <!--<pre></pre>-->
+  <!--</div>-->
+<!--</div>-->
+<!--<div class="row">-->
+  <!--<div class="col-lg-12">-->
+    <!--niz:<pre>{{niz}}</pre>-->
+  <!--</div>-->
+<!--</div>-->
+
