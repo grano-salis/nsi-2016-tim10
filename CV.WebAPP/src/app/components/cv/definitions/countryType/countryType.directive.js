@@ -26,7 +26,9 @@
           $scope.drzave = niz;
         });
 
+      $scope.odabrani = $scope.model;
 
+      // $scope.odabrani = {"Code":"BG","Label":"Bugarska"};
       if($scope.odabrani)
         $scope.model = $scope.odabrani;
 
@@ -34,6 +36,9 @@
         if($scope.odabrani)
           $scope.model = $scope.odabrani;
       });
+      // $scope.$watch('model',function () {
+      //   $scope.odabrani = $scope.model;
+      // })
     }
   }
 

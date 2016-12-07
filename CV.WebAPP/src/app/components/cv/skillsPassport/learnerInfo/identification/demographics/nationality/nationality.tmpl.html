@@ -2,7 +2,7 @@
 <div ng-repeat="obj in odabrani" ng-init="edit = true">
   <select ng-model="obj"
           ng-disabled="edit"
-          ng-options="ob.Label for ob in enum">
+          ng-options="ob.Label for ob in enum track by ob.Label">
   </select>
   <button ng-click="edit=!edit;" >Edit</button>
   <button ng-click="delete($index)" >Delete</button>

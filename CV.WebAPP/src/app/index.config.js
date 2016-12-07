@@ -11,7 +11,8 @@
                   $anchorScrollProvider,
                   $locationProvider,
                   usSpinnerConfigProvider,
-                  $httpProvider) {
+                  $httpProvider,
+                  localStorageServiceProvider) {
     // Enable log
     $logProvider.debugEnabled(true);
 
@@ -27,6 +28,7 @@
 
     // $httpProvider.interceptors.push('allHttpInterceptor');
 
+    //http://spin.js.org/
     usSpinnerConfigProvider.setDefaults({
       color: ['blue','red','yellow'],
       shadow:true,
@@ -44,6 +46,12 @@
       top:'50%',
       left:'50%'
     });
+
+
+    //localstorage
+    localStorageServiceProvider
+      .setPrefix('NSI');
+
   }
 
 })();

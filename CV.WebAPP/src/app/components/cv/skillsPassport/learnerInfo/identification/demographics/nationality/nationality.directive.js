@@ -26,6 +26,8 @@
           $scope.enum = niz;
         });
 
+      $scope.odabrani = $scope.model;
+
       $scope.addNew = function () {
         if($scope.odabrani==null || typeof ($scope.odabrani)=='undefined')
           $scope.odabrani = [];

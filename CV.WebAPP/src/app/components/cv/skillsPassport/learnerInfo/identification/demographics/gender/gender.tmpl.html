@@ -1,2 +1,4 @@
-<select ng-model="odabrani" ng-options="ob.Label for ob in enum">
+<select ng-model="odabrani"
+        ng-options="ob.Label for ob in enum track by ob.Label">
 </select>
+<!--<pre>{{odabrani}}</pre>-->

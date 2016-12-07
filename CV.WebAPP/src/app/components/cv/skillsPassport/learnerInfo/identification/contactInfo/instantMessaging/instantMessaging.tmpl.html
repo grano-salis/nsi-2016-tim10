@@ -5,7 +5,7 @@
          ng-disabled="edit">
   <label>Use: </label>
   <select ng-model="obj.Use"
-          ng-options="value.Label for value in enum"
+          ng-options="value.Label for value in enum track by value.Label"
           ng-disabled="edit">
   </select>
 
@@ -23,3 +23,4 @@
 </div>
 
 <!--<pre>{{odabrani}}</pre>-->
+<!--<pre>{{model}}</pre>-->

@@ -1,10 +1,19 @@
 <button type="button" class="btn btn-default" ng-click="addIdentification()">Identification</button>
 <button type="button" class="btn btn-default" ng-click="addEducation()">Education</button>
+<button type="button" ng-click="save()">Save</button>
 <hr>
+<!--<pre>{{Education}}</pre>-->
+<!--<pre>{{pr.SkillsPassport.LearnerInfo.Identification}}</pre>-->
+<!--<hr>-->
+<!--<div contact-info="" model="Identification.Demographics.Birthdate"></div>-->
 <div uib-collapse="noIdentification" id="idIdentificaiton">
-  <div identification model="pr.SkillsPassport.LearnerInfo.Identification"></div>
+  Identifikacija: <hr>
+  <div identification model="Identification"></div>
+  <!--src/app/components/cv/skillsPassport/learnerInfo/identification/demographics/birthdate/birthdate.tmpl.html-->
+
 </div>
 <div uib-collapse="noEducation"
      id="idEducation">
-  <div education model="pr.SkillsPassport.LearnerInfo.Education"></div>
+  Edukacija:<hr>
+  <div education model="Education"></div>
 </div>

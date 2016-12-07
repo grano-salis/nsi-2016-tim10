@@ -22,6 +22,7 @@
     /** @ngInject */
     function ctrl($scope, $http) {
 
+      $scope.odabrani = $scope.model;
 
       if($scope.odabrani)
         $scope.model = $scope.odabrani;
@@ -30,6 +31,10 @@
         if($scope.odabrani)
           $scope.model = $scope.odabrani;
       });
+
+      // $scope.$watch('model',function () {
+      //   $scope.odabrani = $scope.model;
+      // })
     }
   }
 

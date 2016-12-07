@@ -15,6 +15,7 @@
       'duScroll',
       'angularSpinner',
       'bsLoadingOverlay',
+      'LocalStorageModule',
       // 'bsLoadingOverlaySpinJs',
       // 'bsLoadingOverlayHttpInterceptor',
 

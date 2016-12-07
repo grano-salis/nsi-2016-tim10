@@ -23,7 +23,10 @@
     function lnk(scope,elem,attrs,ngModelCtrl) {
       ngModelCtrl.$formatters.push(function (modelVal) {
         // debugger
-        var rez = new Date(modelVal.Year,modelVal.Month-1,modelVal.Day);
+        var rez = null;
+        if(modelVal !=null && typeof (modelVal)!='undefined')
+          rez = new Date(modelVal.Year,modelVal.Month-1,modelVal.Day);
+
         return rez;
       })
       ngModelCtrl.$render = function () {

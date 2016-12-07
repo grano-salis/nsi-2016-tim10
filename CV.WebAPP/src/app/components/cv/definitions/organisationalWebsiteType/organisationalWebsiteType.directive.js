@@ -22,6 +22,8 @@
     function ctrl($scope, accountService, toastr) {
       // $scope.cefr = "HI";
 
+      $scope.odabrani = $scope.model;
+
       if($scope.odabrani)
         $scope.model = $scope.odabrani;
 
@@ -29,6 +31,10 @@
         if($scope.odabrani)
           $scope.model = $scope.odabrani;
       });
+
+      $scope.$watch('model',function () {
+        $scope.odabrani = $scope.model;
+      })
     }
   }
 

@@ -24,6 +24,7 @@
     function ctrl($scope, accountService, toastr) {
       $scope.odabrani = {};
 
+      $scope.odabrani = $scope.model;
       $scope.niz = [
         {Label:"personal-",Code:"personal"},
         {Label:"business-",Code:"business"},

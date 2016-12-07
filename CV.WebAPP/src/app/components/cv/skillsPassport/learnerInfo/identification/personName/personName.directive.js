@@ -22,13 +22,20 @@
     function ctrl($scope, accountService, toastr) {
       // $scope.cefr = "HI";
 
+      $scope.odabrani = $scope.model;
+
       if($scope.odabrani)
         $scope.model = $scope.odabrani;
 
       $scope.$watch('odabrani',function(){
+        //alert('1');
         if($scope.odabrani)
           $scope.model = $scope.odabrani;
       });
+
+      // $scope.$watch('model',function () {
+      //   $scope.odabrani = $scope.model;
+      // })
     }
   }
 
