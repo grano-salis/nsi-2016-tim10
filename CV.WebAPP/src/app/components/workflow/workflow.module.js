@@ -12,7 +12,7 @@
       'toastr',
       'Slidebox',
       'smoothScroll',
-
+      'ea.api',
       'ea.account',
       'ea.cv'//,
 
@@ -20,3 +20,4 @@
     ]);
 
 })();
+

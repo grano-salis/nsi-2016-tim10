@@ -9,6 +9,15 @@
   function routerConfig($stateProvider, $urlRouterProvider) {
 
     $stateProvider
+      .state('admin', {
+        url: '/admin',
+        params: {
+          scrollTo: null
+        },
+        templateUrl: 'app/components/workflow/admin/admin.tmpl.html',
+        controller: 'adminCtrl',
+        onEnter: scrollTo
+      })
       .state('user', {
         url: '/user',
         params: {

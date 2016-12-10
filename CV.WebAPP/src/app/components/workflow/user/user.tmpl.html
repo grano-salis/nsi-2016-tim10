@@ -1,6 +1,15 @@
-<button type="button" class="btn btn-default" ng-click="addIdentification()">Identification</button>
-<button type="button" class="btn btn-default" ng-click="addEducation()">Education</button>
-<button type="button" ng-click="save()">Save</button>
+<button type="button"
+        class="btn btn-default"
+        ng-click="addIdentification()">Identification</button>
+<button type="button"
+        class="btn btn-default"
+        ng-click="addEducation()">Education</button>
+<button type="button"
+        ng-click="save()">Save</button>
+<button type="button"
+        ng-click="saveDrafts()">SaveDrafts</button>
+<hr>
+<pre>{{components}}</pre>
 <hr>
 <!--<pre>{{Education}}</pre>-->
 <!--<pre>{{pr.SkillsPassport.LearnerInfo.Identification}}</pre>-->
@@ -8,12 +17,13 @@
 <!--<div contact-info="" model="Identification.Demographics.Birthdate"></div>-->
 <div uib-collapse="noIdentification" id="idIdentificaiton">
   Identifikacija: <hr>
-  <div identification model="Identification"></div>
+  <div identification model="components.Identification"></div>
   <!--src/app/components/cv/skillsPassport/learnerInfo/identification/demographics/birthdate/birthdate.tmpl.html-->
 
 </div>
 <div uib-collapse="noEducation"
      id="idEducation">
   Edukacija:<hr>
-  <div education model="Education"></div>
+  <div education model="components.Education"></div>
 </div>
+

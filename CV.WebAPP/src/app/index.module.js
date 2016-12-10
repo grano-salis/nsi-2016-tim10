@@ -19,8 +19,7 @@
       // 'bsLoadingOverlaySpinJs',
       // 'bsLoadingOverlayHttpInterceptor',
 
-
-
+      'ea.api',
       'ea.workflow',
       'ea.account',
       'ea.cv'//,

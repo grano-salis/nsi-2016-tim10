@@ -9,8 +9,34 @@
 
   /** @ngInject */
   function ctrl($scope,$http,$location,$anchorScroll,localStorageService,
-                smoothScroll,$document,$timeout,
+                smoothScroll,$document,$timeout,loginService, apiService,
                 bsLoadingOverlayService) {
+    debugger
+    loginService.setUserDummy();
+    var componente = apiService.getUserComponents();
+    $scope.components = {};
+    angular.forEach(componente.components,function (value,key) {
+      //value.title
+      $scope.components[value.title] = value.data;
+    });
+    $scope.saveDrafts = function () {
+      var draft = [];
+      angular.forEach($scope.components,function (value,key) {
+        var obj={
+          title:key,
+          data:value
+        };
+        this.push(obj);
+      },draft);
+      debugger;
+      apiService.saveUserDrafts(loginService.getCurrentUser().id,draft);
+    }
+    // var values = {name: 'misko', gender: 'male'};
+    // var log = [];
+    // angular.forEach(values, function(value, key) {
+    //   this.push(key + ': ' + value);
+    // }, log);
+    // expect(log).toEqual(['name: misko', 'gender: male']);
 
     // bsLoadingOverlayService.start();
     $scope.noIdentification = true;
@@ -45,7 +71,7 @@
     }
 
     $scope.save = function(){
-      debugger
+      //debugger
       if($scope.Identification!=null &&
         typeof ($scope.Identification)!='undefined'){
         localStorageService.set('Identification',$scope.Identification);
