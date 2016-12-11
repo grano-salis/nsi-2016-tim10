@@ -19,7 +19,7 @@
     return directive;
 
     /** @ngInject */
-    function ctrl($scope, accountService, toastr) {
+    function ctrl($scope) {
       if($scope.odabrani)
         $scope.model = $scope.odabrani;
 

@@ -62,16 +62,51 @@
       return [];
     }
     this.getUserComponents = function () {
-      if(currentUser == null){
+      if (currentUser == null) {
         currentUser = loginService.getCurrentUser();
       }
       var lsKeys = localStorageService.keys();
-      var key = 'components-'+currentUser.id;
-      if(lsKeys.includes(key)){
-        return localStorageService.get(key);
+      var key = 'components-' + currentUser.id;
+      var rez = {};
+      if (lsKeys.includes(key)) {
+        rez = localStorageService.get(key);
       }
-      return [];
+      userComponents = rez;
+      return rez;
     }
+    this.deleteDraft = function(userid,title){
+      var lsKeys = localStorageService.keys();
+      var Key=null;
+      angular.forEach(lsKeys,function (value,key) {
+        if(value.indexOf('draft')>-1)
+          Key=value;
+      })
+      var trenutno = localStorageService.get(Key);
+      var indez=-1;
+      for(var i=0;i<trenutno.components.length;i++){
+        if(title==trenutno.components[i].title){
+          indez = i;
+          //trenutno.components.splice(i,0);
+          break;
+        }
+      }
+      if(indez!=-1)
+        trenutno.components.splice(indez,1);
+      localStorageService.set(Key,trenutno);
+    }
+    this.getAllUserComponents = function () {
+      var obj={};
+      var lsKeys = localStorageService.keys();
+      var Key=null;
+      angular.forEach(lsKeys,function (value,key) {
+        if(value.indexOf('componen')>-1)
+          Key=value;
+      })
+      if(Key!=null){
+        return localStorageService.get(Key);
+      }
+        return [];
+      }
     this.saveUserComponents = function (userid,components) {
       if(components===null || typeof (components)=='undefined')
         components = userComponents;
@@ -102,6 +137,10 @@
         currentUser = loginService.getCurrentUser();
         userid = currentUser.id;
       }
+
+      debugger
+
+      var a = userComponents;
 
       var obj={
         user:userid,

@@ -1,7 +1,24 @@
 <h1>admin</h1>
-<button type="button"
-        ng-click="approveAll()">Approve All</button>
+<!--<button type="button"-->
+        <!--ng-click="approveAll()">Approve All</button>-->
 <hr>
-<pre>{{drafts}}</pre>
-<hr>
-<pre>{{components}}</pre>
+<!--<pre>componente: {{componente}}</pre>-->
+<!--<pre>drafotvi: {{draftovi}}</pre>-->
+<!--<pre>delta: {{delta}}</pre>-->
+<!--<pre>{{beautifulHtml}}</pre>-->
+<h1>Draftovi</h1>
+<div>
+  <h2>{{draftovi.user}}</h2>
+  <hr>
+  <div ng-repeat="item in draftovi.components">
+    <h4>{{item.title}}</h4>
+    <pre>{{item.data}}</pre>
+    <button ng-click="approve(item,draftovi.user)">Approve</button>
+  </div>
+  <hr>
+</div>
+
+
+<!--<pre>{{drafts}}</pre>-->
+<!--<hr>-->
+<!--<pre>{{components}}</pre>-->
