@@ -8,8 +8,8 @@
     .controller('UserCtrl', ctrl);
 
   /** @ngInject */
-  function ctrl($scope,$http,$location,$anchorScroll,localStorageService,
-                smoothScroll,$document,$timeout,loginService, apiService,
+  function ctrl($scope,$http,$location,$anchorScroll,localStorageService,$uibModal,
+                smoothScroll,$document,$timeout,loginService, apiService,toastr,
                 bsLoadingOverlayService) {
     debugger
 
@@ -64,6 +64,7 @@
       debugger;
       apiService.saveUserDrafts(loginService.getCurrentUser().id,draft);
       $scope.init();
+      toastr.info('Promjene poslane na potvrdu!');
     }
     // var values = {name: 'misko', gender: 'male'};
     // var log = [];
@@ -86,6 +87,90 @@
 
         }
       }
+    };
+
+    $scope.openExport = function () {
+      // var parentElem = parentSelector ?
+      //   angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+      var modalInstance = $uibModal.open({
+        // animation: $ctrl.animationsEnabled,
+        ariaLabelledBy: 'modal-title',
+        ariaDescribedBy: 'modal-body',
+        templateUrl: 'export.tmpl.html',
+        controller: function ($scope,$http,$uibModalInstance,pr,old) {
+          var componente = old;
+          $scope.pr=pr;
+          angular.forEach(componente,function (value,key) {
+            debugger;
+            // this[key]=value;
+          },$scope.pr.SkillsPassport.LearnerInfo);
+
+          $scope.pr.SkillsPassport.LearnerInfo['Identification']=componente['Identification'];
+
+          $scope.send = function(){
+
+            // for testing purposes
+            // $scope.test.SkillsPassport.LearnerInfo = $scope.pr.SkillsPassport.LearnerInfo;
+            $http({
+              method: 'POST',
+              url: 'https://europass.cedefop.europa.eu/rest/v1/document/to/pdf',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              data: $scope.pr,
+              responseType: 'arraybuffer'
+
+            }).then(function successCallback(response) {
+
+              debugger;
+              var file = new Blob([response.data], {
+                type: 'application/pdf'
+              })
+
+              var fileURL = URL.createObjectURL(file);
+              var a = document.createElement('a');
+              a.href = fileURL;
+              a.target = '_blank';
+              a.download = 'test.pdf';
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+
+            }, function errorCallback(response,x,y,z,k) {
+              debugger;
+            })
+          };
+
+          $scope.ok = function () {
+            //$uibModalInstance.close($ctrl.selected.item);
+            debugger;
+            //alert('yo');
+            $scope.send();
+            $uibModalInstance.close();
+          };
+
+          $scope.cancel = function () {
+            $uibModalInstance.dismiss('cancel');
+          };
+        },
+        controllerAs: '$ctrl',
+        // size: size,
+        // appendTo: parentElem,
+        resolve: {
+          pr: function () {
+            return $scope.pr;
+          },
+          old:function () {
+            return $scope.old;
+          }
+        }
+      });
+
+      modalInstance.result.then(function () {
+        //$ctrl.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
     };
 
    // localStorageService.set('test',{huma:true,dina:true});
@@ -131,6 +216,10 @@
       $timeout(function(){
         $document.scrollToElementAnimated(someElement);
       },50);
+
+    }
+
+    $scope.export = function(){
 
     }
 

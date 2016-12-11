@@ -50,6 +50,7 @@
       $scope.description = {};
       $scope.description.label = "";
 
+      $scope.model = $scope.odabrani;
 
       if($scope.odabrani)
         $scope.model = $scope.odabrani;

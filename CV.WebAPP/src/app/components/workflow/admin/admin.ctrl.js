@@ -53,11 +53,12 @@
     });
 
     $scope.delta = jsonDiff.diff({huma:true},{huma:false});
-    // $scope.beautifulHtml = jsondiffpatch.formatters.html.format($scope.delta, {huma:true});
+    debugger
+    //$scope.beautifulHtml = jsonDiff.formatters.html.format($scope.delta, {huma:true});
 
-    var objA = {user: {firstName: "Albert", lastName: "Einstein"}};
-    var objB = {user: {firstName: "Albert", lastName: "Collins"}};
-    $scope.delta = jsonpatch.compare(objA, objB);
+    // var objA = {user: {firstName: "Albert", lastName: "Einstein"}};
+    // var objB = {user: {firstName: "Albert", lastName: "Collins"}};
+    // $scope.delta = jsonpatch.compare(objA, objB);
 
     $scope.init();
     // var saveComponents = function () {
