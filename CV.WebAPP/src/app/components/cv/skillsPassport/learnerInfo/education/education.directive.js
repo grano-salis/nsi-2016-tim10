@@ -24,6 +24,9 @@
         if($scope.odabrani==null || typeof ($scope.odabrani)=='undefined')
           $scope.odabrani = [];
         $scope.odabrani.push($scope.add);
+        document.getElementById("education-title").value = "";
+        document.getElementById("education-level").value = "";
+
         $scope.add=null;
       }
 
