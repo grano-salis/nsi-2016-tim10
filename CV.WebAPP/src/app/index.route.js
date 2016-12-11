@@ -24,7 +24,7 @@
 
  /** @ngInject **/
   var scrollTo = function ($location, $stateParams, $timeout) {
-    console.log("index.route2");
+    //console.log("index.route2");
     if($stateParams.scrollTo != null) {
       $timeout(function() {
         $location.hash($stateParams.scrollTo);

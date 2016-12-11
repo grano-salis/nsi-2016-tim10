@@ -12,24 +12,58 @@
                 smoothScroll,$document,$timeout,loginService, apiService,
                 bsLoadingOverlayService) {
     debugger
-    loginService.setUserDummy();
-    var componente = apiService.getUserComponents();
-    $scope.components = {};
-    angular.forEach(componente.components,function (value,key) {
-      //value.title
-      $scope.components[value.title] = value.data;
-    });
+
+
+    $scope.init = function () {
+      $scope.old = {};
+      $scope.no={};
+      $scope.no.Identification = true;
+      $scope.no.Education = true;
+      loginService.setUserDummy();
+      var componente = apiService.getUserComponents();
+
+      $scope.components = {};
+      angular.forEach(componente.components,function (value,key) {
+        //value.title
+        $scope.components[value.title] = value.data;
+        $scope.no[value.title] = false;
+      });
+      $scope.old = angular.copy($scope.components);
+      if(typeof $scope.old.Identification==='undefined')
+        $scope.old.Identification={};
+      if(typeof $scope.old.Education==='undefined')
+        $scope.old.Education={};
+    }
+
+    $scope.init();
+    //$scope.observer = {Identification:jsonpatch.observe($scope.componente)};
+    //$scope.patches = null;
+
+    // if(typeof $scope.components["Identification"]!='undefined')
+    //   $scope.noIdentification = false;
+
     $scope.saveDrafts = function () {
+      $scope.patches = {
+        Identification:[],
+        Education:[]
+      };
+      if($scope.components.Identification)
+        $scope.patches.Identification = jsonpatch.compare($scope.old.Identification,$scope.components.Identification);
+      if($scope.components.Education)
+        $scope.patches.Education = jsonpatch.compare($scope.old.Education,$scope.components.Education);
       var draft = [];
       angular.forEach($scope.components,function (value,key) {
-        var obj={
-          title:key,
-          data:value
-        };
-        this.push(obj);
+        if($scope.patches[key].length>0){
+          var obj={
+            title:key,
+            data:value
+          };
+          this.push(obj);
+        }
       },draft);
       debugger;
       apiService.saveUserDrafts(loginService.getCurrentUser().id,draft);
+      $scope.init();
     }
     // var values = {name: 'misko', gender: 'male'};
     // var log = [];
@@ -39,8 +73,7 @@
     // expect(log).toEqual(['name: misko', 'gender: male']);
 
     // bsLoadingOverlayService.start();
-    $scope.noIdentification = true;
-    $scope.noEducation = true;
+
 
     $scope.tabs = [
       {visible: false,heading:'Identification',content:'test identification'},
@@ -80,7 +113,7 @@
 
     $scope.addIdentification = function () {
       //alert('d');
-      $scope.noIdentification = false;
+      $scope.no.Identification = false;
       $scope.tabs[0].visible = true;
       // $location.hash('idIdentification');
       // $anchorScroll();
@@ -91,7 +124,7 @@
     };
 
     $scope.addEducation = function () {
-      $scope.noEducation = false;
+      $scope.no.Education = false;
       // $location.hash('idEducation');
       // $anchorScroll();
       var someElement = angular.element(document.getElementById('idEducation'));
