@@ -1,11 +1,15 @@
-<h3 class="dummy">personNAmeType</h3>
 <div ng-if="title">
-  <h3>Title</h3>
-  <select ng-model="odabrani.Title"
-          ng-options="value.Label for value in titles">
-  </select>
+  <label>Title</label>
+  <select ng-model="odabrani.Title" ng-options="value.Label for value in titles"></select>
 </div>
-<h3>FirstName</h3><input ng-model="odabrani.FirstName">
-<h3>Surname</h3><input ng-model="odabrani.Surname">
+<label>FirstName</label>
+<input ng-model="odabrani.FirstName">
+<label>Surname</label>
+<input ng-model="odabrani.Surname">
+
+
 <!--<pre>odabrani: {{odabrani}}</pre>-->
 <!--<hr>-->
+
+
+

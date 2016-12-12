@@ -20,15 +20,18 @@
 
     /** @ngInject */
     function ctrl($scope) {
+      $scope.odabrani = $scope.model;
+      /*za dodavanje vise edukacija*/
       $scope.addNew = function () {
         if($scope.odabrani==null || typeof ($scope.odabrani)=='undefined')
           $scope.odabrani = [];
         $scope.odabrani.push($scope.add);
-        document.getElementById("education-title").value = "";
-        document.getElementById("education-level").value = "";
+        // document.getElementById("education-title").value = "";
+        // document.getElementById("education-level").value = "";
 
         $scope.add=null;
       }
+
 
       if($scope.odabrani)
         $scope.model = $scope.odabrani;

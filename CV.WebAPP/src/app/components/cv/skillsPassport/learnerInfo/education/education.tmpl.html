@@ -51,6 +51,7 @@
 <!--}-->
 <!--} ],-->
 
+<!--Pokusaj dodavanja vise edukacija-->
 <!--<h1>Education and training</h1>-->
 <!--<div ng-repeat="obj in odabrani">-->
   <!--<div period model="obj.Period"></div>-->
@@ -70,8 +71,12 @@
     <!--<div address-type model="add.Organisation.ContactInfo.Address.Contact"></div>-->
     <!--<div website model="add.Organisation.ContactInfo.Website"></div>-->
   <div level model="add.Level"></div>
-  <button ng-click="addNew()">Add</button>
+  <button class="btn btn-default" ng-click="addNew()">Add</button>
 </div>
 
-<!--<pre>{{odabrani}}</pre>-->
 
+<!--<h1>Education and training</h1>-->
+<!--<div period model="odabrani.Period"></div>-->
+<!--<div title model="odabrani.Title"></div>-->
+<!--<div organisation model="odabrani.Organisation"></div>-->
+<!--<div level model="odabrani.Level"></div>-->
