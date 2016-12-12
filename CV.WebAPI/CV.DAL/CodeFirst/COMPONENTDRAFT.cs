@@ -11,8 +11,9 @@ namespace CV.DAL.CodeFirst
     {
         public decimal ID { get; set; }
 
-        public decimal? COMPONENTID { get; set; }
+        public int COMPONENTID { get; set; }
 
+        //[Column(TypeName = "char")]
         [StringLength(1)]
         public string APPROVED { get; set; }
 
