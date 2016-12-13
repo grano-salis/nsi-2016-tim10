@@ -29,7 +29,7 @@ namespace CV.DAL.CodeFirst
         [StringLength(500)]
         public string TITLE { get; set; }
 
-        public decimal CREATEDBY { get; set; }
+        public int CREATEDBY { get; set; }
 
         public DateTime DATECREATED { get; set; }
 

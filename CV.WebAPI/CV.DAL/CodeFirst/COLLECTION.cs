@@ -28,7 +28,7 @@ namespace CV.DAL.CodeFirst
         [StringLength(1)]
         public string ISPRIVATE { get; set; }
 
-        public decimal CREATEDBY { get; set; }
+        public int CREATEDBY { get; set; }
 
         public DateTime DATECREATED { get; set; }
 

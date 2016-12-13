@@ -20,7 +20,7 @@ namespace CV.DAL.CodeFirst
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
-        public decimal? UPOSLENIK_ID { get; set; }
+        public int? UPOSLENIK_ID { get; set; }
 
         public decimal? SJEDNICA_ID { get; set; }
 
