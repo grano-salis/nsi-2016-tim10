@@ -22,6 +22,8 @@
     function ctrl($scope, accountService, toastr) {
       // $scope.cefr = "HI";
 
+      $scope.odabrani = $scope.model;
+
       if($scope.odabrani)
         $scope.model = $scope.odabrani;
 

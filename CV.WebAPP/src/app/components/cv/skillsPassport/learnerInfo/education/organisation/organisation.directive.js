@@ -20,6 +20,7 @@
 
     /** @ngInject */
     function ctrl($scope) {
+      $scope.odabrani = $scope.model;
 
       if($scope.odabrani)
         $scope.model = $scope.odabrani;

@@ -21,6 +21,8 @@
 
     /** @ngInject */
     function ctrl($scope, accountService, toastr) {
+      $scope.odabrani = $scope.model;
+
       $scope.eqf = [
         {Label:"EQF level 1",Code:"1"},
         {Label:"EQF level 2",Code:"2"},
@@ -31,6 +33,7 @@
         {Label:"EQF level 7",Code:"7"},
         {Label:"EQF level 8",Code:"8"}
       ];
+
 
       if($scope.odabrani)
         $scope.model = $scope.odabrani;

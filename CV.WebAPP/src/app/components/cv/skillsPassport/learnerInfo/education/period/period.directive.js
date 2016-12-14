@@ -20,6 +20,8 @@
 
     /** @ngInject */
     function ctrl($scope, accountService, toastr) {
+      $scope.odabrani = $scope.model;
+
       if($scope.odabrani)
         $scope.model = $scope.odabrani;
 

@@ -106,6 +106,8 @@
           },$scope.pr.SkillsPassport.LearnerInfo);
 
           $scope.pr.SkillsPassport.LearnerInfo['Identification']=componente['Identification'];
+          $scope.pr.SkillsPassport.LearnerInfo['Education']=componente['Education'];
+
 
           $scope.send = function(){
 
