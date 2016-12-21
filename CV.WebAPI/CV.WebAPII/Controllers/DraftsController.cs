@@ -17,6 +17,11 @@ namespace CV.WebAPII.Controllers
         public IEnumerable<COMPONENTDRAFT> draftsByUsersId(int id)
         {
             var ret = context.COMPONENTDRAFTs.Where(cd => cd.CV_XML_FRAGMENT.USER_ID.Value == id).ToList();
+            foreach (var r in ret)
+            {
+                //r.CV_XML_FRAGMENT = null;
+                r.COMPONENTID = 0;
+            }
             return ret;
         }
 
