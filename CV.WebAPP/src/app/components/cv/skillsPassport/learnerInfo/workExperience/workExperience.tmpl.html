@@ -1,10 +1,148 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<h1>Work Experience</h1>
+<div ng-repeat="obj in odabrani">
+  <pre>{{obj}}</pre>
+  <button class="btn btn-default" ng-click="editModal($index)">Edit</button>
+  <button class="btn btn-default" ng-click="delete($index)">Delete</button>
+</div>
+<button class="btn btn-default" ng-click="addNewModal()">Add</button>
+shema:
+<pre>
+  "WorkExperience": {
+              "title": "list of work experiences",
+              "description": "Contains an list of work experiences. The order of those experiences is defined by the related printing preferences.",
+              "type": "array",
+              "items":{
+                "allOf":[
+                  { "$ref": "#/definitions/basicExperienceType" },
+                  {
+                    "properties":{
+                      "Position": {
+                        "$ref" : "#/definitions/occupationalFieldType"
+                      },
+                      "Activities": { "type": "string" },
+                      "Employer": {
+                        "allOf" : [
+                          { "$ref" : "#/definitions/organisationType" },
+                          {
+                            "properties":{
+                              "Sector":{
+                                "type":"object",
+                                "properties":{
+                                  "Code": {
+                                    "type": "string",
+                                    "pattern": "^[A-U]{1}$"
+                                  },
+                                  "Label": { "type": "string" }
+                                },
+                                "additionalProperties": false
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  { "$ref" : "#/definitions/sectionReferenceToListType" }
+                ]
+              },
+              "minItems":0
+            },
+</pre>
+<br>
+primjer:
+<pre>
+  "WorkExperience" : [ {
+        "Period" : {
+          "From" : {
+            "Year" : 2002,
+            "Month" : 8
+          },
+          "Current" : true
+        },
+        "Position" : {
+          "Label" : "Independent consultant"
+        },
+        "Activities" : "Evaluation of European Commission youth training support measures for youth national<br />agencies and young people",
+        "Employer" : {
+          "Name" : "British Council",
+          "ContactInfo" : {
+            "Address" : {
+              "Contact" : {
+                "AddressLine" : "123, Bd Ney",
+                "PostalCode" : "75023",
+                "Municipality" : "Paris",
+                "Country" : {
+                  "Code" : "FR",
+                  "Label" : "France"
+                }
+              }
+            }
+          }
+        }
+      }, {
+        "Period" : {
+          "From" : {
+            "Year" : 2002,
+            "Month" : 3
+          },
+          "To" : {
+            "Year" : 2002,
+            "Month" : 7
+          },
+          "Current" : false
+        },
+        "Position" : {
+          "Label" : "Internship"
+        },
+        "Activities" : "- evaluating youth training programmes for SALTO UK and the partnership between the<br />Council of Europe and European Commission<br />- organizing and running a 2 day workshop on non-formal education for Action 5 large scale projects focusing on quality, assessment and recognition<br />- contributing to the steering sroup on training and developing action plans on training for<br />the next 3 years. Working on the Users Guide for training and the support measures",
+        "Employer" : {
+          "Name" : "European Commission, Youth Unit, DG Education and Culture",
+          "ContactInfo" : {
+            "Address" : {
+              "Contact" : {
+                "AddressLine" : "200, Rue de la Loi",
+                "PostalCode" : "1049",
+                "Municipality" : "Brussels",
+                "Country" : {
+                  "Code" : "BE",
+                  "Label" : "Belgium"
+                }
+              }
+            }
+          },
+          "Sector" : {
+            "Label" : "European institution"
+          }
+        }
+      }, {
+        "Period" : {
+          "From" : {
+            "Year" : 2001,
+            "Month" : 10
+          },
+          "To" : {
+            "Year" : 2002,
+            "Month" : 2
+          },
+          "Current" : false
+        },
+        "Position" : {
+          "Label" : "Researcher / Independent Consultant"
+        },
+        "Activities" : "Working in a research team carrying out in-depth qualitative evaluation of the 2 year Advanced Training of Trainers in Europe using participant observations, in-depth interviews and focus groups. Work carried out in training courses in Strasbourg, Slovenia and Budapest.",
+        "Employer" : {
+          "Name" : "Council of Europe",
+          "ContactInfo" : {
+            "Address" : {
+              "Contact" : {
+                "Municipality" : "Budapest",
+                "Country" : {
+                  "Code" : "HU",
+                  "Label" : "Hungary"
+                }
+              }
+            }
+          }
+        }
+      } ],
+</pre>
