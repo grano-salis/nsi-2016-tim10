@@ -1,0 +1,58 @@
+shema:
+<pre>
+  "Achievement": {
+              "title": "Achievements",
+              "description": "Contains a list of additional information about the various achievements of an individual, such as participation to conferences, workshops, memberships to organisations, list of publications, etc.",
+              "type": "array",
+              "items" : {
+                "allOf" : [
+                  { "$ref" : "#/definitions/sectionReferenceToListType" },
+                  {
+                    "properties":{
+                      "Title": {
+                        "type": "object",
+                        "properties": {
+                          "Code": {
+                            "type": "string",
+                            "enum":[
+                              "honors_awards",
+                              "publications",
+                              "presentations",
+                              "projects",
+                              "citations",
+                              "memberships",
+                              "conferences",
+                              "seminars",
+                              "workshops",
+                              "references",
+                              "signature_equivalent",
+                              "courses",
+                              "certifications"
+                            ]
+                          },
+                          "Label": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "Description": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                ]
+              },
+              "minItems": 0
+            },
+</pre>
+<br>
+primjer:
+<pre>
+  "Achievement" : [ {
+        "Title" : {
+          "Code" : "publications",
+          "Label" : "Publications"
+        },
+        "Description" : "â€˜How to do Observations: Borrowing techniques from the Social Sciences to help Participants do Observations in Simulation Exercisesâ€™ Coyote EU/CoE Partnership Publication, (2002)."
+      } ]
+</pre>
