@@ -43,6 +43,8 @@
   "resolutions": {
     "angular": "~1.5.3",
     "angular-bootstrap": "^2.3.0",
-    "angular-local-storage": "^0.5.2"
+    "angular-local-storage": "^0.5.2",
+    "angular-cookies": "~1.5.3",
+    "angular-sanitize": "~1.5.3"
   }
 }
