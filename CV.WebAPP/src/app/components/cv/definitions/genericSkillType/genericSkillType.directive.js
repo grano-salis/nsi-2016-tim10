@@ -3,13 +3,13 @@
 
   angular
     .module('ea.cv')
-    .directive('other', directive);
+    .directive('genericSkillType', directive);
 
   /** @ngInject */
   function directive() {
     var directive = {
       // restrict: 'E',
-      templateUrl: 'app/components/cv/skillsPassport/learnerInfo/skills/other/other.tmpl.html',
+      templateUrl: 'app/components/cv/definitions/genericSkillType/genericSkillType.tmpl.html',
       controller: ctrl,
       scope: {
         'model':'=model'
@@ -20,8 +20,9 @@
 
     /** @ngInject */
     function ctrl($scope) {
+      // $scope.cefr = "HI";
 
-      $scope.model = $scope.odabrani;
+      $scope.odabrani = $scope.model;
 
       if($scope.odabrani)
         $scope.model = $scope.odabrani;
@@ -30,6 +31,10 @@
         if($scope.odabrani)
           $scope.model = $scope.odabrani;
       });
+
+      $scope.$watch('model',function () {
+        $scope.odabrani = $scope.model;
+      })
     }
   }
 
