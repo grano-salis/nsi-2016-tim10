@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<h3>certifikati</h3>
+<div ng-repeat="obj in odabrani" ng-init="edit = true">
+  <label>eh: </label>
+  <input ng-model="obj">
 
-</body>
-</html>
+  <button ng-click="edit=!edit;" >Edit</button>
+  <button ng-click="delete($index)" >Delete</button>
+</div>
+<hr>
+<div>
+  <label>eh: </label>
+  <input ng-model="add">
+
+  <button ng-click="addNew()">add</button>
+</div>
+
+
+
+<pre>{{odabrani}}</pre>

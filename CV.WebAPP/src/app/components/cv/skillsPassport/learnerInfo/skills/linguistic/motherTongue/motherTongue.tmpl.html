@@ -1,10 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<h4>motherTongue</h4>
 
-</body>
-</html>
+<div ng-repeat="obj in odabrani" ng-init="edit = true">
+  <label>eh: </label>
+  <select ng-model="obj.Description" ng-disabled="edit"
+          ng-options="ob.Label for ob in enum track by ob.Label">
+  </select>
+
+  <button ng-click="edit=!edit;" >Edit</button>
+  <button ng-click="delete($index)" >Delete</button>
+</div>
+<hr>
+<div>
+  <label>eh: </label>
+  <select ng-model="add.Description"
+          ng-options="ob.Label for ob in enum track by ob.Label">
+  </select>
+
+  <button ng-click="addNew()">add</button>
+</div>
+
+
+
+<pre>{{odabrani}}</pre>
+
+
+<hr>
