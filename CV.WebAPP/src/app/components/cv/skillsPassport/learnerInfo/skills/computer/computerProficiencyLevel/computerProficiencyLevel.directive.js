@@ -20,6 +20,7 @@
 
     /** @ngInject */
     function ctrl($scope) {
+      $scope.odabrani = $scope.model;
 
       $scope.model = $scope.odabrani;
       $scope.ict=['A','B','C'];

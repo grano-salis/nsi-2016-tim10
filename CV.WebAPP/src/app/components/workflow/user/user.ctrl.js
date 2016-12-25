@@ -19,6 +19,7 @@
       $scope.no={};
       $scope.no.Identification = true;
       $scope.no.Education = true;
+      $scope.no.Skills = true;
       loginService.setUserDummy();
 
       var componente = apiService.getUserComponents();
@@ -31,6 +32,7 @@
       angular.forEach(componente.components,function (value,key) {
         //value.title
         $scope.components[value.title] = value.data;
+        $scope.drafts[value.title] = value.data;
         $scope.no[value.title] = false;
       });
 
@@ -45,6 +47,8 @@
         $scope.old.Identification={};
       if(typeof $scope.old.Education==='undefined')
         $scope.old.Education={};
+      if(typeof $scope.old.Skills==='undefined')
+        $scope.old.Skills={};
     }
 
     $scope.init();
@@ -57,13 +61,17 @@
     $scope.saveDrafts = function () {
       $scope.patches = {
         Identification:[],
-        Education:[]
+        Education:[],
+        Skills:[]
       };
       if($scope.drafts.Identification)
         $scope.patches.Identification = jsonpatch.compare($scope.old.Identification,$scope.drafts.Identification);
 
       if($scope.drafts.Education)
         $scope.patches.Education = jsonpatch.compare($scope.old.Education,$scope.drafts.Education);
+
+      if($scope.drafts.Skills)
+        $scope.patches.Skills = jsonpatch.compare($scope.old.Skills,$scope.drafts.Skills);
 
       var draft = [];
       angular.forEach($scope.drafts,function (value,key) {
@@ -120,9 +128,16 @@
             // this[key]=value;
           },$scope.pr.SkillsPassport.LearnerInfo);
 
-          $scope.pr.SkillsPassport.LearnerInfo['Identification']=componente['Identification'];
-          $scope.pr.SkillsPassport.LearnerInfo['Education']=componente['Education'];
+          // if(componente['Identification']!={})
+            $scope.pr.SkillsPassport.LearnerInfo['Identification']=componente['Identification'];
 
+          // if(componente['Education']!={})
+            $scope.pr.SkillsPassport.LearnerInfo['Education']=componente['Education'];
+
+          // if(componente['Skills'])
+            $scope.pr.SkillsPassport.LearnerInfo['Skills']=componente['Skills'];
+
+          $log.debug($scope.pr);
 
           $scope.send = function(){
 
@@ -179,7 +194,7 @@
             return $scope.pr;
           },
           old:function () {
-            return $scope.old;
+            return $scope.components;
           }
         }
       });
@@ -231,6 +246,17 @@
       // $location.hash('idEducation');
       // $anchorScroll();
       var someElement = angular.element(document.getElementById('idEducation'));
+      $timeout(function(){
+        $document.scrollToElementAnimated(someElement);
+      },50);
+
+    }
+
+    $scope.addSkills = function () {
+      $scope.no.Skills = false;
+      // $location.hash('idEducation');
+      // $anchorScroll();
+      var someElement = angular.element(document.getElementById('idSkills'));
       $timeout(function(){
         $document.scrollToElementAnimated(someElement);
       },50);

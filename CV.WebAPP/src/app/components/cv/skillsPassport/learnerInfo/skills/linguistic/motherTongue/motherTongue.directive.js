@@ -20,6 +20,7 @@
 
     /** @ngInject */
     function ctrl($scope,xmlAssetsService) {
+      $scope.odabrani = $scope.model;
       xmlAssetsService.getLanguagesLangHR()
         .then(function(niz){
           $scope.enum = niz;

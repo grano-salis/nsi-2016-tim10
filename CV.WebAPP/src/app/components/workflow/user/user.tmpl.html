@@ -23,6 +23,11 @@
         ng-click="addEducation()">
   <span ng-if="no.Education">+</span>
   Education</button>
+<button type="button"
+        class="btn btn-default"
+        ng-click="addSkills()">
+  <span ng-if="no.Skills">+</span>
+  Skills</button>
 <!--<button type="button"-->
         <!--ng-click="save()">Save</button>-->
 <button type="button"
@@ -42,13 +47,18 @@
 <!--<div contact-info="" model="Identification.Demographics.Birthdate"></div>-->
 <div uib-collapse="no.Identification" id="idIdentificaiton">
   <!--Identifikacija: <hr>-->
-  <div identification model="currentDraft.Identification"></div>
+  <div identification model="drafts.Identification"></div>
   <!--src/app/components/cv/skillsPassport/learnerInfo/identification/demographics/birthdate/birthdate.tmpl.html-->
 
 </div>
 <div uib-collapse="no.Education"
      id="idEducation">
   <!--Edukacija:<hr>-->
-  <div education model="currentDraft.Education"></div>
+  <div education model="drafts.Education"></div>
+</div>
+<div uib-collapse="no.Skills"
+     id="idSkills">
+  <!--Edukacija:<hr>-->
+  <div skills model="drafts.Skills"></div>
 </div>
 
