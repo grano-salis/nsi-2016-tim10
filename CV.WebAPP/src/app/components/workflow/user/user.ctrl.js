@@ -20,14 +20,26 @@
       $scope.no.Identification = true;
       $scope.no.Education = true;
       loginService.setUserDummy();
+
       var componente = apiService.getUserComponents();
+      var draftovi = apiService.getUserDrafts();
 
       $scope.components = {};
+      $scope.drafts={};
+      $scope.currentDraft = {};
+
       angular.forEach(componente.components,function (value,key) {
         //value.title
         $scope.components[value.title] = value.data;
         $scope.no[value.title] = false;
       });
+
+      angular.forEach(draftovi.components,function (value,key) {
+        //value.title
+        $scope.drafts[value.title] = value.data;
+        $scope.no[value.title] = false;
+      });
+
       $scope.old = angular.copy($scope.components);
       if(typeof $scope.old.Identification==='undefined')
         $scope.old.Identification={};
@@ -47,12 +59,14 @@
         Identification:[],
         Education:[]
       };
-      if($scope.components.Identification)
-        $scope.patches.Identification = jsonpatch.compare($scope.old.Identification,$scope.components.Identification);
-      if($scope.components.Education)
-        $scope.patches.Education = jsonpatch.compare($scope.old.Education,$scope.components.Education);
+      if($scope.drafts.Identification)
+        $scope.patches.Identification = jsonpatch.compare($scope.old.Identification,$scope.drafts.Identification);
+
+      if($scope.drafts.Education)
+        $scope.patches.Education = jsonpatch.compare($scope.old.Education,$scope.drafts.Education);
+
       var draft = [];
-      angular.forEach($scope.components,function (value,key) {
+      angular.forEach($scope.drafts,function (value,key) {
         if($scope.patches[key].length>0){
           var obj={
             title:key,
@@ -63,7 +77,7 @@
       },draft);
       debugger;
       apiService.saveUserDrafts(loginService.getCurrentUser().id,draft);
-      $scope.init();
+      //$scope.init();
       toastr.info('Promjene poslane na potvrdu!');
     }
     // var values = {name: 'misko', gender: 'male'};
@@ -97,7 +111,8 @@
         ariaLabelledBy: 'modal-title',
         ariaDescribedBy: 'modal-body',
         templateUrl: 'export.tmpl.html',
-        controller: function ($scope,$http,$uibModalInstance,pr,old) {
+        controller: function ($scope,$http,$uibModalInstance,pr,old,$log) {
+          debugger
           var componente = old;
           $scope.pr=pr;
           angular.forEach(componente,function (value,key) {
@@ -139,6 +154,7 @@
               document.body.removeChild(a);
 
             }, function errorCallback(response,x,y,z,k) {
+              alert(response);
               debugger;
             })
           };
