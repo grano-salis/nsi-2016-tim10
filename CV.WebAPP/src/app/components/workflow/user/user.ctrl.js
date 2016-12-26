@@ -4,7 +4,7 @@
   angular
     .module('ea.workflow')
     .value('duScrollDuration', 1000)
-    // .value('duScrollOffset', 30)
+    .value('duScrollOffset', 50)
     .controller('UserCtrl', ctrl);
 
   /** @ngInject */
