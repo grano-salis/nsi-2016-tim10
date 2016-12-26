@@ -7,6 +7,7 @@
 	padding: 10px 20px;
 	z-index: 10;
 	display: none;
+  position: fixed;
 }
 
 .mobBrand{
@@ -63,16 +64,16 @@
 	color: $yellow;
 	background: $lightgray;
 }
-
+.navbar-mob{
+  display:block;
+}
 
 @media(max-width: 1170px){
-	.navbar-mob{
-		display:block;
-	}
+
 }
 
-@media(min-width: 1171px){
-	.mob-drop{
-		display:none;
-	}
-}
+//@media(min-width: 1171px){
+//	.mob-drop{
+//		display:none;
+//	}
+//}

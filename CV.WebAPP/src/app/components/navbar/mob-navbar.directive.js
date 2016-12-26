@@ -9,10 +9,11 @@
   function directive() {
     var directive = {
       restrict: 'E',
+      transclude: true,
       templateUrl: 'app/components/navbar/mob-navbar.html',
-      scope: {
-
-      },
+      // scope: {
+      //
+      // },
       controller: NavbarController
     };
 
@@ -20,6 +21,11 @@
 
     /** @ngInject */
     function NavbarController($scope, accountModal, $state) {
+
+      $scope.dummy = function () {
+        alert('hi ovomeni neki dropdown');
+      }
+
         $scope.showMenu = false;
         $scope.showAccountModal = function(){
           accountModal(true);
