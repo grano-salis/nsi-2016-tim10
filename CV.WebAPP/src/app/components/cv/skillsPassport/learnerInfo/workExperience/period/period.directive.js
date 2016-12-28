@@ -3,13 +3,13 @@
 
   angular
     .module('ea.cv')
-    .directive('employer', directive);
+    .directive('workExperiencePeriod', directive);
 
   /** @ngInject */
   function directive() {
     var directive = {
       // restrict: 'E',
-      templateUrl: 'app/components/cv/skillsPassport/learnerInfo/workExperience/employer/employer.tmpl.html',
+      templateUrl: 'app/components/cv/skillsPassport/learnerInfo/workExperience/period/period.tmpl.html',
       controller: ctrl,
       scope: {
         'model':'=model'

@@ -3,23 +3,29 @@
 
   angular
     .module('ea.cv')
-    .directive('employer', directive);
+    .directive('occupationalFieldType', directive);
 
   /** @ngInject */
   function directive() {
     var directive = {
       // restrict: 'E',
-      templateUrl: 'app/components/cv/skillsPassport/learnerInfo/workExperience/employer/employer.tmpl.html',
+      templateUrl: 'app/components/cv/definitions/occupationalFieldType/occupationalFieldType.tmpl.html',
       controller: ctrl,
       scope: {
-        'model':'=model'
+        'model':'=model',
+        'title':'=title'
       }
     };
 
     return directive;
 
     /** @ngInject */
-    function ctrl($scope, accountService, toastr) {
+    function ctrl($scope, $http,xmlAssetsService) {
+      xmlAssetsService.getOccupationsLangHR()
+        .then(function(niz){
+          $scope.positions = niz;
+        });
+
       $scope.odabrani = $scope.model;
 
       if($scope.odabrani)
