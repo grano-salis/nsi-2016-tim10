@@ -1,7 +1,9 @@
 <h1>Achievements</h1>
 
 <div ng-repeat="obj in odabrani">
-  <pre>{{obj}}</pre>
+  <!--<pre>{{obj}}</pre>-->
+  {{obj.Title.Label}} | {{obj.Description}}
+  <hr>
   <button class="btn btn-default" ng-click="editModal($index)">Edit</button>
   <button class="btn btn-default" ng-click="delete($index)">Delete</button>
 </div>
