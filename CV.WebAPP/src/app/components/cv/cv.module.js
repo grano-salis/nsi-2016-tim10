@@ -66,8 +66,9 @@
       return deferred.promise;
     };
 
+    //stavila sam da vraca EN jer zasad ne postoji prevedeno na HR jezik
     this.getOccupationsLangHR = function () {
-      return getData('hr',xsdOccupations);
+      return getData('en',xsdOccupations);
     }
 
     this.getCountriesLangHR = function () {
