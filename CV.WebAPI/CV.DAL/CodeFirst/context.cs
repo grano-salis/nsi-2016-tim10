@@ -10,6 +10,7 @@ namespace CV.DAL.CodeFirst
         public context()
             : base("name=context")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
 
         //public virtual DbSet<ATTACHMENT> ATTACHMENTs { get; set; }
