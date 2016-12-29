@@ -1,14 +1,12 @@
-<div  class="container">
-
-    <div class="panel panel-default">
+<div class="panel panel-default">
       <div class="panel-heading">Nationality</div>
 
       <div class="row">
+        <div class="panel-body">
+        <label class="col-md-2">Nationality</label>
+            <div class="col-md-2" ng-repeat="obj in odabrani" ng-init="edit = true">
 
-        <label class="col-lg-2">Gender</label>
-            <div class="col-lg-2" ng-repeat="obj in odabrani" ng-init="edit = true">
-
-              <select   class="col-lg-2" ng-model="obj"
+              <select   class="col-md-2" ng-model="obj"
                         ng-disabled="edit"
                         ng-options="ob.Label for ob in enum track by ob.Label">
               </select>
@@ -16,15 +14,14 @@
               <button ng-click="delete($index)" >Delete</button>
             </div>
         <br>
-            <div  class="col-lg-2">
+            <div  class="col-md-2">
               <select ng-model="add" ng-options="ob.Label for ob in enum">
               </select>
               <button ng-click="addNew()">Add</button>
             </div>
 
-
+        </div>
 
 
       </div>
     </div>
-  </div>

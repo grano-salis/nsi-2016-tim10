@@ -1,18 +1,13 @@
-<div>
+<div class="panel panel-default">
 
-  <div  class="container">
+      <div class="panel-heading" >Gender</div>
 
-    <div class="panel panel-default">
-
-      <div class="panel-heading">Gender</div>
-
-      <div class="row">
-
-        <label class="col-lg-2">Gender</label>
-        <select class="col-lg-4" ng-model="odabrani"
+      <div class="row  ">
+        <div class="panel-body">
+        <label class="col-md-3" >Gender</label>
+        <select class="col-md-3 ng-model="odabrani"
                 ng-options="ob.Label for ob in enum track by ob.Label">
         </select>
+          </div>
       </div>
-    </div>
-  </div>
 </div>

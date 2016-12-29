@@ -1,23 +1,22 @@
 <div class="panel panel-default">
   <div class="panel-heading">Person name:</div>
-      <div class="row">
 
-                <div class="container">
+  <div class="container">
+    <div class="row">
+                        <div  ng-if="title">
+                          <label >Title</label>
+                          <select ng-model="odabrani.Title" ng-options="value.Label for value in titles"></select>
+                        </div>
+                        <label>FirstName</label>
+                        <input ng-model="odabrani.FirstName">
+                        <label>Surname</label>
+                        <input ng-model="odabrani.Surname">
 
-                  <div   ng-if="title">
-                    <label >Title</label>
-                    <select ng-model="odabrani.Title" ng-options="value.Label for value in titles"></select>
                   </div>
-                  <label>FirstName</label>
-                  <input ng-model="odabrani.FirstName">
-                  <label>Surname</label>
-                  <input ng-model="odabrani.Surname">
-
-                </div>
 
 
 
-      </div>
+  </div>
 
 
 </div>
