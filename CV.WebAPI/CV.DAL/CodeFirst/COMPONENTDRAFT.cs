@@ -13,6 +13,8 @@ namespace CV.DAL.CodeFirst
 
         public int COMPONENTID { get; set; }
 
+        public int USER_ID { get; set; }
+
         //[Column(TypeName = "char")]
         [StringLength(1)]
         public string APPROVED { get; set; }
@@ -23,5 +25,8 @@ namespace CV.DAL.CodeFirst
         public string DATA { get; set; }
 
         public virtual CV_XML_FRAGMENT CV_XML_FRAGMENT { get; set; }
+
+        [ForeignKey("USER_ID")]
+        public virtual CV_USER USER { get; set; }
     }
 }
