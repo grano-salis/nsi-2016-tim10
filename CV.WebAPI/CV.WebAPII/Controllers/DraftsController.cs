@@ -128,11 +128,11 @@ namespace CV.WebAPII.Controllers
             //}
 
             COMPONENTDRAFT cd = new COMPONENTDRAFT();
-            cd.ADDITIONALINFO = value.title;
+            cd.ADDITIONALINFO = "";
             cd.DATA = value.data;
             cd.APPROVED = "f";
             // insert
-            if (cd.ID == 0)
+            if (value.id == null)
             {
                 CV_XML_FRAGMENT frag = new CV_XML_FRAGMENT();
                 CV_FRAGMENT_TYPE ft = context.CV_FRAGMENT_TYPE.Where(f => f.FRAGMENT_TYPE == cd.ADDITIONALINFO).FirstOrDefault();
@@ -148,7 +148,7 @@ namespace CV.WebAPII.Controllers
             // update
             else
             {
-                COMPONENTDRAFT draft = context.COMPONENTDRAFTs.First(c => cd.ID == cd.ID && c.COMPONENTID == cd.COMPONENTID);
+                COMPONENTDRAFT draft = context.COMPONENTDRAFTs.First(c => value.id == cd.ID);
                 draft.ADDITIONALINFO = cd.ADDITIONALINFO;
                 draft.APPROVED = cd.APPROVED;
                 if (cd.DATA != null)
@@ -195,10 +195,13 @@ namespace CV.WebAPII.Controllers
                 cd.DATA = v.data;
                 cd.APPROVED = "f";
                 // insert
-                if (cd.ID == 0)
+                if (v.id == null)
                 {
                     CV_XML_FRAGMENT frag = new CV_XML_FRAGMENT();
-                    CV_FRAGMENT_TYPE ft = context.CV_FRAGMENT_TYPE.Where(f => f.FRAGMENT_TYPE == cd.ADDITIONALINFO).FirstOrDefault();
+                    CV_FRAGMENT_TYPE ft = context.CV_FRAGMENT_TYPE.Where(f => f.FRAGMENT_TYPE == v.title).SingleOrDefault();
+                    if (ft == null)
+                        throw new Exception("Component with that title does not exist!");
+
                     if (cd.DATA != null)
                     {
                         XmlDocument doc = JsonConvert.DeserializeXmlNode(cd.DATA);

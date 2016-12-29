@@ -7,6 +7,7 @@ namespace CV.WebAPII.ViewModels
 {
     public class ComponentDTO
     {
+        public int? id { get; set; }
         //public string user { get; set; }
 
         public string title { get; set; }

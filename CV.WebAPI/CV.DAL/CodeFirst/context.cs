@@ -4,6 +4,9 @@ namespace CV.DAL.CodeFirst
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
+    using System.Data.Entity.Infrastructure;
+    using System.Xml;
+    using System.IO;
 
     public partial class context : DbContext
     {
@@ -11,7 +14,11 @@ namespace CV.DAL.CodeFirst
             : base("name=context")
         {
             this.Configuration.LazyLoadingEnabled = false;
+          //  EdmxWriter.WriteEdmx(this, new XmlTextWriter(new StreamWriter("model.edmx")));
         }
+
+      
+
 
         //public virtual DbSet<ATTACHMENT> ATTACHMENTs { get; set; }
         //public virtual DbSet<CHAT_PORUKA> CHAT_PORUKA { get; set; }
@@ -619,6 +626,8 @@ namespace CV.DAL.CodeFirst
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            //throw new UnintentionalCodeFirstException();
+
             modelBuilder.Entity<COMPONENTDRAFT>()
                 .Property(e => e.ID)
                 .HasPrecision(38, 0);
