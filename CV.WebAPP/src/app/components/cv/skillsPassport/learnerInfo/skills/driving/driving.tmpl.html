@@ -1,0 +1,21 @@
+<h3>Driving</h3>
+<div class="input-group">
+  <select ng-model="add" class="form-control"
+          ng-options="ob for ob in enum track by ob">
+  </select>
+  <div class="input-group-btn">
+    <button class="btn btn-default " ng-click="addNew()">add</button>
+  </div>
+</div>
+<div class="input-group" ng-repeat="obj in odabrani"  ng-init="edit = true">
+  <select ng-model="obj" ng-disabled="edit" class="form-control"
+          ng-options="ob for ob in enum track by ob">
+  </select>
+  <div class="input-group-btn">
+    <button class="btn btn-default"
+            ng-click="edit=!edit;">{{edit?'Edit':'Save'}}</button>
+    <button class="btn btn-danger"
+            ng-click="delete($index)">Delete</button>
+  </div>
+</div>
+

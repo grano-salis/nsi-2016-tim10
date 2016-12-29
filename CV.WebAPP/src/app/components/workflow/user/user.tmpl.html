@@ -13,6 +13,8 @@
   </div>
 </script>
 
+<mob-navbar>
+  <div class="btn-group" role="group">
 <button type="button"
         class="btn btn-default"
         ng-click="addIdentification()">
@@ -23,14 +25,41 @@
         ng-click="addEducation()">
   <span ng-if="no.Education">+</span>
   Education</button>
+<button type="button"
+        class="btn btn-default"
+        ng-click="addSkills()">
+  <span ng-if="no.Skills">+</span>
+  Skills</button>
+  <button type="button"
+          class="btn btn-default"
+          ng-click="addWorkExperience()">
+    <span ng-if="no.WorkExperience">+</span>
+    WorkExperience</button>
+  <button type="button"
+          class="btn btn-default"
+          ng-click="addAchievement()">
+    <span ng-if="no.Achievement">+</span>
+    Achievement</button>
+  </div>
+
 <!--<button type="button"-->
         <!--ng-click="save()">Save</button>-->
+  <div class="btn-group" role="group">
 <button type="button"
-        class="btn btn-default"
-        ng-click="saveDrafts()">SaveDrafts</button>
+        class="btn btn-info"
+        ng-click="saveDrafts()">
+  <span class="glyphicon glyphicon-save"></span>
+</button>
 <button type="button"
-        class="btn btn-default"
-        ng-click="openExport()">Export</button>
+        class="btn btn-info"
+        ng-click="openExport()">
+  <span class="glyphicon glyphicon-export"></span>
+</button>
+  </div>
+</mob-navbar>
+<div style="top: 50px;position: absolute;">
+
+
 <hr>
 <!--<pre>{{components}}</pre>-->
 <!--<hr>-->
@@ -42,13 +71,28 @@
 <!--<div contact-info="" model="Identification.Demographics.Birthdate"></div>-->
 <div uib-collapse="no.Identification" id="idIdentificaiton">
   <!--Identifikacija: <hr>-->
-  <div identification model="components.Identification"></div>
+  <div  class="container" identification model="drafts.Identification"></div>
   <!--src/app/components/cv/skillsPassport/learnerInfo/identification/demographics/birthdate/birthdate.tmpl.html-->
 
 </div>
 <div uib-collapse="no.Education"
      id="idEducation">
   <!--Edukacija:<hr>-->
-  <div education model="components.Education"></div>
+  <div  class="container" education model="drafts.Education"></div>
 </div>
-
+  <div uib-collapse="no.WorkExperience"
+       id="idWorkExperience">
+    <!--Edukacija:<hr>-->
+    <div  class="container" work-experience model="drafts.WorkExperience"></div>
+  </div>
+<div uib-collapse="no.Skills"
+     id="idSkills">
+  <!--Edukacija:<hr>-->
+  <div  class="container" skills model="drafts.Skills"></div>
+</div>
+  <div uib-collapse="no.Achievement"
+       id="idAchievement">
+    <!--Edukacija:<hr>-->
+    <div   class="container" achievement model="drafts.Achievement"></div>
+  </div>
+</div>

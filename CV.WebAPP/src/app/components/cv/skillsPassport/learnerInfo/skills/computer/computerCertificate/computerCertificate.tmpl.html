@@ -1,0 +1,15 @@
+<div class="input-group">
+  <input type="text" class="form-control" ng-model="add">
+  <div class="input-group-btn">
+    <button class="btn btn-default " ng-click="addNew()">add</button>
+  </div>
+</div>
+<div class="input-group" ng-repeat="obj in odabrani"  ng-init="edit = true">
+  <input type="text" class="form-control" ng-model="obj" ng-disabled="edit">
+  <div class="input-group-btn">
+    <button class="btn btn-default"
+            ng-click="edit=!edit;">{{edit?'Edit':'Save'}}</button>
+    <button class="btn btn-danger"
+            ng-click="delete($index)">Delete</button>
+  </div>
+</div>
