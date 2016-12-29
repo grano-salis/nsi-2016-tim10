@@ -1,8 +1,16 @@
-<h1>computer</h1>
-<textarea rows="4" cols="50"  ng-model="odabrani.Description">
-</textarea>
-ProficiencyLevel
+<div class="row">
+  <div class="col-lg-6">
+    <h4>Description</h4>
+    <textarea rows="4" cols="50"  ng-model="odabrani.Description"></textarea>
+  </div>
+<!--<h1>computer</h1>-->
+<div class="col-lg-offset-8">
+<h4>ProficiencyLevel</h4>
 <div computer-proficiency-level model="odabrani.ProficiencyLevel"></div>
-Certificates
+</div>
+  <div class="col-lg-12">
+<h4>Certificates</h4>
 <div computer-certificate model="odabrani.Certificate"></div>
-<pre>{{odabrani}}</pre>
+  </div>
+<!--<pre>{{odabrani}}</pre>-->
+</div>

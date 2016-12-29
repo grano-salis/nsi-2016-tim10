@@ -82,6 +82,20 @@
         $scope.odabrani.splice($index);
       };
 
+      $scope.placeholder = function (obj) {
+        var t =  "Period: " +
+          obj.Period.From.Year + "/" +
+          obj.Period.From.Month + "/" +
+          obj.Period.From.Day + " - " +
+          obj.Period.To.Year + "/" +
+          obj.Period.To.Month + "/" +
+          obj.Period.To.Day +
+          obj.Activities ? ("Activities: " + obj.Activities):'' +
+          obj.Employer ? (obj.Employer.Sector.Label + " | " +
+          obj.Employer.Name):"";
+        return t;
+      }
+
       if($scope.odabrani)
         $scope.model = $scope.odabrani;
 

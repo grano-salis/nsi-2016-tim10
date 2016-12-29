@@ -71,19 +71,28 @@
 <!--<div contact-info="" model="Identification.Demographics.Birthdate"></div>-->
 <div uib-collapse="no.Identification" id="idIdentificaiton">
   <!--Identifikacija: <hr>-->
-  <div identification model="drafts.Identification"></div>
+  <div  class="container" identification model="drafts.Identification"></div>
   <!--src/app/components/cv/skillsPassport/learnerInfo/identification/demographics/birthdate/birthdate.tmpl.html-->
 
 </div>
 <div uib-collapse="no.Education"
      id="idEducation">
   <!--Edukacija:<hr>-->
-  <div education model="drafts.Education"></div>
+  <div  class="container" education model="drafts.Education"></div>
 </div>
+  <div uib-collapse="no.WorkExperience"
+       id="idWorkExperience">
+    <!--Edukacija:<hr>-->
+    <div  class="container" work-experience model="drafts.WorkExperience"></div>
+  </div>
 <div uib-collapse="no.Skills"
      id="idSkills">
   <!--Edukacija:<hr>-->
-  <div skills model="drafts.Skills"></div>
+  <div  class="container" skills model="drafts.Skills"></div>
 </div>
-
+  <div uib-collapse="no.Achievement"
+       id="idAchievement">
+    <!--Edukacija:<hr>-->
+    <div   class="container" achievement model="drafts.Achievement"></div>
+  </div>
 </div>

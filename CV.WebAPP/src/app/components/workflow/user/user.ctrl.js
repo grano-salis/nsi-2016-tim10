@@ -20,6 +20,8 @@
       $scope.no.Identification = true;
       $scope.no.Education = true;
       $scope.no.Skills = true;
+      $scope.no.WorkExperience = true;
+      $scope.no.Achievement = true;
       loginService.setUserDummy();
 
       var componente = apiService.getUserComponents();
@@ -49,6 +51,10 @@
         $scope.old.Education={};
       if(typeof $scope.old.Skills==='undefined')
         $scope.old.Skills={};
+      if(typeof $scope.old.Achievement==='undefined')
+        $scope.old.Achievement={};
+      if(typeof $scope.old.WorkExperience==='undefined')
+        $scope.old.WorkExperience={};
     }
 
     $scope.init();
@@ -62,7 +68,9 @@
       $scope.patches = {
         Identification:[],
         Education:[],
-        Skills:[]
+        Skills:[],
+        WorkExperience: [],
+        Achievement: []
       };
       if($scope.drafts.Identification)
         $scope.patches.Identification = jsonpatch.compare($scope.old.Identification,$scope.drafts.Identification);
@@ -72,6 +80,13 @@
 
       if($scope.drafts.Skills)
         $scope.patches.Skills = jsonpatch.compare($scope.old.Skills,$scope.drafts.Skills);
+
+      if($scope.drafts.WorkExperience)
+        $scope.patches.WorkExperience = jsonpatch.compare($scope.old.WorkExperience,$scope.drafts.WorkExperience);
+
+      if($scope.drafts.Achievement)
+        $scope.patches.Achievement = jsonpatch.compare($scope.old.Achievement,$scope.drafts.Achievement);
+
 
       var draft = [];
       angular.forEach($scope.drafts,function (value,key) {
@@ -136,6 +151,9 @@
 
           // if(componente['Skills'])
             $scope.pr.SkillsPassport.LearnerInfo['Skills']=componente['Skills'];
+
+          $scope.pr.SkillsPassport.LearnerInfo['Achievement']=componente['Achievement'];
+          $scope.pr.SkillsPassport.LearnerInfo['WorkExperience']=componente['WorkExperience'];
 
           $log.debug($scope.pr);
 
@@ -261,6 +279,26 @@
         $document.scrollToElementAnimated(someElement);
       },50);
 
+    }
+
+    $scope.addWorkExperience = function () {
+      $scope.no.WorkExperience = false;
+      // $location.hash('idEducation');
+      // $anchorScroll();
+      var someElement = angular.element(document.getElementById('idWorkExperience'));
+      $timeout(function(){
+        $document.scrollToElementAnimated(someElement);
+      },50);
+    }
+
+    $scope.addAchievement = function () {
+      $scope.no.Achievement = false;
+      // $location.hash('idEducation');
+      // $anchorScroll();
+      var someElement = angular.element(document.getElementById('idAchievement'));
+      $timeout(function(){
+        $document.scrollToElementAnimated(someElement);
+      },50);
     }
 
     $scope.export = function(){

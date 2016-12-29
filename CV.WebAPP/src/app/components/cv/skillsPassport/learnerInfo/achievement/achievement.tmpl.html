@@ -1,13 +1,17 @@
-<h1>Achievements</h1>
+<div  class="jumbotron">
+  <h3> Achievements <button class="btn btn-info" ng-click="addNewModal()">Add</button></h3>
+  <ul class="list-group"  ng-repeat="obj in odabrani">
+    <li class="list-group-item row">
+      <label class="col-lg-11">
+        {{obj.Title.Label}} | {{obj.Description}}</label>
+      <!--<div class="input-group">-->
+      <!--<input type="text" class="form-control" placeholder="">-->
+      <div class="input-group-btn col-lg-1">
+        <button class="btn btn-default" ng-click="editModal($index)">Edit</button>
+        <button class="btn btn-danger" ng-click="delete($index)">Delete</button>
+      </div>
+      <!--</div>-->
+    </li>
+  </ul>
 
-<div ng-repeat="obj in odabrani">
-  <!--<pre>{{obj}}</pre>-->
-  {{obj.Title.Label}} | {{obj.Description}}
-  <hr>
-  <button class="btn btn-default" ng-click="editModal($index)">Edit</button>
-  <button class="btn btn-default" ng-click="delete($index)">Delete</button>
 </div>
-<button class="btn btn-default" ng-click="addNewModal()">Add</button>
-
-<!--<pre>{{odabrani}}</pre>-->
-
