@@ -128,11 +128,11 @@ namespace CV.WebAPII.Controllers
             //}
 
             COMPONENTDRAFT cd = new COMPONENTDRAFT();
-            cd.ADDITIONALINFO = value.title;
+            cd.ADDITIONALINFO = "";
             cd.DATA = value.data;
             cd.APPROVED = "f";
             // insert
-            if (cd.ID == 0)
+            if (value.id == null)
             {
                 CV_XML_FRAGMENT frag = new CV_XML_FRAGMENT();
                 CV_FRAGMENT_TYPE ft = context.CV_FRAGMENT_TYPE.Where(f => f.FRAGMENT_TYPE == cd.ADDITIONALINFO).FirstOrDefault();
@@ -148,7 +148,7 @@ namespace CV.WebAPII.Controllers
             // update
             else
             {
-                COMPONENTDRAFT draft = context.COMPONENTDRAFTs.First(c => cd.ID == cd.ID && c.COMPONENTID == cd.COMPONENTID);
+                COMPONENTDRAFT draft = context.COMPONENTDRAFTs.First(c => value.id == cd.ID);
                 draft.ADDITIONALINFO = cd.ADDITIONALINFO;
                 draft.APPROVED = cd.APPROVED;
                 if (cd.DATA != null)
@@ -194,24 +194,44 @@ namespace CV.WebAPII.Controllers
                 cd.ADDITIONALINFO = v.title;
                 cd.DATA = v.data;
                 cd.APPROVED = "f";
+                CV_USER u = context.CV_USER.Where(user => user.ID == id).Single();
+                if (u == null)
+                    throw new Exception("User does not exist!");
+
+                cd.USER_ID = u.ID;
+
                 // insert
-                if (cd.ID == 0)
+                if (v.id == null)
                 {
-                    CV_XML_FRAGMENT frag = new CV_XML_FRAGMENT();
-                    CV_FRAGMENT_TYPE ft = context.CV_FRAGMENT_TYPE.Where(f => f.FRAGMENT_TYPE == cd.ADDITIONALINFO).FirstOrDefault();
+                    //CV_XML_FRAGMENT frag = new CV_XML_FRAGMENT();
+                    CV_FRAGMENT_TYPE ft = context.CV_FRAGMENT_TYPE.Where(f => f.FRAGMENT_TYPE == v.title).SingleOrDefault();
+                    if (ft == null)
+                        throw new Exception("Component with that title does not exist!");
+
                     if (cd.DATA != null)
                     {
                         XmlDocument doc = JsonConvert.DeserializeXmlNode(cd.DATA);
                         cd.DATA = doc.OuterXml;
                     }
-                    frag.COMPONENTDRAFTs.Add(cd);
-                    context.CV_USER.Find(id).CV_XML_FRAGMENT.Add(frag);
-                    //context.SaveChanges();
+                    //frag.COMPONENTDRAFTs.Add(cd);
+                    
+                    //TO DO: move this to admin method
+
+                    CV_XML_FRAGMENT component = new CV_XML_FRAGMENT();
+                    component.XML_DATA = "<empty></empty>";
+                    component.USER_ID = u.ID;
+                    component.FRAGMENT_TYPE = ft.ID;
+                    context.CV_XML_FRAGMENT.Add(component);
+                    context.SaveChanges();
+                    cd.CV_XML_FRAGMENT = component;
+
+                    context.COMPONENTDRAFTs.Add(cd);                   
+                    context.SaveChanges();
                 }
                 // update
                 else
                 {
-                    COMPONENTDRAFT draft = context.COMPONENTDRAFTs.First(c => cd.ID == cd.ID && c.COMPONENTID == cd.COMPONENTID);
+                    COMPONENTDRAFT draft = context.COMPONENTDRAFTs.First(c => cd.ID == cd.ID);
                     draft.ADDITIONALINFO = cd.ADDITIONALINFO;
                     draft.APPROVED = cd.APPROVED;
                     if (cd.DATA != null)
