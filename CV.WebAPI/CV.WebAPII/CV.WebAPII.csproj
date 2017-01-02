@@ -150,6 +150,7 @@
     <Folder Include="api\" />
     <Folder Include="App_Data\" />
     <Folder Include="BusinessLogic\" />
+    <Folder Include="CustomExceptions\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -200,6 +201,7 @@
     </Compile>
     <Compile Include="ViewModels\AdminDTO.cs" />
     <Compile Include="ViewModels\ComponentDTO.cs" />
+    <Compile Include="ViewModels\NewDraft.cs" />
     <Compile Include="ViewModels\UserInfo.cs" />
   </ItemGroup>
   <ItemGroup>

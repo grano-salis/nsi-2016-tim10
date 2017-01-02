@@ -11,7 +11,7 @@ namespace CV.DAL.CodeFirst
     {
         public decimal ID { get; set; }
 
-        public int COMPONENTID { get; set; }
+        public int? COMPONENTID { get; set; }
 
         public int USER_ID { get; set; }
 

@@ -8,12 +8,20 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Xml;
 using CV.WebAPII.ViewModels;
+using CV.WebAPII.Providers;
+using System.Web;
 
 namespace CV.WebAPII.Controllers
 {
     public class DraftsController : ApiController
     {
-        private context context = new context();
+        private context context;
+        private AuthProvider _authProvider;
+        public DraftsController()
+        {
+            context = new context();
+            _authProvider = new AuthProvider();
+        }
 
         [HttpGet]
         [Route("users/{id:int}/drafts")]
@@ -103,44 +111,76 @@ namespace CV.WebAPII.Controllers
         }
 
         [HttpPost]
-        
-        [Route("users/{id:int}/draft")]
-        public void saveDraft([FromBody]ComponentDTO value, int id)
+        //this method can only be used by logged-in users
+        [Route("drafts")]
+        public HttpResponseMessage saveDraft([FromBody]List<NewDraft> components)
         {
-            COMPONENTDRAFT cd = new COMPONENTDRAFT();
-            cd.ADDITIONALINFO = "";
-            cd.DATA = value.data;
-            cd.APPROVED = "f";
-            // insert
-            if (value.id == null)
+            try
             {
-                CV_XML_FRAGMENT frag = new CV_XML_FRAGMENT();
-                CV_FRAGMENT_TYPE ft = context.CV_FRAGMENT_TYPE.Where(f => f.FRAGMENT_TYPE == cd.ADDITIONALINFO).FirstOrDefault();
-                if (cd.DATA != null)
-                {
-                    XmlDocument doc = JsonConvert.DeserializeXmlNode(cd.DATA);
-                    cd.DATA = doc.OuterXml;
-                }
-                frag.COMPONENTDRAFTs.Add(cd);
-                context.CV_USER.Find(id).CV_XML_FRAGMENT.Add(frag);
-                //context.SaveChanges();
-            }
-            // update
-            else
-            {
-                COMPONENTDRAFT draft = context.COMPONENTDRAFTs.First(c => value.id == cd.ID);
-                draft.ADDITIONALINFO = cd.ADDITIONALINFO;
-                draft.APPROVED = cd.APPROVED;
-                if (cd.DATA != null)
-                {
-                    XmlDocument doc = JsonConvert.DeserializeXmlNode(cd.DATA);
-                    draft.DATA = doc.OuterXml;
-                }
-                //context.SaveChanges();
-            }
-            context.SaveChanges();
-        }
+                UserInfo userInfo = _authProvider.getAuth(HttpContext.Current.Request.Cookies["sid"].Value);
+                int id = userInfo.UserId;
 
+                foreach(var value in components)
+                {
+                    // insert new draft with this type
+                    if (value.id == null)
+                    {
+                        CV_FRAGMENT_TYPE ft = context.CV_FRAGMENT_TYPE.Where(f => f.FRAGMENT_TYPE == value.title).FirstOrDefault();
+
+                        COMPONENTDRAFT cd = new COMPONENTDRAFT();
+                        cd.ADDITIONALINFO = value.additionalInfo;
+                        cd.USER_ID = id;
+                        cd.APPROVED = "w";
+
+                        XmlDocument doc = JsonConvert.DeserializeXmlNode(value.data);
+                        cd.DATA = doc.OuterXml;
+                        /*
+                        CV_XML_FRAGMENT component = new CV_XML_FRAGMENT();
+                        component.FRAGMENT_TYPE = ft.ID;
+                        component.USER_ID = id;
+                        component.XML_DATA = "<empty></empty>";
+
+                        context.CV_XML_FRAGMENT.Add(component);
+                        context.SaveChanges();
+
+                        cd.COMPONENTID = component.ID;
+                        */
+                        context.COMPONENTDRAFTs.Add(cd);
+
+                        context.SaveChanges();
+                    }
+                    // update
+                    else
+                    {
+                        COMPONENTDRAFT draft = context.COMPONENTDRAFTs.Single(c => value.id == value.id);
+                        if (draft == null)
+                            throw new Exception("Draft with specified id does not exist.");
+
+                        if (value.additionalInfo != "")
+                            draft.ADDITIONALINFO = value.additionalInfo;
+
+                        draft.APPROVED = "w";
+
+                        XmlDocument doc = JsonConvert.DeserializeXmlNode(value.data);
+                        draft.DATA = doc.OuterXml;
+
+                    }
+                }
+                
+                context.SaveChanges();
+            }
+            catch (UnauthorizedAccessException e)
+            {
+                return new HttpResponseMessage(HttpStatusCode.Unauthorized);
+            }
+            catch (Exception e)
+            {
+                return new HttpResponseMessage(HttpStatusCode.InternalServerError);
+            }
+
+            return new HttpResponseMessage(HttpStatusCode.Created);
+      }
+        /*
         [HttpPost]
         [Route("users/{id:int}/drafts")]
         public void saveDraft([FromBody]List<ComponentDTO> value, int id)
@@ -223,7 +263,7 @@ namespace CV.WebAPII.Controllers
                 }
             }
             context.SaveChanges();
-        }
+        }*/
 
         [HttpPost]
         [Route("drafts/approve")]

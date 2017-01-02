@@ -12,18 +12,26 @@ namespace CV.WebAPII.Providers
     {
         public UserInfo getAuth(string token)
         {
-            SSO.IdentityClient client = new SSO.IdentityClient();
-            SSO.AuthResponse ui = client.Auth(token);
-
-            return new UserInfo
+            try
             {
-                Email = ui.Email,
-                FirstName = ui.FirstName,
-                LastName = ui.LastName,
-                Roles = ui.Roles.ToList(),
-                UserId = ui.UserId,
-                Username = ui.Username
-            };
+                SSO.IdentityClient client = new SSO.IdentityClient();
+                SSO.AuthResponse ui = client.Auth(token);
+
+                return new UserInfo
+                {
+                    Email = ui.Email,
+                    FirstName = ui.FirstName,
+                    LastName = ui.LastName,
+                    Roles = ui.Roles.ToList(),
+                    UserId = ui.UserId,
+                    Username = ui.Username
+                };
+            }
+            catch (Exception e)
+            {
+                throw new UnauthorizedAccessException("Authorization failed.", e);
+            }
+            
         }
   
     }
