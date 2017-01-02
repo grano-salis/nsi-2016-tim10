@@ -103,30 +103,10 @@ namespace CV.WebAPII.Controllers
         }
 
         [HttpPost]
+        
         [Route("users/{id:int}/draft")]
         public void saveDraft([FromBody]ComponentDTO value, int id)
         {
-            //COMPONENTDRAFT cd = new COMPONENTDRAFT();
-            //cd.APPROVED = "f"; // zasto je ovo string ?
-            //// insert
-            //if (cd.ID == 0) {
-            //    CV_XML_FRAGMENT frag = new CV_XML_FRAGMENT();
-            //    XmlDocument doc = JsonConvert.DeserializeXmlNode(cd.DATA);
-            //    cd.DATA = doc.OuterXml;
-            //    frag.COMPONENTDRAFTs.Add(cd);
-            //    context.CV_USER.Find(id).CV_XML_FRAGMENT.Add(frag);
-            //    //context.SaveChanges();
-            //}
-            //// update
-            //else {
-            //    COMPONENTDRAFT draft = context.COMPONENTDRAFTs.First(c => cd.ID == cd.ID && c.COMPONENTID == cd.COMPONENTID);
-            //    draft.ADDITIONALINFO = cd.ADDITIONALINFO;
-            //    draft.APPROVED = cd.APPROVED;
-            //    XmlDocument doc = JsonConvert.DeserializeXmlNode(cd.DATA);
-            //    draft.DATA = doc.OuterXml;
-            //    //context.SaveChanges();
-            //}
-
             COMPONENTDRAFT cd = new COMPONENTDRAFT();
             cd.ADDITIONALINFO = "";
             cd.DATA = value.data;
