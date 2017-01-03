@@ -131,7 +131,7 @@ namespace CV.WebAPII.Controllers
                         cd.ADDITIONALINFO = value.additionalInfo;
                         cd.USER_ID = id;
                         cd.APPROVED = "w";
-
+                        cd.TYPE_ID = ft.ID;
                         XmlDocument doc = JsonConvert.DeserializeXmlNode(value.data);
                         cd.DATA = doc.OuterXml;
                         /*
@@ -147,7 +147,7 @@ namespace CV.WebAPII.Controllers
                         */
                         context.COMPONENTDRAFTs.Add(cd);
 
-                        context.SaveChanges();
+                        
                     }
                     // update
                     else
@@ -180,109 +180,52 @@ namespace CV.WebAPII.Controllers
 
             return new HttpResponseMessage(HttpStatusCode.Created);
       }
-        /*
         [HttpPost]
-        [Route("users/{id:int}/drafts")]
-        public void saveDraft([FromBody]List<ComponentDTO> value, int id)
+        //only admins can do this
+        [Route("drafts/{id:int}/approve")]
+        public HttpResponseMessage approveDraft(int id)
         {
-            //value.APPROVED = "f"; // zasto je ovo string ?
-            //// insert
-            //if (value.ID == 0)
-            //{
-            //    CV_XML_FRAGMENT frag = new CV_XML_FRAGMENT();
-            //    XmlDocument doc = JsonConvert.DeserializeXmlNode(value.DATA);
-            //    value.DATA = doc.OuterXml;
-            //    frag.COMPONENTDRAFTs.Add(value);
-            //    context.CV_USER.Find(id).CV_XML_FRAGMENT.Add(frag);
-            //    //context.SaveChanges();
-            //}
-            //// update
-            //else
-            //{
-            //    COMPONENTDRAFT draft = context.COMPONENTDRAFTs.First(cd => cd.ID == value.ID && cd.COMPONENTID == value.COMPONENTID);
-            //    draft.ADDITIONALINFO = value.ADDITIONALINFO;
-            //    draft.APPROVED = value.APPROVED;
-            //    XmlDocument doc = JsonConvert.DeserializeXmlNode(value.DATA);
-            //    draft.DATA = doc.OuterXml;
-            //    //context.SaveChanges();
-            //}
-            //context.SaveChanges();
-
-            foreach (var v in value)
+            try
             {
-                COMPONENTDRAFT cd = new COMPONENTDRAFT();
-                cd.ADDITIONALINFO = v.title;
-                cd.DATA = v.data;
-                cd.APPROVED = "f";
-                CV_USER u = context.CV_USER.Where(user => user.ID == id).Single();
-                if (u == null)
-                    throw new Exception("User does not exist!");
 
-                cd.USER_ID = u.ID;
+                UserInfo userInfo = _authProvider.getAuth(HttpContext.Current.Request.Cookies["sid"].Value);
 
-                // insert
-                if (v.id == null)
+                if (!userInfo.Roles.Contains("ADMIN"))
+                    throw new UnauthorizedAccessException("You have to have admin role to perform this action."); //TODO: strpati ovo u tijelo responsea
+
+                COMPONENTDRAFT cd = context.COMPONENTDRAFTs.Single(c => c.ID == id);
+                if (cd == null)
+                    throw new Exception("Component with specified ID not found.");
+                
+                cd.APPROVED = "a";
+                if(cd.COMPONENTID == null)
                 {
-                    //CV_XML_FRAGMENT frag = new CV_XML_FRAGMENT();
-                    CV_FRAGMENT_TYPE ft = context.CV_FRAGMENT_TYPE.Where(f => f.FRAGMENT_TYPE == v.title).SingleOrDefault();
-                    if (ft == null)
-                        throw new Exception("Component with that title does not exist!");
-
-                    if (cd.DATA != null)
-                    {
-                        XmlDocument doc = JsonConvert.DeserializeXmlNode(cd.DATA);
-                        cd.DATA = doc.OuterXml;
-                    }
-                    //frag.COMPONENTDRAFTs.Add(cd);
-                    
-                    //TO DO: move this to admin method
-
                     CV_XML_FRAGMENT component = new CV_XML_FRAGMENT();
-                    component.XML_DATA = "<empty></empty>";
-                    component.USER_ID = u.ID;
-                    component.FRAGMENT_TYPE = ft.ID;
+                    component.FRAGMENT_TYPE = cd.TYPE_ID;
+                    component.USER_ID = cd.USER_ID;
+                    component.XML_DATA = cd.DATA;
                     context.CV_XML_FRAGMENT.Add(component);
                     context.SaveChanges();
                     cd.CV_XML_FRAGMENT = component;
-
-                    context.COMPONENTDRAFTs.Add(cd);                   
-                    context.SaveChanges();
                 }
-                // update
                 else
                 {
-                    COMPONENTDRAFT draft = context.COMPONENTDRAFTs.First(c => cd.ID == cd.ID);
-                    draft.ADDITIONALINFO = cd.ADDITIONALINFO;
-                    draft.APPROVED = cd.APPROVED;
-                    if (cd.DATA != null)
-                    {
-                        XmlDocument doc = JsonConvert.DeserializeXmlNode(cd.DATA);
-                        draft.DATA = doc.OuterXml;
-                    }
-                    //context.SaveChanges();
+                    CV_XML_FRAGMENT component = context.CV_XML_FRAGMENT.Single(c => c.ID == cd.COMPONENTID);
+                    component.XML_DATA = cd.DATA;
                 }
+                context.SaveChanges();
+                return new HttpResponseMessage(HttpStatusCode.OK);
             }
-            context.SaveChanges();
-        }*/
-
-        [HttpPost]
-        [Route("drafts/approve")]
-        public void approveDraft([FromBody]int id)
-        {
-            COMPONENTDRAFT cd = context.COMPONENTDRAFTs.Find(id);
-            cd.CV_XML_FRAGMENT.XML_DATA = cd.DATA;
-            cd.APPROVED = "t";
-            context.SaveChanges();
+            catch (UnauthorizedAccessException e)
+            {
+                return new HttpResponseMessage(HttpStatusCode.Unauthorized);
+            }
+            catch (Exception)
+            {
+                return new HttpResponseMessage(HttpStatusCode.NotFound); //TODO make custom exceptions 
+            }
+            
         }
 
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
-        }
     }
 }
