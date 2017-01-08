@@ -43,6 +43,8 @@
           templateUrl: 'app/components/cv/skillsPassport/learnerInfo/achievement/achievementModal.tmpl.html',
           controller: function ($scope,$uibModalInstance,model,$http) {
             $scope.model = model;
+            if(model === null)
+              $scope.model = {};
 
             $scope.importData = {};
             $scope.importSelected = [];
@@ -105,6 +107,19 @@
           if(Array.isArray(add)){
             //alert('import');
             enumsService.merge(add);
+            var rez = [];
+            for(var i =0;i<add.length;i++){
+              var o = add[i];
+              rez.push({
+                Title:{
+                  Label: o.criteria.name,
+                  Code: o.criteria.name
+                },
+                Description: o.cV_ITEM.name+': '+o.cV_ITEM.description
+              })
+              debugger;
+            }
+            $scope.odabrani.push.apply($scope.odabrani,rez);
           }
           else
             $scope.odabrani.push(add);
