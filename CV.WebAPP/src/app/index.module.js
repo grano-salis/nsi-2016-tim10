@@ -9,6 +9,7 @@
       'ngSanitize',
       'ui.router',
       'ui.bootstrap',
+      //'ui.checkbox',
       'toastr',
       'Slidebox',
       'smoothScroll',
@@ -18,6 +19,8 @@
       'LocalStorageModule',
       // 'bsLoadingOverlaySpinJs',
       // 'bsLoadingOverlayHttpInterceptor',
+
+      'checklist-model',
 
       'ea.api',
       'ea.workflow',

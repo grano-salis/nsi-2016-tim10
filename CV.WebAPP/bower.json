@@ -23,7 +23,8 @@
     "angular-local-storage": "^0.5.2",
     "angular-web-notification": "^1.0.21",
     "fast-json-patch": "^1.1.2",
-    "jsondiffpatch": "^0.2.4"
+    "jsondiffpatch": "^0.2.4",
+    "checklist-model": "^0.10.0"
   },
   "devDependencies": {
     "angular-mocks": "~1.5.3"

@@ -19,7 +19,7 @@
     return directive;
 
     /** @ngInject */
-    function ctrl($scope,$uibModal) {
+    function ctrl($scope,$uibModal,enumsService) {
       $scope.odabrani = $scope.model;
 
       $scope.model = $scope.odabrani;
@@ -41,20 +41,41 @@
           ariaLabelledBy: 'modal-title',
           ariaDescribedBy: 'modal-body',
           templateUrl: 'app/components/cv/skillsPassport/learnerInfo/achievement/achievementModal.tmpl.html',
-          controller: function ($scope,$uibModalInstance,model) {
+          controller: function ($scope,$uibModalInstance,model,$http) {
             $scope.model = model;
+
+            $scope.importData = {};
+            $scope.importSelected = [];
+
+            var tim2 = "http://localhost:26264/" + "/api/Europass/Export/1";
+
+            var getImportData = function () {
+              $http.get(tim2)
+                .then(function(data){
+                  $scope.importData = data.data;
+                },function (data) {
+                  debugger;
+                  alert(data);
+                })
+            }
 
             $scope.ok = function () {
               //$uibModalInstance.close($ctrl.selected.item);
               debugger;
               //alert('yo');
               // $scope.send();
-              $uibModalInstance.close($scope.model);
+              if($scope.importFlag){
+                $uibModalInstance.close($scope.importSelected);
+              }
+              else
+                $uibModalInstance.close($scope.model);
             };
 
             $scope.cancel = function () {
               $uibModalInstance.dismiss('cancel');
             };
+
+            getImportData();
           },
           controllerAs: '$ctrl',
           resolve: {
@@ -81,7 +102,12 @@
           if($scope.odabrani==null || typeof ($scope.odabrani)=='undefined')
             $scope.odabrani = [];
 
-          $scope.odabrani.push(add);
+          if(Array.isArray(add)){
+            //alert('import');
+            enumsService.merge(add);
+          }
+          else
+            $scope.odabrani.push(add);
         });
 
       };

@@ -88,3 +88,54 @@
     }
   }
 })();
+
+(function(){
+  "use strict";
+
+  angular
+    .module('ea.cv')
+    .service('enumsService', enumsService);
+
+  /** @ngInject */
+  function enumsService($http,$q){
+    var enums =[
+      {Label:"honors_awards",Code:"honors_awards"},
+      {Label:"publications",Code:"publications"},
+      {Label:"presentations",Code:"presentations"},
+      {Label:"projects",Code:"projects"},
+      {Label:"citations",Code:"citations"},
+      {Label:"memberships",Code:"memberships"},
+      {Label:"conferences",Code:"conferences"},
+      {Label:"seminars",Code:"seminars"},
+      {Label:"workshops",Code:"workshops"},
+      {Label:"references",Code:"references"},
+      {Label:"signature_equivalent",Code:"signature_equivalent"},
+      {Label:"courses",Code:"courses"},
+      {Label:"certifications",Code:"certifications"}
+    ]
+
+    var exists = function (obj) {
+      for(var i=0;i<enums.length;i++){
+        if(enums[i].Label == obj || enums[i].Code == obj)
+          return true;
+      }
+      return false;
+    }
+
+    this.get = function () {
+      return enums;
+    }
+
+    this.merge = function(data){
+      alert('merge');
+      for(var i=0;i<data.length;i++){
+        var t = data[i].criteria.name;
+        debugger;
+        if(!exists(t)){
+          enums.push({Label:t,Code:t});
+        }
+      }
+    }
+
+  }
+})();

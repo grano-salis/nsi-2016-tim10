@@ -2,15 +2,36 @@
   <div class="modal-header">
     <h3 class="modal-title" id="modal-title">Modal</h3>
   </div>
-  <div class="modal-body" id="modal-body">
+  <div class="modal-body" id="modal-body" ng-init="importFlag = false;">
     <!--<br>-->
     <!--model: <pre>{{model}}</pre>-->
     <!--<br>-->
-    title: <div achievement-title model="model"></div>
-    Description: <input ng-model="model.Description">
+  <div class="row">
+      <div ng-if="importFlag">
+        <h4 class="col-lg-12">Import</h4>
+        <div class="col-lg-12">
+          <label ng-repeat="row in importData">
+            <input type="checkbox"
+                   data-checklist-model="importSelected"
+                   data-checklist-value="row"> <i>{{row.criteria.name}}</i> - {{row.cV_ITEM.name}}, {{row.cV_ITEM.description}}
+          </label>
+        </div>
+      </div>
+      <div ng-if="!importFlag">
+        <div class="col-lg-4">
+          Title <div achievement-title model="model"></div>
+        </div>
+        <div class="col-lg-12">
+          Description <input ng-model="model.Description">
+        </div>
+      </div>
+  </div>
   </div>
   <div class="modal-footer">
-    <button class="btn btn-primary" type="submit" ng-click="ok()">OK</button>
-    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    <button class="btn-info btn col-lg-2"  ng-model="importFlag" uib-btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">Import</button>
+    <div class="btn-group">
+      <button class="btn btn-primary" type="submit" ng-click="ok()">OK</button>
+      <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
   </div>
 </form>

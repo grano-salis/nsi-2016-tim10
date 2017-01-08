@@ -5,7 +5,7 @@
   "scripts": {
     "postinstall" : "bower install",
     "test": "gulp test",
-    "front" : "npm update && bower prune && bower install"
+    "front": "npm prune && npm update && bower prune && bower install"
   },
   "devDependencies": {
     "estraverse": "~4.1.0",
@@ -52,7 +52,7 @@
     "uglify-save-license": "~0.4.1",
     "wrench": "~1.5.8",
     "bower": "1.7.9",
-    "jquery":"3.1.1"
+    "jquery": "3.1.1"
   },
   "engines": {
     "node": ">=0.10.0"
