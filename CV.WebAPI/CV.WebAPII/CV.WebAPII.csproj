@@ -201,7 +201,9 @@
     </Compile>
     <Compile Include="ViewModels\AdminDTO.cs" />
     <Compile Include="ViewModels\ComponentDTO.cs" />
+    <Compile Include="ViewModels\ComponentVM.cs" />
     <Compile Include="ViewModels\NewDraft.cs" />
+    <Compile Include="ViewModels\unconfirmedDraftsDTO.cs" />
     <Compile Include="ViewModels\UserInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -257,13 +259,26 @@
     <Content Include="Service References\SSO\CV.WebAPII.SSO.AuthResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Service References\SSO\Identity.disco" />
     <None Include="Service References\SSO\configuration91.svcinfo" />
     <None Include="Service References\SSO\configuration.svcinfo" />
+    <None Include="Service References\SSO\Identity1.wsdl" />
+    <None Include="Service References\SSO\Identity4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SSO\Identity41.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SSO\Identity42.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SSO\Identity43.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\SSO\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\SSO\Identity1.disco" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -281,19 +296,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
-    <None Include="Service References\SSO\Identity.wsdl" />
-    <None Include="Service References\SSO\Identity.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SSO\Identity1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SSO\Identity2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SSO\Identity3.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CV.DAL\CV.DAL.csproj">

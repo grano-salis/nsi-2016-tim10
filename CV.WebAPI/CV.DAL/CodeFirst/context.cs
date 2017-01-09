@@ -629,8 +629,7 @@ namespace CV.DAL.CodeFirst
             //throw new UnintentionalCodeFirstException();
 
             modelBuilder.Entity<COMPONENTDRAFT>()
-                .Property(e => e.ID)
-                .HasPrecision(38, 0);
+                .Property(e => e.ID);
 
             modelBuilder.Entity<COMPONENTDRAFT>()
                 .Property(e => e.COMPONENTID);

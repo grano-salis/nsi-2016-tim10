@@ -19,15 +19,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:48202/BusinessLogic/Identity.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:48203/BusinessLogic/Identity.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="Identity.xsd" MetadataType="Schema" ID="444d31ec-8198-4018-8abc-09a1ce601b24" SourceId="1" SourceUrl="http://localhost:48202/BusinessLogic/Identity.svc?xsd=xsd3" />
-    <MetadataFile FileName="Identity.disco" MetadataType="Disco" ID="3327e67c-01ee-4852-aa8f-c8e62296b999" SourceId="1" SourceUrl="http://localhost:48202/BusinessLogic/Identity.svc?disco" />
-    <MetadataFile FileName="Identity.wsdl" MetadataType="Wsdl" ID="7a614841-cab3-485f-94c8-e3fdeadd3891" SourceId="1" SourceUrl="http://localhost:48202/BusinessLogic/Identity.svc?wsdl" />
-    <MetadataFile FileName="Identity1.xsd" MetadataType="Schema" ID="9b1f11af-165e-40d6-971d-60bd61318a7d" SourceId="1" SourceUrl="http://localhost:48202/BusinessLogic/Identity.svc?xsd=xsd0" />
-    <MetadataFile FileName="Identity2.xsd" MetadataType="Schema" ID="3bd226e1-599c-4e42-8d12-974335aa38fe" SourceId="1" SourceUrl="http://localhost:48202/BusinessLogic/Identity.svc?xsd=xsd2" />
-    <MetadataFile FileName="Identity3.xsd" MetadataType="Schema" ID="3d312f4f-b2f5-445a-84c7-764ca10dc888" SourceId="1" SourceUrl="http://localhost:48202/BusinessLogic/Identity.svc?xsd=xsd1" />
+    <MetadataFile FileName="Identity4.xsd" MetadataType="Schema" ID="ee80fde2-15f8-48d2-b484-5be641711100" SourceId="1" SourceUrl="http://localhost:48203/BusinessLogic/Identity.svc?xsd=xsd0" />
+    <MetadataFile FileName="Identity41.xsd" MetadataType="Schema" ID="fe3b7964-bbda-4620-aaf3-e5b79580a6e9" SourceId="1" SourceUrl="http://localhost:48203/BusinessLogic/Identity.svc?xsd=xsd3" />
+    <MetadataFile FileName="Identity1.disco" MetadataType="Disco" ID="b521097e-ed29-4394-8dcf-72967410c21c" SourceId="1" SourceUrl="http://localhost:48203/BusinessLogic/Identity.svc?disco" />
+    <MetadataFile FileName="Identity42.xsd" MetadataType="Schema" ID="600bd737-b9c2-411d-ac98-3b79e1da6d01" SourceId="1" SourceUrl="http://localhost:48203/BusinessLogic/Identity.svc?xsd=xsd1" />
+    <MetadataFile FileName="Identity43.xsd" MetadataType="Schema" ID="15e42d6a-b972-4008-9b77-b6e54c65a1df" SourceId="1" SourceUrl="http://localhost:48203/BusinessLogic/Identity.svc?xsd=xsd2" />
+    <MetadataFile FileName="Identity1.wsdl" MetadataType="Wsdl" ID="d0501bb4-b354-484a-8295-ec4b1ba0a1c5" SourceId="1" SourceUrl="http://localhost:48203/BusinessLogic/Identity.svc?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

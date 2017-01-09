@@ -9,7 +9,7 @@ namespace CV.DAL.CodeFirst
     [Table("NSI09.COMPONENTDRAFT")]
     public partial class COMPONENTDRAFT
     {
-        public decimal ID { get; set; }
+        public int ID { get; set; }
 
         public int? COMPONENTID { get; set; }
 
