@@ -1,22 +1,17 @@
-<mob-navbar></mob-navbar>
-<h1>admin</h1>
-<!--<button type="button"-->
-        <!--ng-click="approveAll()">Approve All</button>-->
-<hr>
-<!--<pre>componente: {{componente}}</pre>-->
-<!--<pre>drafotvi: {{draftovi}}</pre>-->
-<!--<pre>delta: {{delta}}</pre>-->
-<!--<pre>{{beautifulHtml}}</pre>-->
-<h1>Draftovi</h1>
-<div>
-  <h2>{{draftovi.user}}</h2>
-  <hr>
-  <div ng-repeat="item in draftovi.components">
-    <h4>{{item.title}}</h4>
-    <pre>{{item.data}}</pre>
-    <button ng-click="approve(item,draftovi.user)">Approve</button>
+<mob-navbar>
+  Administracija
+</mob-navbar>
+<div style="top: 50px;position: absolute;">
+  <div>
+    <h2>{{draftovi.user.name}}</h2>
+    <hr>
+    <div ng-repeat="item in draftovi.components">
+      <h4>{{item.title}}</h4>
+      <pre>{{item.data}}</pre>
+      <button ng-click="approve(item,draftovi.user)">Approve</button>
+    </div>
+    <hr>
   </div>
-  <hr>
 </div>
 
 

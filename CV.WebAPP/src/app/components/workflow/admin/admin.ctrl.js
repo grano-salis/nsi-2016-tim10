@@ -121,7 +121,7 @@
         };
         this.push(obj);
       },components);
-      apiService.saveUserComponents(userid,components);
+      apiService.saveUserComponents(userid.id,components);
       apiService.deleteDraft(userid,item.title);
       $scope.init();
     }

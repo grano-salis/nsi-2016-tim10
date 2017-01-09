@@ -29,10 +29,15 @@
     .service('apiService', apiService);
 
   /** @ngInject */
-  function apiService($http,$q,localStorageService,loginService){
+  function apiService($http,$q,localStorageService,loginService,authService){
     var userComponents = null;
     var userDrafts = null;
     var currentUser = null;
+
+    authService.getCurrentUser()
+      .then(function (data) {
+        currentUser = data;
+      })
 
     this.setUserComponents = function(components){
       userComponents = components;
@@ -128,12 +133,14 @@
       }
       var key = 'components-'+userid;
       localStorageService.set(key,obj);
+
     }
     this.saveUserDrafts = function (userid,components) {
       if(components===null || typeof (components)=='undefined')
         components = userDrafts;
 
       if(userid === null || typeof (userid)=='undefined'){
+        debugger
         currentUser = loginService.getCurrentUser();
         userid = currentUser.id;
       }

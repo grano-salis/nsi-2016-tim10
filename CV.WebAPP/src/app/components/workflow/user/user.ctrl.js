@@ -9,10 +9,10 @@
 
   /** @ngInject */
   function ctrl($scope,$http,$location,$anchorScroll,localStorageService,$uibModal,
-                smoothScroll,$document,$timeout,loginService, apiService,toastr,
+                smoothScroll,$document,$timeout,loginService, apiService,toastr,authService,
                 bsLoadingOverlayService) {
     debugger
-
+    loginService.setUserDummy();
 
     $scope.init = function () {
       $scope.old = {};
@@ -99,7 +99,7 @@
         }
       },draft);
       debugger;
-      apiService.saveUserDrafts(loginService.getCurrentUser().id,draft);
+      apiService.saveUserDrafts(loginService.getCurrentUser(),draft);
       //$scope.init();
       toastr.info('Promjene poslane na potvrdu!');
     }
