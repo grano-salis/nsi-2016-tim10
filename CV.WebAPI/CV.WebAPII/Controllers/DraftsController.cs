@@ -10,9 +10,11 @@ using System.Xml;
 using CV.WebAPII.ViewModels;
 using CV.WebAPII.Providers;
 using System.Web;
+using System.Web.Http.Cors;
 
 namespace CV.WebAPII.Controllers
 {
+    [EnableCors(origins: "http://localhost:3002", headers: "*", methods: "*", SupportsCredentials = true)]
     public class DraftsController : ApiController
     {
         private context context;
@@ -107,6 +109,20 @@ namespace CV.WebAPII.Controllers
             AdminDTO a = new AdminDTO();
             a.user = context.CV_USER.Find(id).CV_USER_INFO.First();
             a.components = dto;
+            return a;
+        }
+
+        [HttpGet]
+        [Route("test")]
+        public IEnumerable<NewDraft> lista()
+        {
+            List<NewDraft> a = new List<NewDraft>();
+            NewDraft t = new NewDraft();
+            t.data = "asd";
+            t.title = "rrr";
+            t.additionalInfo = "hh";
+            t.id = 8;
+            a.Add(t);
             return a;
         }
 
@@ -227,5 +243,33 @@ namespace CV.WebAPII.Controllers
             
         }
 
+        [HttpGet]
+        [Route("drafts/admin")]
+        public IEnumerable<AdminDTO> getDrafts()
+        {
+            var ret = context.COMPONENTDRAFTs.Where(a => a.APPROVED != "a").ToList();
+            return new List<AdminDTO>();
+        }
+
+        [HttpGet]
+        [Route("drafts")]
+        public IEnumerable<ComponentDTO> getD()
+        {
+            var rez = new List<ComponentDTO>();
+            UserInfo userInfo = _authProvider.getAuth(HttpContext.Current.Request.Cookies["sid"].Value);
+
+            //var cd = context.COMPONENTDRAFTs.Include().Where(c => c.USER_ID == userInfo.UserId);
+            //foreach(var obj in cd)
+            //{
+            //    ComponentDTO t = new ComponentDTO();
+            //    t.id = obj.COMPONENTID;
+            //    t.title = context.CV_FRAGMENT_TYPE.FirstOrDefault(a => a.ID == obj.TYPE_ID)
+            //}
+            //if (cd == null)
+            //    throw new Exception("Component with specified ID not found.");
+
+
+            return rez;
+        }
     }
 }
