@@ -10,7 +10,7 @@
   /** @ngInject */
   function ctrl($scope,$http,$location,$anchorScroll,localStorageService,
                 smoothScroll,$document,$timeout,loginService, apiService,
-                bsLoadingOverlayService,$window) {
+                bsLoadingOverlayService,$window,authService) {
 
     $scope.init = function(){
       loginService.setUserAdminDummy();
@@ -53,7 +53,7 @@
     });
 
     $scope.delta = jsonDiff.diff({huma:true},{huma:false});
-    debugger
+    //debugger
     //$scope.beautifulHtml = jsonDiff.formatters.html.format($scope.delta, {huma:true});
 
     // var objA = {user: {firstName: "Albert", lastName: "Einstein"}};
@@ -61,6 +61,10 @@
     // $scope.delta = jsonpatch.compare(objA, objB);
 
     $scope.init();
+    //authService.register();
+    //authService.session();
+    // authService.logout();
+    // authService.login();
     // var saveComponents = function () {
     //   var draft = [];
     //   angular.forEach($scope.components,function (value,key) {

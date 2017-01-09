@@ -10,9 +10,20 @@
 
     $stateProvider
       .state('admin', {
-        url: '/admin',
+        url: '/',
         params: {
           scrollTo: null
+        },
+        resolve:{
+          userR:['authService','$q','$state',function (authService,$q,$state) {
+            debugger
+            authService.isAdmin().then(function () {
+              return $q.resolve();
+            },function () {
+              $state.go('user');
+              return $q.reject();
+            })
+          }]
         },
         templateUrl: 'app/components/workflow/admin/admin.tmpl.html',
         controller: 'adminCtrl',
@@ -28,7 +39,7 @@
         onEnter: scrollTo
       })
       .state('user', {
-        url: '/user',
+        url: '/',
         params: {
           scrollTo: null
         },

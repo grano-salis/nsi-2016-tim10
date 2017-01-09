@@ -20,10 +20,19 @@
     return directive;
 
     /** @ngInject */
-    function NavbarController($scope, accountModal, $state) {
-
+    function NavbarController($scope, accountModal, $state,authService) {
+      authService.getCurrentUser().then(function (data) {
+        //alert(data);
+        debugger;
+        $scope.user = data;
+      });
+      $scope.user = {};
       $scope.dummy = function () {
-        alert('hi ovomeni neki dropdown');
+        //alert('hi ovomeni neki dropdown');
+
+      }
+      $scope.logout = function () {
+        authService.logout();
       }
 
         $scope.showMenu = false;
