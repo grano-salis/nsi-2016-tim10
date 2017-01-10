@@ -134,7 +134,10 @@
         ariaLabelledBy: 'modal-title',
         ariaDescribedBy: 'modal-body',
         templateUrl: 'export.tmpl.html',
-        controller: function ($scope,$http,$uibModalInstance,pr,old,$log) {
+        controller: function ($scope,$http,$uibModalInstance,pr,old,$log,apiService) {
+
+          //apiService
+
           debugger
           var componente = old;
           $scope.pr=pr;

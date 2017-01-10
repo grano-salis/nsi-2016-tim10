@@ -171,6 +171,25 @@
       //$http.post
     }
 
+    this.getConfirmedDrafts = function () {
+
+    };
+
+    this.getExportDrafts = function () {
+      //drafts/confirmed
+      var def = $q.defer();
+      var url = "http://localhost:9512/drafts/confirmed";
+
+      $http.get(url,{withCredentials: true})
+        .then(function (data) {
+          debugger
+        },function (error) {
+          debugger
+        })
+
+      return def.promise;
+    }
+
     this.getAdminAllDrafts = function () {
       debugger
       var def = $q.defer();
