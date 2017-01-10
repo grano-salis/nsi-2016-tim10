@@ -123,6 +123,20 @@
       },components);
       apiService.saveUserComponents(userid.id,components);
       apiService.deleteDraft(userid,item.title);
+
+      var url = "http://localhost:9512/drafts/90/approve";
+
+      $http({
+        method:'POST',
+        url:url,
+        withCredentials: true
+      })
+        .then(function (data) {
+          debugger
+        },function (error) {
+          debugger
+        })
+
       $scope.init();
     }
   }

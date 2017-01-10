@@ -2,16 +2,27 @@
   Administracija
 </mob-navbar>
 <div style="top: 50px;position: absolute;">
-  <div>
-    <h2>{{draftovi.user.name}}</h2>
-    <hr>
-    <div ng-repeat="item in draftovi.components">
-      <h4>{{item.title}}</h4>
-      <pre>{{item.data}}</pre>
-      <button ng-click="approve(item,draftovi.user)">Approve</button>
+  <div class="container" style="background-color: #00e64c">
+    <div class="container-fluid" style="background-color: red">
+      <!--ng-repeat-->
+d
     </div>
-    <hr>
   </div>
+  <!--<div style="background-color: rebeccapurple"  class="container-fluid">-->
+    <!--<h2>{{draftovi.user.name}}</h2>-->
+    <!--<hr>-->
+    <!--<div class="row">-->
+      <!--<div ng-repeat="item in draftovi.components" class="col-lg-3">-->
+        <!--<div class="row">-->
+          <!--<h4 class="col-lg-6">{{item.title}}</h4>-->
+          <!--<button ng-click="approve(item,draftovi.user)">Approve</button>-->
+        <!--</div>-->
+        <!--<pre pretty-json="item.data"  class="container-fluid"></pre>-->
+
+      <!--</div>-->
+    <!--</div>-->
+    <!--<hr>-->
+  <!--</div>-->
 </div>
 
 

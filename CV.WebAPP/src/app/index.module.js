@@ -17,6 +17,7 @@
       'angularSpinner',
       'bsLoadingOverlay',
       'LocalStorageModule',
+      'ngPrettyJson',
       // 'bsLoadingOverlaySpinJs',
       // 'bsLoadingOverlayHttpInterceptor',
 

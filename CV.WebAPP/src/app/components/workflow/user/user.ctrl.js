@@ -187,7 +187,7 @@
               document.body.removeChild(a);
 
             }, function errorCallback(response,x,y,z,k) {
-              alert(response);
+              //alert(response);
               debugger;
             })
           };

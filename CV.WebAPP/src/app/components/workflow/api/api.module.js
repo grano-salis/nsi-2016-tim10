@@ -155,6 +155,20 @@
       }
       var key = 'drafts-'+currentUser.id;
       localStorageService.set(key,obj);
+      var url = "http://localhost:9512/drafts";
+
+      for(var i=0;i<components.length;i++){
+        components[i].data = JSON.stringify({root:components[i].data});
+      }
+
+      $http.post(url,components,{withCredentials: true})
+        .then(function (data) {
+          debugger
+        },function (error) {
+          debugger
+        })
+
+      $http.post
     }
   }
 })();
