@@ -202,6 +202,7 @@
     <Compile Include="ViewModels\AdminDTO.cs" />
     <Compile Include="ViewModels\ComponentDTO.cs" />
     <Compile Include="ViewModels\ComponentVM.cs" />
+    <Compile Include="ViewModels\confirmedComponentDTO.cs" />
     <Compile Include="ViewModels\NewDraft.cs" />
     <Compile Include="ViewModels\unconfirmedDraftsDTO.cs" />
     <Compile Include="ViewModels\UserInfo.cs" />

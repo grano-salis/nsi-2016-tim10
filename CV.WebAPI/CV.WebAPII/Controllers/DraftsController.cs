@@ -24,41 +24,90 @@ namespace CV.WebAPII.Controllers
         }
 
         [HttpGet]
-        [Route("users/{id:int}/drafts")]
-        public IEnumerable<ComponentDTO> draftsByUsersId(int id)
+        [Route("drafts/confirmed/{id:int}")]
+        //works only with componentDraft id
+        public confirmedComponentDTO confirmedDraftById(int id)
         {
-            var ret = context.COMPONENTDRAFTs.Where(cd => cd.CV_XML_FRAGMENT.USER_ID.Value == id).ToList();
-            //System.Xml.Serialization.XmlSerializer xs = new System.Xml.Serialization.XmlSerializer(COMPONENTDRAFT);
-            //return ret;
-
-            // To convert an XML node contained in string xml into a JSON string   
-            XmlDocument doc = new XmlDocument();
-
-            foreach (var r in ret)
+            try
             {
-                //ako bude trebalo
-                //context.Entry(r).State = System.Data.Entity.EntityState.Detached;
-                if (r.DATA != null)
+                if (HttpContext.Current.Request.Cookies["sid"] == null)
+                    throw new UnauthorizedAccessException("You have to have admin role to perform this action."); //TODO: strpati ovo u tijelo responsea
+
+
+                UserInfo userInfo = _authProvider.getAuth(HttpContext.Current.Request.Cookies["sid"].Value);
+
+                if (!userInfo.Roles.Contains("ADMIN"))
+                    throw new UnauthorizedAccessException("You have to have admin role to perform this action."); //TODO: strpati ovo u tijelo responsea
+
+                XmlDocument doc = new XmlDocument();
+                var draft = context.COMPONENTDRAFTs.Include("CV_XML_FRAGMENT").Include("TYPE").Where(c => c.ID == id).Select(c => new confirmedComponentDTO {
+                    data = c.CV_XML_FRAGMENT.XML_DATA,
+                    title = c.TYPE.FRAGMENT_TYPE,
+                    id = c.CV_XML_FRAGMENT.ID
+                }).Single();
+
+                if (draft == null)
+                    throw new Exception("Draft with specified id does not exist.");
+
+                return draft;
+            }
+            catch (UnauthorizedAccessException e)
+            {
+                HttpContext.Current.Response.StatusCode = 401;
+                //TODO: this
+                throw e;
+            }
+            catch (Exception e)
+            {
+                HttpContext.Current.Response.StatusCode = 500;
+                throw e;
+            }
+        }
+
+        [HttpGet]
+        [Route("drafts/confirmed")]
+        public IEnumerable<confirmedComponentDTO> confirmedDrafts()
+        {
+            try
+            {
+                if (HttpContext.Current.Request.Cookies["sid"] == null)
+                    throw new UnauthorizedAccessException("You have to have be logged in to perform this action."); //TODO: strpati ovo u tijelo responsea
+
+
+                UserInfo userInfo = _authProvider.getAuth(HttpContext.Current.Request.Cookies["sid"].Value);
+                int id = userInfo.UserId;
+
+                var ret = context.CV_XML_FRAGMENT.Include("CV_FRAGMENT_TYPE").Where(c => c.USER_ID.Value == id).Select(c => new confirmedComponentDTO
                 {
-                    doc.LoadXml(r.DATA);
-                    r.DATA = JsonConvert.SerializeXmlNode(doc);
+                    data = c.XML_DATA,
+                    id = c.ID,
+                    title = c.CV_FRAGMENT_TYPE.FRAGMENT_TYPE,
                 }
-            }
-            //string jsonText = JsonConvert.SerializeXmlNode(doc);
+                    ).ToList();
 
-            // To convert JSON text contained in string json into an XML node
-            //XmlDocument doc = JsonConvert.DeserializeXmlNode(json);
-            //return ret;
-            List<ComponentDTO> dto = new List<ComponentDTO>();
-            foreach (var r in ret)
-            {
-                ComponentDTO d = new ComponentDTO();
-                d.title = r.ADDITIONALINFO;
-                d.data = r.DATA;
-                d.approved = r.APPROVED;
-                dto.Add(d);
+                XmlDocument doc = new XmlDocument();
+
+                foreach (var r in ret)
+                {
+                    if (r.data != null)
+                    {
+                        doc.LoadXml(r.data);
+                        r.data = JsonConvert.SerializeXmlNode(doc);
+                    }
+                }
+                return ret;
             }
-            return dto;
+            catch (UnauthorizedAccessException e)
+            {
+                HttpContext.Current.Response.StatusCode = 401;
+                //TODO: this
+                throw e;
+            }
+            catch (Exception e)
+            {
+                HttpContext.Current.Response.StatusCode = 500;
+                throw e;
+            }
         }
 
         [HttpGet]
@@ -181,6 +230,7 @@ namespace CV.WebAPII.Controllers
                     d.title = r.ADDITIONALINFO;
                     d.data = r.DATA;
                     d.approved = r.APPROVED;
+                    d.id = r.ID;
                     dto.Add(d);
                 }
 
