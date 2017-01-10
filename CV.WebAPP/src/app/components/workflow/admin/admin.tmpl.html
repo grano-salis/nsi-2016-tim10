@@ -2,10 +2,20 @@
   Administracija
 </mob-navbar>
 <div style="top: 50px;position: absolute;">
-  <div class="container" style="background-color: #00e64c">
-    <div class="container-fluid" style="background-color: red">
+  <div class="container">
+    <div class="container-fluid"
+         ng-repeat="row in data">
       <!--ng-repeat-->
-d
+      <!--<pre>{{row}}</pre>-->
+      <h2>Korisnik: {{row.username}}</h2>
+      <hr>
+      <div class="row"
+           ng-repeat="d in row.drafts">
+        <pre>{{d}}</pre>
+        <h3 class="col-lg-6">{{d.title}}
+        <button class="btn btn-default" ng-click="approve(d.id)">Approve</button></h3>
+        <pre class="col-lg-12" pretty-json="d.data"></pre>
+      </div>
     </div>
   </div>
   <!--<div style="background-color: rebeccapurple"  class="container-fluid">-->

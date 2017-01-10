@@ -18,6 +18,7 @@
       $scope.draftovi = apiService.getUserDrafts();
 
 
+
       $scope.components = {};
       $scope.drafts = {};
       angular.forEach($scope.componente.components,function (value,key) {
@@ -27,6 +28,14 @@
       angular.forEach($scope.draftovi.components,function (value,key) {
         $scope.drafts[value.title] = value.data;
       })
+      apiService.getAdminAllDrafts()
+        .then(function (data) {
+          debugger
+        $scope.data = data;
+          debugger
+      },function (error) {
+          debugger;
+        });
     }
 
     var jsondiffpatch = $window.jsondiffpatch;
@@ -92,39 +101,39 @@
       },components);
       apiService.saveUserComponents($scope.draftovi.user,components);
     }
-    $scope.approve =function(item,userid){
+    $scope.approve =function(itemid){
       //alert(item);
-      var flag = false;
-      angular.forEach($scope.componente.components,function (value,key) {
-        debugger;
-        if(item.title==value.title){
-          value.updated = new Date();
-          value.data = item.data;
-          flag=true;
-          //value.data.updated = new Date();
-          //break;
-        }
-      });
+      // var flag = false;
+      // angular.forEach($scope.componente.components,function (value,key) {
+      //   debugger;
+      //   if(item.title==value.title){
+      //     value.updated = new Date();
+      //     value.data = item.data;
+      //     flag=true;
+      //     //value.data.updated = new Date();
+      //     //break;
+      //   }
+      // });
+      //
+      // if(!flag){
+      //   if(typeof $scope.componente.components=='undefined')
+      //     $scope.componente.components = [];
+      //   $scope.componente.components.push(item);
+      // }
+      //
+      // debugger;
+      // var components=[];
+      // angular.forEach($scope.componente.components,function (value,key) {
+      //   var obj = {
+      //     title:value.title,
+      //     data:value.data
+      //   };
+      //   this.push(obj);
+      // },components);
+      // apiService.saveUserComponents(userid.id,components);
+      // apiService.deleteDraft(userid,item.title);
 
-      if(!flag){
-        if(typeof $scope.componente.components=='undefined')
-          $scope.componente.components = [];
-        $scope.componente.components.push(item);
-      }
-
-      debugger;
-      var components=[];
-      angular.forEach($scope.componente.components,function (value,key) {
-        var obj = {
-          title:value.title,
-          data:value.data
-        };
-        this.push(obj);
-      },components);
-      apiService.saveUserComponents(userid.id,components);
-      apiService.deleteDraft(userid,item.title);
-
-      var url = "http://localhost:9512/drafts/90/approve";
+      var url = "http://localhost:9512/drafts/"+itemid+"/approve";
 
       $http({
         method:'POST',

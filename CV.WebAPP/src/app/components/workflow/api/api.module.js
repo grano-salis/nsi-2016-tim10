@@ -168,7 +168,29 @@
           debugger
         })
 
-      $http.post
+      //$http.post
+    }
+
+    this.getAdminAllDrafts = function () {
+      debugger
+      var def = $q.defer();
+      var url = "http://localhost:9512/drafts/waiting";
+      $http.get(url,{withCredentials: true})
+        .then(function (data) {
+          debugger
+          for(var i=0;i<data.data.length;i++){
+            angular.forEach(data.data[i].drafts, function(value, key) {
+              value.data = JSON.parse(value.data);
+              value.data = value.data.root;
+            });
+          }
+          def.resolve(data.data);
+        },function (error) {
+          debugger
+          def.reject(error);
+        })
+
+      return def.promise;
     }
   }
 })();
