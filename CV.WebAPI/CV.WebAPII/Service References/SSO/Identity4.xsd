@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:48202/BusinessLogic/Identity.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SSO.WCFService.DataContracts" />
+  <xs:import schemaLocation="http://localhost:48203/BusinessLogic/Identity.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SSO.WCFService.DataContracts" />
   <xs:element name="Logout">
     <xs:complexType>
       <xs:sequence>

@@ -64,52 +64,143 @@ namespace CV.WebAPII.Controllers
         }
 
         [HttpGet]
-        [Route("admin/drafts")]
-        public IEnumerable<COMPONENTDRAFT> unconfirmedDrafts()
+        [Route("drafts/waiting")]
+        public List<unconfirmedDraftsDTO> unconfirmedDrafts()
         {
-            var ret = context.COMPONENTDRAFTs.Where(cd => cd.APPROVED == "f").ToList();
-            XmlDocument doc = new XmlDocument();
-            foreach (var r in ret)
+            try
             {
-                //context.Entry(r).State = System.Data.Entity.EntityState.Detached;
-                if (r.DATA != null)
+                if (HttpContext.Current.Request.Cookies["sid"] == null)
+                    throw new UnauthorizedAccessException("You have to have admin role to perform this action."); //TODO: strpati ovo u tijelo responsea
+
+
+                UserInfo userInfo = _authProvider.getAuth(HttpContext.Current.Request.Cookies["sid"].Value);
+
+                if (!userInfo.Roles.Contains("ADMIN"))
+                    throw new UnauthorizedAccessException("You have to have admin role to perform this action."); //TODO: strpati ovo u tijelo responsea
+
+                XmlDocument doc = new XmlDocument();
+                /*
+                var query = from u in context.CV_USER
+                            join cd in context.COMPONENTDRAFTs.Include("TYPE").Include("USER").Where(cd => cd.APPROVED == "w") on u.ID equals cd.USER_ID into drafts
+                            from d in drafts.DefaultIfEmpty()
+                            group d by u.ID into result
+                            select new unconfirmedDraftsDTO
+                            {
+                                user_id = result.Key,
+                                username = result.FirstOrDefault().USER.USERNAME,
+                                drafts = result.Select(component => new ComponentDTO
+                                {
+                                    approved = component.APPROVED,
+                                    data = component.APPROVED,
+                                    id = component.ID,
+                                    title = component.TYPE.FRAGMENT_TYPE
+                                }).ToList()
+                            };
+                */
+
+                var drafts = context.COMPONENTDRAFTs.Include("USER").Include("TYPE").Where(cd => cd.APPROVED == "w").ToList();
+
+                Dictionary<int, List<ComponentVM>> h = new Dictionary<int, List<ComponentVM>>();
+                foreach(var d in drafts)
                 {
-                    doc.LoadXml(r.DATA);
-                    r.DATA = JsonConvert.SerializeXmlNode(doc);
+                    if (d.DATA != null)
+                    {
+                        doc.LoadXml(d.DATA);
+                        d.DATA = JsonConvert.SerializeXmlNode(doc);
+                    }
+
+                    if (!h.Keys.Contains(d.USER_ID))
+                        h[d.USER_ID] = new List<ComponentVM>();
+                    h[d.USER_ID].Add(new ComponentVM
+                    {
+                        approved = d.APPROVED,
+                        data = d.DATA,
+                        id = d.ID,
+                        title = d.TYPE.FRAGMENT_TYPE,
+                        username = d.USER.USERNAME
+                    });
                 }
+                List<unconfirmedDraftsDTO> result = new List<unconfirmedDraftsDTO>();
+
+                foreach(var id in h.Keys)
+                {
+                    result.Add(new unconfirmedDraftsDTO
+                    {
+                        drafts = h[id],
+                        username = h[id].FirstOrDefault().username,
+                        user_id = id
+                    });
+                }
+
+                return result;
+
             }
-            return ret;
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         [HttpGet]
-        [Route("admin/{id:int}/drafts")]
-        public AdminDTO unconfirmedDraftsByUsersId(int id)
+        [Route("users/{id:int}/drafts/waiting")]
+        //only admin can perform this action
+        public AdminDTO unconfirmedDraftsByUsersId(int id) //TODO change returning types to http
         {
-            var ret = context.COMPONENTDRAFTs.Where(cd => cd.APPROVED == "f" && cd.CV_XML_FRAGMENT.USER_ID.Value == id).ToList();
-            XmlDocument doc = new XmlDocument();
-            foreach (var r in ret)
+            try
             {
-                //context.Entry(r).State = System.Data.Entity.EntityState.Detached;
-                if (r.DATA != null)
+                if(HttpContext.Current.Request.Cookies["sid"] == null)
+                    throw new UnauthorizedAccessException("You have to have admin role to perform this action."); //TODO: strpati ovo u tijelo responsea
+
+                UserInfo userInfo = _authProvider.getAuth(HttpContext.Current.Request.Cookies["sid"].Value);
+
+                if (!userInfo.Roles.Contains("ADMIN"))
+                    throw new UnauthorizedAccessException("You have to have admin role to perform this action."); //TODO: strpati ovo u tijelo responsea
+                
+
+                AdminDTO a = new AdminDTO();
+                a.user = context.CV_USER_INFO.Where(ui => ui.USER_ID == id).First();
+
+                if (a.user == null)
+                    throw new Exception("User with specified id does not exist.");
+
+                var ret = context.COMPONENTDRAFTs.Where(cd => cd.APPROVED == "w" && cd.USER_ID == id).ToList();
+
+                XmlDocument doc = new XmlDocument();
+                foreach (var r in ret)
                 {
-                    doc.LoadXml(r.DATA);
-                    r.DATA = JsonConvert.SerializeXmlNode(doc);
+                    //context.Entry(r).State = System.Data.Entity.EntityState.Detached;
+                    if (r.DATA != null)
+                    {
+                        doc.LoadXml(r.DATA);
+                        r.DATA = JsonConvert.SerializeXmlNode(doc);
+                    }
                 }
+                //return ret;
+                List<ComponentDTO> dto = new List<ComponentDTO>();
+                foreach (var r in ret)
+                {
+                    ComponentDTO d = new ComponentDTO();
+                    d.title = r.ADDITIONALINFO;
+                    d.data = r.DATA;
+                    d.approved = r.APPROVED;
+                    dto.Add(d);
+                }
+
+                a.components = dto;
+                return a;
             }
-            //return ret;
-            List<ComponentDTO> dto = new List<ComponentDTO>();
-            foreach (var r in ret)
+            catch (UnauthorizedAccessException e)
             {
-                ComponentDTO d = new ComponentDTO();
-                d.title = r.ADDITIONALINFO;
-                d.data = r.DATA;
-                d.approved = r.APPROVED;
-                dto.Add(d);
+                HttpContext.Current.Response.StatusCode  = 401;
+                //TODO: this
+                throw e;
             }
-            AdminDTO a = new AdminDTO();
-            a.user = context.CV_USER.Find(id).CV_USER_INFO.First();
-            a.components = dto;
-            return a;
+            catch (Exception e)
+            {
+                HttpContext.Current.Response.StatusCode = 500;
+                throw e;
+            }
+            
         }
 
         [HttpGet]
@@ -133,6 +224,10 @@ namespace CV.WebAPII.Controllers
         {
             try
             {
+                if (HttpContext.Current.Request.Cookies["sid"] == null)
+                    throw new UnauthorizedAccessException("You have to have be logged in to perform this action."); //TODO: strpati ovo u tijelo responsea
+
+
                 UserInfo userInfo = _authProvider.getAuth(HttpContext.Current.Request.Cookies["sid"].Value);
                 int id = userInfo.UserId;
 
@@ -203,6 +298,9 @@ namespace CV.WebAPII.Controllers
         {
             try
             {
+                if (HttpContext.Current.Request.Cookies["sid"] == null)
+                    throw new UnauthorizedAccessException("You have to have admin role to perform this action."); //TODO: strpati ovo u tijelo responsea
+
 
                 UserInfo userInfo = _authProvider.getAuth(HttpContext.Current.Request.Cookies["sid"].Value);
 

@@ -10,3 +10,15 @@ C:\Users\Enil\Documents\GitHub\nsi-2016-tim8\CV.WebAPI\CV.DAL\bin\Debug\EntityFr
 C:\Users\Enil\Documents\GitHub\nsi-2016-tim8\CV.WebAPI\CV.DAL\obj\Debug\CV.DAL.csprojResolveAssemblyReference.cache
 C:\Users\Enil\Documents\GitHub\nsi-2016-tim8\CV.WebAPI\CV.DAL\obj\Debug\CV.DAL.dll
 C:\Users\Enil\Documents\GitHub\nsi-2016-tim8\CV.WebAPI\CV.DAL\obj\Debug\CV.DAL.pdb
+E:\nsi-2016-tim8\CV.WebAPI\CV.DAL\bin\Debug\CV.DAL.dll.config
+E:\nsi-2016-tim8\CV.WebAPI\CV.DAL\bin\Debug\CV.DAL.dll
+E:\nsi-2016-tim8\CV.WebAPI\CV.DAL\bin\Debug\CV.DAL.pdb
+E:\nsi-2016-tim8\CV.WebAPI\CV.DAL\bin\Debug\EntityFramework.dll
+E:\nsi-2016-tim8\CV.WebAPI\CV.DAL\bin\Debug\EntityFramework.SqlServer.dll
+E:\nsi-2016-tim8\CV.WebAPI\CV.DAL\bin\Debug\Oracle.ManagedDataAccess.dll
+E:\nsi-2016-tim8\CV.WebAPI\CV.DAL\bin\Debug\Oracle.ManagedDataAccess.EntityFramework.dll
+E:\nsi-2016-tim8\CV.WebAPI\CV.DAL\bin\Debug\EntityFramework.xml
+E:\nsi-2016-tim8\CV.WebAPI\CV.DAL\bin\Debug\EntityFramework.SqlServer.xml
+E:\nsi-2016-tim8\CV.WebAPI\CV.DAL\obj\Debug\CV.DAL.csprojResolveAssemblyReference.cache
+E:\nsi-2016-tim8\CV.WebAPI\CV.DAL\obj\Debug\CV.DAL.dll
+E:\nsi-2016-tim8\CV.WebAPI\CV.DAL\obj\Debug\CV.DAL.pdb

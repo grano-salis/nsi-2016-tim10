@@ -93,46 +93,12 @@
     <Compile Include="CodeFirst\TIP_UCESNIKA.cs" />
     <Compile Include="CodeFirst\UCESNIK.cs" />
     <Compile Include="CodeFirst\ZAPISNIK.cs" />
-    <Compile Include="EF\model.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>model.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF\model.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF\model.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>model.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="EF\model.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>model.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="App.db.config" />
-    <None Include="EF\model.edmx.diagram">
-      <DependentUpon>model.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="EF\model.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>model.edmx</DependentUpon>
-      <LastGenOutput>model.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="EF\model.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>model.edmx</DependentUpon>
-      <LastGenOutput>model.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
