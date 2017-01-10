@@ -757,9 +757,13 @@ namespace CV.DAL.CodeFirst
                 .IsUnicode(false);
 
             modelBuilder.Entity<CV_XML_FRAGMENT>()
+                .Property(f => f.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+
+            modelBuilder.Entity<CV_XML_FRAGMENT>()
                 .HasMany(e => e.COMPONENTDRAFTs)
                 .WithRequired(e => e.CV_XML_FRAGMENT)
                 .HasForeignKey(e => e.COMPONENTID);
+
         }
     }
 }
