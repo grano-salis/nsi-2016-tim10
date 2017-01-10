@@ -188,6 +188,59 @@ namespace CV.WebAPII.Controllers
             }
         }
 
+
+        [HttpGet]
+        [Route("drafts")]
+        //only logged in user can perform this action
+        public List<ComponentDTO> draftsByUserId() //TODO change returning types to http
+        {
+
+            try
+            {
+                if (HttpContext.Current.Request.Cookies["sid"] == null)
+                    throw new UnauthorizedAccessException("You have to be logged in to perform this action."); //TODO: strpati ovo u tijelo responsea
+
+                UserInfo userInfo = _authProvider.getAuth(HttpContext.Current.Request.Cookies["sid"].Value);
+
+                int id = userInfo.UserId;
+                
+                var ret = context.COMPONENTDRAFTs.Include("TYPE").Where(cd => cd.USER_ID == id)
+                    .Select(cd => new ComponentDTO {
+                        approved = cd.APPROVED,
+                        data = cd.DATA,
+                        id = cd.ID,
+                        title = cd.TYPE.FRAGMENT_TYPE
+                    }).ToList();
+
+                XmlDocument doc = new XmlDocument();
+
+                foreach (var d in ret)
+                {
+                    if (d.data != null)
+                    {
+                        doc.LoadXml(d.data);
+                        d.data = JsonConvert.SerializeXmlNode(doc);
+                    }
+                }
+
+                return ret;
+                
+            }
+            catch (UnauthorizedAccessException e)
+            {
+                HttpContext.Current.Response.StatusCode = 401;
+                //TODO: this
+                throw e;
+            }
+            catch (Exception e)
+            {
+                HttpContext.Current.Response.StatusCode = 500;
+                throw e;
+            }
+
+        }
+
+
         [HttpGet]
         [Route("users/{id:int}/drafts/waiting")]
         //only admin can perform this action
