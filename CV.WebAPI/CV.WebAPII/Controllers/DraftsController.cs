@@ -184,8 +184,9 @@ namespace CV.WebAPII.Controllers
                 return result;
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                HttpContext.Current.Response.StatusCode = 500;
                 throw;
             }
         }
@@ -306,19 +307,6 @@ namespace CV.WebAPII.Controllers
             
         }
 
-        [HttpGet]
-        [Route("test")]
-        public IEnumerable<NewDraft> lista()
-        {
-            List<NewDraft> a = new List<NewDraft>();
-            NewDraft t = new NewDraft();
-            t.data = "asd";
-            t.title = "rrr";
-            t.additionalInfo = "hh";
-            t.id = 8;
-            a.Add(t);
-            return a;
-        }
 
         [HttpPost]
         //this method can only be used by logged-in users
@@ -346,7 +334,7 @@ namespace CV.WebAPII.Controllers
                         cd.USER_ID = id;
                         cd.APPROVED = "w";
                         cd.TYPE_ID = ft.ID;
-                        XmlDocument doc = JsonConvert.DeserializeXmlNode(value.data);
+                        XmlDocument doc = JsonConvert.DeserializeXmlNode(value.data,"root");
                         cd.DATA = doc.OuterXml;
                         /*
                         CV_XML_FRAGMENT component = new CV_XML_FRAGMENT();
@@ -366,16 +354,20 @@ namespace CV.WebAPII.Controllers
                     // update
                     else
                     {
-                        COMPONENTDRAFT draft = context.COMPONENTDRAFTs.Single(c => value.id == value.id);
+                        COMPONENTDRAFT draft = context.COMPONENTDRAFTs.FirstOrDefault(c => c.ID == value.id);
                         if (draft == null)
                             throw new Exception("Draft with specified id does not exist.");
+                        
+                        XmlDocument doc = JsonConvert.DeserializeXmlNode(value.data,"root");
+
+                        if (draft.DATA == doc.OuterXml)
+                            continue;
 
                         if (value.additionalInfo != "")
                             draft.ADDITIONALINFO = value.additionalInfo;
 
                         draft.APPROVED = "w";
 
-                        XmlDocument doc = JsonConvert.DeserializeXmlNode(value.data);
                         draft.DATA = doc.OuterXml;
 
                     }
@@ -437,40 +429,12 @@ namespace CV.WebAPII.Controllers
             {
                 return new HttpResponseMessage(HttpStatusCode.Unauthorized);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return new HttpResponseMessage(HttpStatusCode.NotFound); //TODO make custom exceptions 
             }
             
         }
 
-        [HttpGet]
-        [Route("drafts/admin")]
-        public IEnumerable<AdminDTO> getDrafts()
-        {
-            var ret = context.COMPONENTDRAFTs.Where(a => a.APPROVED != "a").ToList();
-            return new List<AdminDTO>();
-        }
-
-        [HttpGet]
-        [Route("drafts")]
-        public IEnumerable<ComponentDTO> getD()
-        {
-            var rez = new List<ComponentDTO>();
-            UserInfo userInfo = _authProvider.getAuth(HttpContext.Current.Request.Cookies["sid"].Value);
-
-            //var cd = context.COMPONENTDRAFTs.Include().Where(c => c.USER_ID == userInfo.UserId);
-            //foreach(var obj in cd)
-            //{
-            //    ComponentDTO t = new ComponentDTO();
-            //    t.id = obj.COMPONENTID;
-            //    t.title = context.CV_FRAGMENT_TYPE.FirstOrDefault(a => a.ID == obj.TYPE_ID)
-            //}
-            //if (cd == null)
-            //    throw new Exception("Component with specified ID not found.");
-
-
-            return rez;
-        }
     }
 }
