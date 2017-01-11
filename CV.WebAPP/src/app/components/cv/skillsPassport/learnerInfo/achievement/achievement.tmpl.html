@@ -1,6 +1,8 @@
 <div  class="jumbotron">
+  <!--<pre>model {{model}}</pre>-->
   <h3> Achievements <button class="btn btn-info" ng-click="addNewModal()">Add</button></h3>
-  <ul class="list-group"  ng-repeat="obj in odabrani">
+  <ul class="list-group"  ng-repeat="obj in model">
+    <!--<pre>{{obj}}</pre>-->
     <li class="list-group-item row">
       <label class="col-lg-11">
         {{obj.Title.Label}} | {{obj.Description}}</label>

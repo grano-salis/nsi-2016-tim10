@@ -15,6 +15,7 @@
     loginService.setUserDummy();
 
     $scope.init = function () {
+
       $scope.old = {};
       $scope.no={};
       $scope.no.Identification = true;
@@ -24,37 +25,50 @@
       $scope.no.Achievement = true;
       loginService.setUserDummy();
 
-      var componente = apiService.getUserComponents();
-      var draftovi = apiService.getUserDrafts();
-
-      $scope.components = {};
       $scope.drafts={};
-      $scope.currentDraft = {};
+      apiService.getConfirmedDrafts()
+        .then(function (data) {
+          debugger
+          angular.forEach(data,function (value,key) {
+            //value.title
+            $scope.drafts[value.title] = value.data;
+            $scope.no[value.title] = false;
+          });
+        },function (error) {
+          debugger
+        })
 
-      angular.forEach(componente.components,function (value,key) {
-        //value.title
-        $scope.components[value.title] = value.data;
-        $scope.drafts[value.title] = value.data;
-        $scope.no[value.title] = false;
-      });
-
-      angular.forEach(draftovi.components,function (value,key) {
-        //value.title
-        $scope.drafts[value.title] = value.data;
-        $scope.no[value.title] = false;
-      });
-
-      $scope.old = angular.copy($scope.components);
-      if(typeof $scope.old.Identification==='undefined')
-        $scope.old.Identification={};
-      if(typeof $scope.old.Education==='undefined')
-        $scope.old.Education={};
-      if(typeof $scope.old.Skills==='undefined')
-        $scope.old.Skills={};
-      if(typeof $scope.old.Achievement==='undefined')
-        $scope.old.Achievement={};
-      if(typeof $scope.old.WorkExperience==='undefined')
-        $scope.old.WorkExperience={};
+      // var componente = apiService.getUserComponents();
+      // var draftovi = apiService.getUserDrafts();
+      //
+      // $scope.components = {};
+      //
+      // $scope.currentDraft = {};
+      //
+      // // angular.forEach(componente.components,function (value,key) {
+      // //   //value.title
+      // //   $scope.components[value.title] = value.data;
+      // //   $scope.drafts[value.title] = value.data;
+      // //   $scope.no[value.title] = false;
+      // // });
+      // //
+      // // angular.forEach(draftovi.components,function (value,key) {
+      // //   //value.title
+      // //   $scope.drafts[value.title] = value.data;
+      // //   $scope.no[value.title] = false;
+      // // });
+      //
+      // $scope.old = angular.copy($scope.components);
+      // if(typeof $scope.old.Identification==='undefined')
+      //   $scope.old.Identification={};
+      // if(typeof $scope.old.Education==='undefined')
+      //   $scope.old.Education={};
+      // if(typeof $scope.old.Skills==='undefined')
+      //   $scope.old.Skills={};
+      // if(typeof $scope.old.Achievement==='undefined')
+      //   $scope.old.Achievement={};
+      // if(typeof $scope.old.WorkExperience==='undefined')
+      //   $scope.old.WorkExperience={};
     }
 
     $scope.init();
@@ -65,38 +79,38 @@
     //   $scope.noIdentification = false;
 
     $scope.saveDrafts = function () {
-      $scope.patches = {
-        Identification:[],
-        Education:[],
-        Skills:[],
-        WorkExperience: [],
-        Achievement: []
-      };
-      if($scope.drafts.Identification)
-        $scope.patches.Identification = jsonpatch.compare($scope.old.Identification,$scope.drafts.Identification);
-
-      if($scope.drafts.Education)
-        $scope.patches.Education = jsonpatch.compare($scope.old.Education,$scope.drafts.Education);
-
-      if($scope.drafts.Skills)
-        $scope.patches.Skills = jsonpatch.compare($scope.old.Skills,$scope.drafts.Skills);
-
-      if($scope.drafts.WorkExperience)
-        $scope.patches.WorkExperience = jsonpatch.compare($scope.old.WorkExperience,$scope.drafts.WorkExperience);
-
-      if($scope.drafts.Achievement)
-        $scope.patches.Achievement = jsonpatch.compare($scope.old.Achievement,$scope.drafts.Achievement);
-
+      // $scope.patches = {
+      //   Identification:[],
+      //   Education:[],
+      //   Skills:[],
+      //   WorkExperience: [],
+      //   Achievement: []
+      // };
+      // if($scope.drafts.Identification)
+      //   $scope.patches.Identification = jsonpatch.compare($scope.old.Identification,$scope.drafts.Identification);
+      //
+      // if($scope.drafts.Education)
+      //   $scope.patches.Education = jsonpatch.compare($scope.old.Education,$scope.drafts.Education);
+      //
+      // if($scope.drafts.Skills)
+      //   $scope.patches.Skills = jsonpatch.compare($scope.old.Skills,$scope.drafts.Skills);
+      //
+      // if($scope.drafts.WorkExperience)
+      //   $scope.patches.WorkExperience = jsonpatch.compare($scope.old.WorkExperience,$scope.drafts.WorkExperience);
+      //
+      // if($scope.drafts.Achievement)
+      //   $scope.patches.Achievement = jsonpatch.compare($scope.old.Achievement,$scope.drafts.Achievement);
+      //
 
       var draft = [];
       angular.forEach($scope.drafts,function (value,key) {
-        if($scope.patches[key].length>0){
+        // if($scope.patches[key].length>0){
           var obj={
             title:key,
             data:value
           };
           this.push(obj);
-        }
+        //}
       },draft);
       debugger;
       apiService.saveUserDrafts(loginService.getCurrentUser(),draft);
@@ -136,27 +150,41 @@
         templateUrl: 'export.tmpl.html',
         controller: function ($scope,$http,$uibModalInstance,pr,old,$log,apiService) {
 
-          //apiService
+          apiService.getExportDrafts().then(function(data){
+            debugger;
+            angular.forEach(data,function (value,key) {
+              //value.title
+              $scope.pr.SkillsPassport.LearnerInfo[value.title] = value.data;
+              // $scope.no[value.title] = false;
+            });
+            // $scope.pr.SkillsPassport.LearnerInfo['Identification']=componente['Identification'];
+            // $scope.pr.SkillsPassport.LearnerInfo['Education']=componente['Education'];
+            // $scope.pr.SkillsPassport.LearnerInfo['Skills']=componente['Skills'];
+            // $scope.pr.SkillsPassport.LearnerInfo['Achievement']=componente['Achievement'];
+            // $scope.pr.SkillsPassport.LearnerInfo['WorkExperience']=componente['WorkExperience'];
+          },function (error) {
+            debugger
+          })
 
           debugger
           var componente = old;
           $scope.pr=pr;
-          angular.forEach(componente,function (value,key) {
-            debugger;
-            // this[key]=value;
-          },$scope.pr.SkillsPassport.LearnerInfo);
+          // angular.forEach(componente,function (value,key) {
+          //   debugger;
+          //   // this[key]=value;
+          // },$scope.pr.SkillsPassport.LearnerInfo);
 
           // if(componente['Identification']!={})
-            $scope.pr.SkillsPassport.LearnerInfo['Identification']=componente['Identification'];
-
-          // if(componente['Education']!={})
-            $scope.pr.SkillsPassport.LearnerInfo['Education']=componente['Education'];
-
-          // if(componente['Skills'])
-            $scope.pr.SkillsPassport.LearnerInfo['Skills']=componente['Skills'];
-
-          $scope.pr.SkillsPassport.LearnerInfo['Achievement']=componente['Achievement'];
-          $scope.pr.SkillsPassport.LearnerInfo['WorkExperience']=componente['WorkExperience'];
+          //   $scope.pr.SkillsPassport.LearnerInfo['Identification']=componente['Identification'];
+          //
+          // // if(componente['Education']!={})
+          //   $scope.pr.SkillsPassport.LearnerInfo['Education']=componente['Education'];
+          //
+          // // if(componente['Skills'])
+          //   $scope.pr.SkillsPassport.LearnerInfo['Skills']=componente['Skills'];
+          //
+          // $scope.pr.SkillsPassport.LearnerInfo['Achievement']=componente['Achievement'];
+          // $scope.pr.SkillsPassport.LearnerInfo['WorkExperience']=componente['WorkExperience'];
 
           $log.debug($scope.pr);
 

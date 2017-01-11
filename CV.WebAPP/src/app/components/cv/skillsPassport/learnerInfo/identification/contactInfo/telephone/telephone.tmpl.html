@@ -7,7 +7,7 @@
 
               <div class="row">
 
-                <div ng-repeat="obj in odabrani" ng-init="edit = true">
+                <div ng-repeat="obj in model" ng-init="edit = true">
                   <label>Contact: </label>
                   <input ng-model="obj.Contact"
                          ng-disabled="edit">
@@ -35,4 +35,4 @@
         </div>
       </div>
 </div>
-<!--<pre>{{odabrani}}</pre>-->
+<!--<pre>{{model}}</pre>-->

@@ -11,16 +11,37 @@
       // restrict: 'E',
       templateUrl: 'app/components/cv/skillsPassport/learnerInfo/workExperience/workExperience.tmpl.html',
       controller: ctrl,
+      require:'ngModel',
+      link:lnk,
       scope: {
-        'model':'=model'
+        'ngModel':'=ngModel'
       }
     };
 
     return directive;
 
+    function lnk(scope,elem,attrs,ngModelCtrl) {
+      ngModelCtrl.$formatters.push(function (modelVal) {
+        // debugger
+        return modelVal;
+      })
+      ngModelCtrl.$render = function () {
+        // debugger
+        scope.model = ngModelCtrl.$viewValue;
+      }
+
+      scope.$watch('model',function () {
+        ngModelCtrl.$setViewValue(scope.model);
+      })
+
+      ngModelCtrl.$parsers.push(function (viewVal) {
+        return viewVal
+      })
+    }
+
     /** @ngInject */
     function ctrl($scope,$uibModal,$log) {
-      $scope.odabrani = $scope.model;
+      $scope.model = $scope.model;
 
       var openModal = function (model,func) {
         var modalInstance = $uibModal.open({
@@ -64,22 +85,22 @@
         var add=null;
         openModal(add,function (add) {
           debugger
-          if($scope.odabrani==null || typeof ($scope.odabrani)=='undefined')
-            $scope.odabrani = [];
+          if($scope.model==null || typeof ($scope.model)=='undefined')
+            $scope.model = [];
 
-          $scope.odabrani.push(add);
+          $scope.model.push(add);
         });
 
       };
 
       $scope.editModal=function($index){
-        openModal($scope.odabrani[$index],function (edit) {
-          $scope.odabrani[$index]=edit;
+        openModal($scope.model[$index],function (edit) {
+          $scope.model[$index]=edit;
         });
       }
 
       $scope.delete = function($index){
-        $scope.odabrani.splice($index);
+        $scope.model.splice($index);
       };
 
       $scope.placeholder = function (obj) {
@@ -96,12 +117,12 @@
         return t;
       }
 
-      if($scope.odabrani)
-        $scope.model = $scope.odabrani;
+      if($scope.model)
+        $scope.model = $scope.model;
 
-      $scope.$watch('odabrani',function(){
-        if($scope.odabrani)
-          $scope.model = $scope.odabrani;
+      $scope.$watch('model',function(){
+        if($scope.model)
+          $scope.model = $scope.model;
       });
     }
   }

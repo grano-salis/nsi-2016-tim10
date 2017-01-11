@@ -4,7 +4,7 @@
     <button class="btn btn-default " ng-click="addNew()">add</button>
   </div>
 </div>
-<div class="input-group" ng-repeat="obj in odabrani"  ng-init="edit = true">
+<div class="input-group" ng-repeat="obj in model"  ng-init="edit = true">
   <input type="text" class="form-control" ng-model="obj" ng-disabled="edit">
   <div class="input-group-btn">
     <button class="btn btn-default"

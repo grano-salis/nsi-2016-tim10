@@ -26,10 +26,30 @@
 
   angular
     .module('ea.api')
+    .service('idService', apiService);
+
+  /** @ngInject */
+  function apiService(){
+    var obj={};
+
+    this.setId = function (id,title) {
+      obj[title] = id;
+    }
+    this.getId = function (title) {
+      return obj[title];
+    }
+  }
+})();
+
+(function(){
+  "use strict";
+
+  angular
+    .module('ea.api')
     .service('apiService', apiService);
 
   /** @ngInject */
-  function apiService($http,$q,localStorageService,loginService,authService){
+  function apiService($http,$q,localStorageService,loginService,authService,idService){
     var userComponents = null;
     var userDrafts = null;
     var currentUser = null;
@@ -159,6 +179,9 @@
 
       for(var i=0;i<components.length;i++){
         components[i].data = JSON.stringify({root:components[i].data});
+        var id = idService.getId(components[i].title);
+        if(id)
+          components[i].id=id;
       }
 
       $http.post(url,components,{withCredentials: true})
@@ -172,7 +195,31 @@
     }
 
     this.getConfirmedDrafts = function () {
+      debugger
+      var def = $q.defer();
+      var url = "http://localhost:9512/drafts";
 
+      $http.get(url,{withCredentials: true})
+        .then(function (data) {
+          debugger
+          for(var i=0;i<data.data.length;i++){
+            data.data[i].data = JSON.parse(data.data[i].data);
+            data.data[i].data = data.data[i].data.root;
+            if(data.data[i].data.root)
+              data.data[i].data = data.data[i].data.root;
+            idService.setId(data.data[i].id,data.data[i].title);
+            // angular.forEach(data.data[i].drafts, function(value, key) {
+            //   value.data = JSON.parse(value.data);
+            //   value.data = value.data.root;
+            // });
+          }
+          def.resolve(data.data);
+        },function (error) {
+          debugger
+          def.reject(error);
+        })
+
+      return def.promise;
     };
 
     this.getExportDrafts = function () {
@@ -182,9 +229,21 @@
 
       $http.get(url,{withCredentials: true})
         .then(function (data) {
-          debugger
+          debugger;
+          for(var i=0;i<data.data.length;i++){
+            data.data[i].data = JSON.parse(data.data[i].data);
+            data.data[i].data = data.data[i].data.root;
+            if(data.data[i].data.root)
+              data.data[i].data = data.data[i].data.root;
+            // angular.forEach(data.data[i].drafts, function(value, key) {
+            //   value.data = JSON.parse(value.data);
+            //   value.data = value.data.root;
+            // });
+          }
+          def.resolve(data.data);
         },function (error) {
           debugger
+          def.reject(error);
         })
 
       return def.promise;

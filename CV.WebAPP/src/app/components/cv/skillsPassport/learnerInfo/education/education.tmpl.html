@@ -1,6 +1,6 @@
 <!--&lt;!&ndash;Pokusaj dodavanja vise edukacija&ndash;&gt;-->
 <!--<h1>Education and training</h1>-->
-<!--<div ng-repeat="obj in odabrani">-->
+<!--<div ng-repeat="obj in model">-->
 
   <!--<pre>{{obj}}</pre>-->
 <!--</div>-->
@@ -8,11 +8,11 @@
 <!--<hr>-->
 <!--<div>-->
 
-  <!--<div period model="add.Period"></div>-->
-  <!--<div title model="add.Title"></div>-->
-  <!--<div organisation model="add.Organisation"></div>-->
+  <!--<div period ng-model="add.Period"></div>-->
+  <!--<div title ng-model="add.Title"></div>-->
+  <!--<div organisation ng-model="add.Organisation"></div>-->
 
-  <!--<div level model="add.Level"></div>-->
+  <!--<div level ng-model="add.Level"></div>-->
   <!--<button class="btn btn-default" ng-click="addNew()">Add</button>-->
 <!--</div>-->
 
@@ -26,18 +26,18 @@
     <div class="container">
       <div class="row col-md-10">
 
-        <div ng-repeat="obj in odabrani">
+        <div ng-repeat="obj in model">
 
           <pre>{{obj}}</pre>
         </div>
 
-        <div period model="add.Period"></div>
+        <div period ng-model="add.Period"></div>
         <button class="btn btn-default" ng-click="addNew()">Add</button>
-        <div title model="add.Title"></div>
+        <div title ng-model="add.Title"></div>
 
-        <div organisation model="add.Organisation"></div>
+        <div organisation ng-model="add.Organisation"></div>
 
-        <div level model="add.Level"></div>
+        <div level ng-model="add.Level"></div>
 
 
 

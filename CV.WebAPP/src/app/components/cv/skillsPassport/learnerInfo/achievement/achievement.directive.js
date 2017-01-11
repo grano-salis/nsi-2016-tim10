@@ -11,29 +11,47 @@
       // restrict: 'E',
       templateUrl: 'app/components/cv/skillsPassport/learnerInfo/achievement/achievement.tmpl.html',
       controller: ctrl,
+      require:'ngModel',
+      link:lnk,
       scope: {
-        'model':'=model'
+        'ngModel':'=ngModel'
       }
     };
 
     return directive;
 
+    function lnk(scope,elem,attrs,ngModelCtrl) {
+      ngModelCtrl.$formatters.push(function (modelVal) {
+        // debugger
+        return modelVal;
+      })
+      ngModelCtrl.$render = function () {
+        // debugger
+        scope.model = ngModelCtrl.$viewValue;
+      }
+
+      scope.$watch('model',function () {
+        ngModelCtrl.$setViewValue(scope.model);
+      })
+
+      ngModelCtrl.$parsers.push(function (viewVal) {
+        return viewVal
+      })
+    }
+
     /** @ngInject */
     function ctrl($scope,$uibModal,enumsService) {
-      $scope.odabrani = $scope.model;
-
-      $scope.model = $scope.odabrani;
 
       $scope.addNew = function () {
-        if($scope.odabrani==null || typeof ($scope.odabrani)=='undefined')
-          $scope.odabrani = [];
-        $scope.odabrani.push($scope.add);
+        if($scope.model==null || typeof ($scope.model)=='undefined')
+          $scope.model = [];
+        $scope.model.push($scope.add);
         // delete $scope.add;
         // $scope.add={};
       }
 
       $scope.delete = function(i){
-        $scope.odabrani.splice(i,1);
+        $scope.model.splice(i,1);
       }
 
       var openModal = function (model,func) {
@@ -101,8 +119,8 @@
         var add=null;
         openModal(add,function (add) {
           debugger
-          if($scope.odabrani==null || typeof ($scope.odabrani)=='undefined')
-            $scope.odabrani = [];
+          if($scope.model==null || typeof ($scope.model)=='undefined')
+            $scope.model = [];
 
           if(Array.isArray(add)){
             //alert('import');
@@ -119,31 +137,31 @@
               })
               debugger;
             }
-            $scope.odabrani.push.apply($scope.odabrani,rez);
+            $scope.model.push.apply($scope.model,rez);
           }
           else
-            $scope.odabrani.push(add);
+            $scope.model.push(add);
         });
 
       };
 
       $scope.editModal=function($index){
-        openModal($scope.odabrani[$index],function (edit) {
-          $scope.odabrani[$index]=edit;
+        openModal($scope.model[$index],function (edit) {
+          $scope.model[$index]=edit;
         });
       }
 
       $scope.delete = function($index){
-        $scope.odabrani.splice($index);
+        $scope.model.splice($index);
       };
 
-      if($scope.odabrani)
-        $scope.model = $scope.odabrani;
-
-      $scope.$watch('odabrani',function(){
-        if($scope.odabrani)
-          $scope.model = $scope.odabrani;
-      });
+      // if($scope.model)
+      //   $scope.model = $scope.model;
+      //
+      // $scope.$watch('model',function(){
+      //   if($scope.model)
+      //     $scope.model = $scope.model;
+      // });
     }
   }
 

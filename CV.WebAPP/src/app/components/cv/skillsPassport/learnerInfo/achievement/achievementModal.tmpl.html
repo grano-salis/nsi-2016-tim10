@@ -18,9 +18,9 @@
         </div>
       </div>
       <div ng-if="!importFlag">
-        <pre>{{model}}</pre>
+        <!--<pre>{{model}}</pre>-->
         <div class="col-lg-4">
-          Title <div achievement-title model="model"></div>
+          Title <div achievement-title ng-model="model"></div>
         </div>
         <div class="col-lg-12">
           Description <input ng-model="model.Description">

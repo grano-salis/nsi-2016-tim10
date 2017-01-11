@@ -7,7 +7,7 @@
     <button class="btn btn-default " ng-click="addNew()">add</button>
   </div>
 </div>
-<div class="input-group" ng-repeat="obj in odabrani"  ng-init="edit = true">
+<div class="input-group" ng-repeat="obj in model"  ng-init="edit = true">
   <select ng-model="obj" ng-disabled="edit" class="form-control"
           ng-options="ob for ob in enum track by ob">
   </select>

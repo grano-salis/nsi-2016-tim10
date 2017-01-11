@@ -141,12 +141,14 @@
         withCredentials: true
       })
         .then(function (data) {
-          debugger
+          debugger;
+          $scope.init();
         },function (error) {
-          debugger
+          debugger;
+          $scope.init();
         })
 
-      $scope.init();
+      // $scope.init();
     }
   }
 

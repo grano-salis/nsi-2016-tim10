@@ -6,15 +6,15 @@
 
 
         <label>Address Line</label><br>
-        <input ng-model="odabrani.AddressLine">
+        <input ng-model="model.AddressLine">
         <label>Address Line 2</label>
-        <input ng-model="odabrani.AddressLine2">
+        <input ng-model="model.AddressLine2">
         <label>Postal Code</label>
-        <input ng-model="odabrani.PostalCode">
+        <input ng-model="model.PostalCode">
         <label>Municipality</label>
-        <input ng-model="odabrani.Municipality">
+        <input ng-model="model.Municipality">
         <label>Country</label>
-        <div country-type model="odabrani.Country"></div>
+        <div country-type ng-model="model.Country"></div>
       </div>
 
 
@@ -22,5 +22,5 @@
 </div>
 </div>
 
-<!--<pre>{{odabrani}}</pre>-->
+<!--<pre>{{model}}</pre>-->
 <!--<pre>{{model}}</pre>-->

@@ -3,7 +3,7 @@
     <h3 class="modal-title" id="modal-title">Export</h3>
   </div>
   <div class="modal-body" id="modal-body">
-    <div headline model="pr.SkillsPassport.LearnerInfo.Headline"></div>
+    <div headline ng-model="pr.SkillsPassport.LearnerInfo.Headline"></div>
     <hr>
     <pre>{{pr}}</pre>
   </div>
@@ -14,6 +14,7 @@
 </script>
 
 <mob-navbar>
+  <!--<button ng-click="init()">buton</button>-->
   <div class="btn-group" role="group">
 <button type="button"
         class="btn btn-default"
@@ -58,7 +59,7 @@
   </div>
 </mob-navbar>
 <div style="top: 50px;position: absolute;">
-
+<!--<pre>{{drafts}}</pre>-->
 
 <hr>
 <!--<pre>{{components}}</pre>-->
@@ -68,31 +69,31 @@
 <!--<pre>{{Education}}</pre>-->
 <!--<pre>{{pr.SkillsPassport.LearnerInfo.Identification}}</pre>-->
 <!--<hr>-->
-<!--<div contact-info="" model="Identification.Demographics.Birthdate"></div>-->
+<!--<div contact-info="" ng-model="Identification.Demographics.Birthdate"></div>-->
 <div uib-collapse="no.Identification" id="idIdentificaiton">
   <!--Identifikacija: <hr>-->
-  <div  class="container" identification model="drafts.Identification"></div>
+  <div  class="container" identification ng-model="drafts.Identification"></div>
   <!--src/app/components/cv/skillsPassport/learnerInfo/identification/demographics/birthdate/birthdate.tmpl.html-->
 
 </div>
 <div uib-collapse="no.Education"
      id="idEducation">
   <!--Edukacija:<hr>-->
-  <div  class="container" education model="drafts.Education"></div>
+  <div  class="container" education ng-model="drafts.Education"></div>
 </div>
   <div uib-collapse="no.WorkExperience"
        id="idWorkExperience">
     <!--Edukacija:<hr>-->
-    <div  class="container" work-experience model="drafts.WorkExperience"></div>
+    <div  class="container" work-experience ng-model="drafts.WorkExperience"></div>
   </div>
 <div uib-collapse="no.Skills"
      id="idSkills">
   <!--Edukacija:<hr>-->
-  <div  class="container" skills model="drafts.Skills"></div>
+  <div  class="container" skills ng-model="drafts.Skills"></div>
 </div>
   <div uib-collapse="no.Achievement"
        id="idAchievement">
     <!--Edukacija:<hr>-->
-    <div   class="container" achievement model="drafts.Achievement"></div>
+    <div   class="container" achievement ng-model="drafts.Achievement"></div>
   </div>
 </div>
